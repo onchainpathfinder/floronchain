@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow The Flor — Social Media Cards Pack</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: 'Inter', sans-serif; padding: 40px 20px; }
+h1 { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 32px; margin-bottom: 8px; background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { text-align: center; color: #888; margin-bottom: 48px; font-size: 14px; }
+.section-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin: 48px 0 24px; padding-left: 16px; border-left: 4px solid; }
+.section-title.running { border-color: #ff6b6b; color: #ff6b6b; }
+.section-title.food { border-color: #6bcb77; color: #6bcb77; }
+.section-title.ai { border-color: #4d96ff; color: #4d96ff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto; }
+
+/* ==================== CARD BASE ==================== */
+.card {
+  width: 360px; height: 360px;
+  border-radius: 16px; overflow: hidden;
+  position: relative; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.card-inner { width: 100%; height: 100%; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; }
+.card .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; width: fit-content; }
+.card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; line-height: 1.15; margin-bottom: 8px; }
+.card p { font-size: 13px; opacity: 0.85; line-height: 1.4; }
+.card .cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.card .cta .arrow { display: inline-block; transition: transform 0.3s; }
+.card:hover .cta .arrow { transform: translateX(4px); }
+.brand { position: absolute; top: 16px; right: 16px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.7; }
+
+/* ==================== RUNNING CARDS ==================== */
+.card.run1 {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #f9ca24 100%);
+}
+.card.run1 .icon { position: absolute; top: 20px; left: 24px; font-size: 48px; }
+.card.run1 .tag { background: rgba(0,0,0,0.3); color: #fff; }
+.card.run1 h2 { color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+.card.run1 .highlight { font-size: 72px; font-weight: 900; font-family: 'Space Grotesk', sans-serif; position: absolute; top: 50px; right: 24px; opacity: 0.15; line-height: 1; }
+
+.card.run2 {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border: 1px solid rgba(255,107,107,0.3);
+}
+.card.run2 .pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,107,107,0.05) 20px, rgba(255,107,107,0.05) 22px); }
+.card.run2 .tag { background: #ff6b6b; color: #fff; }
+.card.run2 .stats { display: flex; gap: 16px; margin-top: 8px; }
+.card.run2 .stat { text-align: center; }
+.card.run2 .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 900; color: #ff6b6b; }
+.card.run2 .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
+
+.card.run3 {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.card.run3::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 18px; padding: 2px;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d, #ff6b6b); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.card.run3 .emoji-row { font-size: 32px; letter-spacing: 8px; margin-bottom: 12px; }
+.card.run3 .tag { background: linear-gradient(135deg, #ff6b6b, #ffd93d); color: #000; }
+
+/* ==================== FOOD CARDS ==================== */
+.card.food1 {
+  background: linear-gradient(135deg, #6bcb77 0%, #1fab89 50%, #0d7377 100%);
+}
+.card.food1 .icon { position: absolute; top: 16px; left: 20px; font-size: 44px; }
+.card.food1 .tag { background: rgba(0,0,0,0.25); color: #fff; }
+.card.food1 h2 { color: #fff; }
+.card.food1 .big-emoji { position: absolute; top: 30px; right: 20px; font-size: 80px; opacity: 0.3; transform: rotate(15deg); }
+
+.card.food2 {
+  background: linear-gradient(180deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+  color: #2d3436;
+}
+.card.food2 .tag { background: #2d3436; color: #ffeaa7; }
+.card.food2 h2 { color: #2d3436; }
+.card.food2 p { color: #2d3436; opacity: 0.8; }
+.card.food2 .cta { color: #2d3436; }
+.card.food2 .brand { color: #2d3436; }
+.card.food2 .food-icons { position: absolute; top: 20px; left: 20px; font-size: 36px; letter-spacing: 6px; }
+
+.card.food3 {
+  background: #0a0a0a;
+  border: 1px solid rgba(107,203,119,0.3);
+}
+.card.food3 .glow { position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(107,203,119,0.25) 0%, transparent 70%); border-radius: 50%; }
+.card.food3 .tag { background: #6bcb77; color: #000; font-weight: 900; }
+.card.food3 .checklist { list-style: none; margin-top: 10px; }
+.card.food3 .checklist li { font-size: 13px; padding: 3px 0; display: flex; align-items: center; gap: 8px; }
+.card.food3 .checklist li::before { content: '✓'; color: #6bcb77; font-weight: 900; }
+
+/* ==================== AI CARDS ==================== */
+.card.ai1 {
+  background: linear-gradient(135deg, #0c0c1d 0%, #1a1a3e 50%, #2d1b69 100%);
+  border: 1px solid rgba(77,150,255,0.3);
+  overflow: hidden;
+}
+.card.ai1 .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(77,150,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(77,150,255,0.08) 1px, transparent 1px); background-size: 30px 30px; }
+.card.ai1 .tag { background: #4d96ff; color: #fff; }
+.card.ai1 .pulse { position: absolute; top: 40px; right: 40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(77,150,255,0.4) 0%, transparent 70%); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.3); opacity: 1; } }
+.card.ai1 .bot-icon { position: absolute; top: 52px; right: 52px; font-size: 36px; }
+
+.card.ai2 {
+  background: linear-gradient(135deg, #4d96ff 0%, #6c5ce7 50%, #a55eea 100%);
+}
+.card.ai2 .tag { background: rgba(0,0,0,0.3); color: #fff; }
+.card.ai2 .float-icons { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 28px; opacity: 0.4; }
+.card.ai2 h2 { text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+
+.card.ai3 {
+  background: #0a0a0a; position: relative; overflow: hidden;
+}
+.card.ai3::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 18px; padding: 2px;
+  background: linear-gradient(135deg, #4d96ff, #a55eea, #4d96ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.card.ai3 .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #4d96ff, transparent); animation: scan 3s linear infinite; }
+@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+.card.ai3 .tag { background: linear-gradient(135deg, #4d96ff, #a55eea); color: #fff; }
+.card.ai3 .code-snippet { font-family: monospace; font-size: 11px; color: #4d96ff; opacity: 0.3; position: absolute; top: 16px; left: 20px; line-height: 1.6; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; justify-items: center; }
+  .card { width: 340px; height: 340px; }
+}
+
+.download-hint { text-align: center; margin-top: 48px; color: #555; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>FOLLOW THE FLOR</h1>
+<p class="subtitle">Social Media Card Pack — Bold & Colorful Edition</p>
+
+<!-- ==================== RUNNING ==================== -->
+<h3 class="section-title running">RUNNING & TRAINING</h3>
+<div class="grid">
+
+  <div class="card run1">
+    <div class="card-inner">
+      <div class="icon">🏃‍♀️</div>
+      <div class="highlight">5K</div>
+      <span class="brand">followtheflor</span>
+      <span class="tag">Training Plan</span>
+      <h2>Your First 5K Starts Here.</h2>
+      <p>The no-BS beginner plan that actually works. 8 weeks. Zero excuses.</p>
+      <div class="cta">GET THE PLAN <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card run2">
+    <div class="pattern"></div>
+    <div class="card-inner" style="position:relative;z-index:1;">
+      <span class="brand">followtheflor</span>
+      <span class="tag">Weekly Splits</span>
+      <h2>This Week's Training</h2>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">42</div><div class="stat-label">KM Total</div></div>
+        <div class="stat"><div class="stat-num">5</div><div class="stat-label">Sessions</div></div>
+        <div class="stat"><div class="stat-num">4:45</div><div class="stat-label">Avg Pace</div></div>
+      </div>
+      <div class="cta" style="color:#ff6b6b;">SEE BREAKDOWN <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card run3">
+    <div class="card-inner" style="position:relative;z-index:1;">
+      <span class="brand">followtheflor</span>
+      <div class="emoji-row">🔥💪🏃‍♀️⚡</div>
+      <span class="tag">Mindset</span>
+      <h2>Race Day Isn't About Your Legs.</h2>
+      <p>It's about what happens between your ears. The mental game no one talks about.</p>
+      <div class="cta" style="color:#ffd93d;">READ MORE <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== FOOD ==================== -->
+<h3 class="section-title food">FOOD & NUTRITION</h3>
+<div class="grid">
+
+  <div class="card food1">
+    <div class="card-inner">
+      <div class="icon">🥑</div>
+      <div class="big-emoji">🍳</div>
+      <span class="brand">followtheflor</span>
+      <span class="tag">Runner's Kitchen</span>
+      <h2>What I Actually Eat Before a Long Run.</h2>
+      <p>Forget the sports gels. Here's what fuels real training.</p>
+      <div class="cta">SEE THE MEALS <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card food2">
+    <div class="card-inner">
+      <div class="food-icons">🥗🍌🥜</div>
+      <span class="brand">followtheflor</span>
+      <span class="tag">Meal Prep</span>
+      <h2>7-Day Meal Plan for Runners Who Hate Cooking.</h2>
+      <p>Simple. Cheap. High-protein. No sad salads.</p>
+      <div class="cta">GRAB THE PLAN <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card food3">
+    <div class="glow"></div>
+    <div class="card-inner" style="position:relative;z-index:1;">
+      <span class="brand">followtheflor</span>
+      <span class="tag">Cheat Sheet</span>
+      <h2>The Runner's Grocery List.</h2>
+      <ul class="checklist">
+        <li>Sweet potatoes & oats</li>
+        <li>Greek yoghurt & eggs</li>
+        <li>Bananas & berries</li>
+        <li>Salmon & chicken thigh</li>
+      </ul>
+      <div class="cta" style="color:#6bcb77;">SAVE THIS <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== AI ==================== -->
+<h3 class="section-title ai">AI AGENTS & AUTOMATION</h3>
+<div class="grid">
+
+  <div class="card ai1">
+    <div class="grid-bg"></div>
+    <div class="pulse"></div>
+    <div class="bot-icon">🤖</div>
+    <div class="card-inner" style="position:relative;z-index:1;">
+      <span class="brand">followtheflor</span>
+      <span class="tag">AI Tools</span>
+      <h2>I Built an AI Agent That Runs My Compliance Checks.</h2>
+      <p>What used to take 4 hours now takes 12 minutes. Here's how.</p>
+      <div class="cta" style="color:#4d96ff;">SEE HOW <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card ai2">
+    <div class="card-inner">
+      <div class="float-icons">
+        <span>⚡</span><span>🧠</span><span>🔗</span>
+      </div>
+      <span class="brand">followtheflor</span>
+      <span class="tag">Automation</span>
+      <h2>Stop Doing Manually What AI Can Do in Seconds.</h2>
+      <p>5 workflows I automated this month — and what I learned.</p>
+      <div class="cta">THE FULL LIST <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="card ai3">
+    <div class="scan-line"></div>
+    <div class="code-snippet">
+      agent.run()<br>
+      &gt; scanning...<br>
+      &gt; 3 flags found<br>
+      &gt; report ready
+    </div>
+    <div class="card-inner" style="position:relative;z-index:1;">
+      <span class="brand">followtheflor</span>
+      <span class="tag">Deep Dive</span>
+      <h2>AI Agents for AML: The Future Is Already Here.</h2>
+      <p>How AI is changing compliance faster than regulators can keep up.</p>
+      <div class="cta" style="color:#a55eea;">READ THE BREAKDOWN <span class="arrow">→</span></div>
+    </div>
+  </div>
+
+</div>
+
+<p class="download-hint">Right-click any card → Save as Image, or screenshot at 1080×1080 for Instagram</p>
+
+<!-- ==================== PROMPT BANK ==================== -->
+<div style="max-width:900px;margin:80px auto 0;padding:0 20px;">
+  <h1 style="background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:'Space Grotesk',sans-serif;font-size:28px;text-align:center;margin-bottom:8px;">AI IMAGE PROMPT BANK</h1>
+  <p style="text-align:center;color:#666;font-size:13px;margin-bottom:48px;">Copy-paste these into Midjourney, DALL-E, ChatGPT, or any AI image generator. Tweak as needed.</p>
+
+  <!-- RUNNING PROMPTS -->
+  <div style="margin-bottom:48px;">
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;color:#ff6b6b;border-left:4px solid #ff6b6b;padding-left:16px;margin-bottom:20px;">RUNNING & TRAINING PROMPTS</h3>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#ff6b6b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 1 — "Your First 5K"</span>
+        <button onclick="copyPrompt(this)" style="background:#ff6b6b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Athletic woman running at golden hour on a scenic coastal road, dynamic side angle, motion blur on legs, sharp face, wearing bold coral and yellow running gear, Mediterranean landscape in background, cinematic lighting, vibrant warm tones, editorial sports photography style, 1:1 square format, high energy, aspirational fitness content --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#ff6b6b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 2 — "Weekly Training Stats"</span>
+        <button onclick="copyPrompt(this)" style="background:#ff6b6b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Flat lay of running essentials on dark slate surface: GPS watch showing pace data, running shoes with neon pink soles, water bottle, earbuds, sweat towel, and a handwritten training schedule on paper, moody top-down photography, deep navy and coral accents, minimal and editorial, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#ff6b6b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 3 — "Race Day Mindset"</span>
+        <button onclick="copyPrompt(this)" style="background:#ff6b6b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Close-up portrait of a determined female runner at the starting line of a marathon, eyes focused ahead, sweat glistening, early morning light, crowd blurred in background, intense emotion, cinematic depth of field, bold vivid colors with orange and gold tones, motivational sports photography, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#ff6b6b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Bonus — "Marathon Training Grid"</span>
+        <button onclick="copyPrompt(this)" style="background:#ff6b6b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Aerial drone shot of a female runner on a winding trail through lush green hills, tiny figure against vast landscape, bold saturated colors, adventure running, sense of freedom and solitude, bright blue sky with dramatic clouds, travel running aesthetic, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+  </div>
+
+  <!-- FOOD PROMPTS -->
+  <div style="margin-bottom:48px;">
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;color:#6bcb77;border-left:4px solid #6bcb77;padding-left:16px;margin-bottom:20px;">FOOD & NUTRITION PROMPTS</h3>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#6bcb77;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 1 — "Pre-Run Fuel"</span>
+        <button onclick="copyPrompt(this)" style="background:#6bcb77;color:#000;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Beautiful overhead flat lay of a healthy runner's breakfast: overnight oats with berries, sliced avocado toast, banana, espresso, on a rustic wooden table with morning sunlight streaming in, fresh vibrant greens and warm tones, food photography editorial style, appetizing and clean, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#6bcb77;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 2 — "7-Day Meal Plan"</span>
+        <button onclick="copyPrompt(this)" style="background:#6bcb77;color:#000;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Colorful meal prep containers arranged in a grid pattern, each filled with different healthy meals: grilled chicken and quinoa, salmon with sweet potato, Greek salad, protein balls, seen from above, bold saturated colors on warm yellow-orange gradient background, clean modern food photography, organized and satisfying, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#6bcb77;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 3 — "Grocery List"</span>
+        <button onclick="copyPrompt(this)" style="background:#6bcb77;color:#000;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Dramatic dark moody flat lay of fresh whole foods on a black marble surface: sweet potatoes, oats in a jar, eggs, Greek yoghurt, salmon fillet, bananas, blueberries, almonds, with a single green neon glow accent light, premium dark food photography, healthy athlete aesthetic, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#6bcb77;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Bonus — "Post-Run Recovery"</span>
+        <button onclick="copyPrompt(this)" style="background:#6bcb77;color:#000;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">A sweaty female athlete sitting on a bench post-workout, drinking a vibrant green smoothie, sunlight hitting her face, running shoes off to the side, gym bag visible, candid and authentic moment, warm golden tones with pops of green, lifestyle fitness photography, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+  </div>
+
+  <!-- AI PROMPTS -->
+  <div style="margin-bottom:48px;">
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;color:#4d96ff;border-left:4px solid #4d96ff;padding-left:16px;margin-bottom:20px;">AI AGENTS & AUTOMATION PROMPTS</h3>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#4d96ff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 1 — "AI Compliance Agent"</span>
+        <button onclick="copyPrompt(this)" style="background:#4d96ff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Futuristic holographic dashboard floating in dark space, showing compliance data streams, risk scores, and blockchain transaction maps, glowing blue and purple neon lights, digital grid background, cyberpunk meets corporate, clean UI elements visible, tech noir aesthetic, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#4d96ff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 2 — "Automation Workflows"</span>
+        <button onclick="copyPrompt(this)" style="background:#4d96ff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Abstract visualization of interconnected glowing nodes and flowing data streams, representing AI workflow automation, vibrant blue to purple gradient, geometric shapes and circuit patterns, clean modern tech illustration, luminous particles flowing between connection points, digital transformation concept art, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#4d96ff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Card 3 — "AI for AML Deep Dive"</span>
+        <button onclick="copyPrompt(this)" style="background:#4d96ff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">A woman working at a sleek desk with multiple monitors showing blockchain analytics, transaction graphs, and AI-powered alerts, dark office with blue and purple ambient lighting, code reflections on her face, professional but futuristic atmosphere, cinematic tech photography, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+
+    <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="color:#4d96ff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Bonus — "The Future of Compliance"</span>
+        <button onclick="copyPrompt(this)" style="background:#4d96ff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-transform:uppercase;">Copy</button>
+      </div>
+      <p class="prompt-text" style="color:#ccc;font-size:13px;line-height:1.7;font-family:monospace;">Split-screen concept: left side shows a stressed person buried in paper documents and files (warm sepia tones), right side shows a calm person with a clean AI-powered screen doing the same work (cool blue neon tones), dramatic contrast between old and new, bold visual storytelling, editorial illustration style, 1:1 square format --ar 1:1 --style raw --v 6</p>
+    </div>
+  </div>
+
+  <!-- CUSTOMIZATION TIPS -->
+  <div style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid #333;border-radius:16px;padding:32px;margin-bottom:48px;">
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:18px;color:#ffd93d;margin-bottom:16px;">HOW TO CUSTOMISE THESE PROMPTS</h3>
+    <div style="color:#aaa;font-size:13px;line-height:1.8;">
+      <p style="margin-bottom:12px;"><strong style="color:#fff;">Swap the vibe:</strong> Replace "editorial" with "minimalist", "retro", "3D render", or "watercolor" to change the entire feel.</p>
+      <p style="margin-bottom:12px;"><strong style="color:#fff;">Change colours:</strong> Replace colour descriptions like "coral and gold" with your brand colours. E.g., "teal and navy" for floronchain.</p>
+      <p style="margin-bottom:12px;"><strong style="color:#fff;">Add your location:</strong> Add "Mediterranean setting" or "Malta coastline" or "Valletta streets" to make it personal.</p>
+      <p style="margin-bottom:12px;"><strong style="color:#fff;">For Midjourney:</strong> Keep the --ar 1:1 --style raw --v 6 at the end. Change --ar to 16:9 for blog banners.</p>
+      <p style="margin-bottom:12px;"><strong style="color:#fff;">For DALL-E / ChatGPT:</strong> Remove the -- flags at the end. Just use the description text.</p>
+      <p><strong style="color:#fff;">For Canva AI:</strong> Shorten to 1-2 sentences. E.g., "Flat lay of healthy meal prep containers, bold colors, overhead shot"</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const prompt = btn.closest('div[style]').querySelector('.prompt-text').textContent.trim();
+  navigator.clipboard.writeText(prompt).then(() => {
+    btn.textContent = 'COPIED!';
+    btn.style.background = '#ffd93d';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

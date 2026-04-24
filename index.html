@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOR🦩NCHAIN — Crypto compliance, without the corporate lawyer voice.</title>
+    <meta name="description" content="Crypto compliance, AML, MiCA, onchain analysis — by Flor, written from Malta for the people who actually do the work.">
+    <meta name="author" content="Flor">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="FLOR🦩NCHAIN — Crypto compliance, without the corporate lawyer voice.">
+    <meta property="og:description" content="Crypto compliance, AML, MiCA, onchain analysis — by Flor, written from Malta for the people who actually do the work.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://floronchain.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FLOR🦩NCHAIN">
+    <meta name="twitter:description" content="Crypto compliance, without the corporate lawyer voice.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1f1f1f;
+            --accent: #ff2db7;
+            --accent-dark: #ff006e;
+            --accent-cyan: #00f0ff;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0aec0;
+            --text-muted: #6b7280;
+            --border: #1f1f1f;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .logo-o {
+            display: inline-block;
+            font-size: 0.95em;
+            line-height: 1;
+            margin: 0 0.02em;
+            transform: translateY(0.03em);
+            filter: drop-shadow(0 0 6px rgba(255, 45, 183, 0.55));
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo:hover .logo-o {
+            filter: drop-shadow(0 0 10px rgba(255, 45, 183, 0.9)) drop-shadow(0 0 16px rgba(0, 240, 255, 0.35));
+            transform: translateY(0.03em) rotate(-4deg);
+        }
+
+        /* Hero h1 flamingo treatment */
+        .hero h1 .logo-o {
+            font-size: 0.85em;
+            filter: drop-shadow(0 0 14px rgba(255, 45, 183, 0.6));
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+        
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .hero .intro {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Typography */
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-cyan) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .category {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cat-education { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+        .cat-markets { background: rgba(96, 165, 250, 0.2); color: #60a5fa; }
+        .cat-aml { background: rgba(251, 146, 60, 0.2); color: #fb923c; }
+        .cat-crime { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+        .cat-defi { background: rgba(167, 139, 250, 0.2); color: #a78bfa; }
+        .cat-tech { background: rgba(34, 211, 238, 0.2); color: #22d3ee; }
+        
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .card h3 {
+            margin: 0.75rem 0;
+            font-size: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .card-excerpt {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Article View */
+        .article-full {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .article-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .key-takeaway {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        
+        .key-takeaway h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: gap 0.3s ease;
+        }
+        
+        .back-button:hover {
+            gap: 0.75rem;
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-intro {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .resource-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        .resource-category h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .resource-list {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:hover {
+            background: var(--bg-primary);
+            transform: translateX(4px);
+        }
+        
+        .resource-item a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .resource-item a:hover {
+            color: var(--accent-dark);
+        }
+        
+        .resource-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            flex: 2;
+            padding-left: 1rem;
+        }
+        
+        /* Filter */
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 6rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 22, 40, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transition: right 0.3s ease;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showSection('home')">FLOR<span class="logo-o">🦩</span>NCHAIN</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showSection('home')" class="active">Home</a></li>
+                <li><a onclick="showSection('articles')">Articles</a></li>
+                <li><a onclick="showSection('about')">About</a></li>
+                <li><a onclick="showSection('resources')">Resources</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>FLOR<span class="logo-o">🦩</span>NCHAIN</h1>
+                <p class="tagline">Crypto compliance, without the corporate lawyer voice.</p>
+                <p class="intro">By Flor. Based in Malta. Former airdrop farmer, crypto degen, financial crime expert. I've chased the yields and traced the wallets. Crypto AML, onchain analysis, MiCA, and EU regulation for the people who actually do the work.</p>
+            </div>
+            
+            <div class="cards-grid" id="homeCards"></div>
+        </section>
+
+        <!-- ARTICLES SECTION -->
+        <section id="articles" class="section">
+            <h2>All Articles</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="Crypto Education">Crypto Education</button>
+                <button class="filter-btn" data-filter="Markets & Trends">Markets & Trends</button>
+                <button class="filter-btn" data-filter="AML & Compliance">AML & Compliance</button>
+                <button class="filter-btn" data-filter="Crypto Crime">Crypto Crime</button>
+                <button class="filter-btn" data-filter="Tech & Tools">Tech & Tools</button>
+            </div>
+            
+            <div class="cards-grid" id="articlesCards"></div>
+        </section>
+
+        <!-- ARTICLE VIEW -->
+        <section id="article-view" class="section">
+            <div class="article-full">
+                <a class="back-button" onclick="showSection('articles')">← Back to Articles</a>
+                <div id="articleContent"></div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <div class="about-content">
+                <h2>About</h2>
+                <p class="about-intro">I'm Floriana — an AML professional and crypto enthusiast since 2017. I work at the intersection of financial crime prevention and digital asset innovation.</p>
+                
+                <p>My focus areas include compliance frameworks for crypto businesses, crypto crime investigation, onchain analysis, and the evolving regulatory landscape across the EU and beyond.</p>
+                
+                <p>I'm deeply passionate about education and training — because the best defence against financial crime is people who understand what they're looking at.</p>
+                
+                <p>Whether you're a compliance officer trying to understand DeFi, a crypto native who wants to stay on the right side of regulation, or just someone curious about how digital assets actually work — I'm writing this for you.</p>
+                
+                <p style="margin-top: 2rem; color: var(--text-muted);">This site is a space for clear thinking about crypto, compliance, and the future of digital finance. No hype, no FUD — just practical insights from someone who lives in both worlds.</p>
+            </div>
+        </section>
+
+        <!-- RESOURCES SECTION -->
+        <section id="resources" class="section">
+            <h2>Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>📊 Reports & Research</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <a href="https://www.chainalysis.com/reports/" target="_blank">Chainalysis Crypto Crime Report</a>
+                            <span class="resource-desc">Annual report on crypto crime trends and volumes</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Virtual-assets-red-flag-indicators.html" target="_blank">FATF Virtual Assets Guidance</a>
+                            <span class="resource-desc">Global standards for crypto AML/CFT</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism_en" target="_blank">EU AML Package</a>
+                            <span class="resource-desc">EU anti-money laundering framework updates</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.europol.europa.eu/publications-events/publications/internet-organised-crime-threat-assessment-iocta" target="_blank">Europol IOCTA</a>
+                            <span class="resource-desc">Internet organised crime threat assessment</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.trmlabs.com/research" target="_blank">TRM Labs Research</a>
+                            <span class="resource-desc">Crypto risk intelligence and analysis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3>🔍 Tools & Platforms</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <a href="https://www.chainalysis.com/products/reactor/" target="_blank">Chainalysis Reactor</a>
+                            <span class="resource-desc">Blockchain investigation and compliance software</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.trmlabs.com/" target="_blank">TRM Labs</a>
+                            <span class="resource-desc">Blockchain intelligence for financial crime</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.arkhamintelligence.com/" target="_blank">Arkham Intelligence</a>
+                            <span class="resource-desc">Onchain analytics and entity tracking</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://etherscan.io/" target="_blank">Etherscan</a>
+                            <span class="resource-desc">Ethereum blockchain explorer</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.nansen.ai/" target="_blank">Nansen</a>
+                            <span class="resource-desc">Onchain analytics and smart money tracking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3>⚖️ Regulatory Bodies</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <a href="https://www.fatf-gafi.org/" target="_blank">FATF</a>
+                            <span class="resource-desc">Financial Action Task Force - global AML standards</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.eba.europa.eu/" target="_blank">EBA</a>
+                            <span class="resource-desc">European Banking Authority</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.amla.europa.eu/index_en" target="_blank">AMLA</a>
+                            <span class="resource-desc">Anti-Money Laundering Authority (EU)</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.fincen.gov/" target="_blank">FinCEN</a>
+                            <span class="resource-desc">Financial Crimes Enforcement Network (US)</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.fca.org.uk/" target="_blank">FCA</a>
+                            <span class="resource-desc">Financial Conduct Authority (UK)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3>📚 Learning & Certification</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <a href="https://www.acams.org/" target="_blank">ACAMS</a>
+                            <span class="resource-desc">Association of Certified Anti-Money Laundering Specialists</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.int-comp.org/" target="_blank">ICA</a>
+                            <span class="resource-desc">International Compliance Association</span>
+                        </div>
+                        <div class="resource-item">
+                            <a href="https://www.chainalysis.com/academy/" target="_blank">Chainalysis Academy</a>
+                            <span class="resource-desc">Free courses on crypto investigation and compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="mailto:hello@floronchain.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2026 FLOR🦩NCHAIN · Written from Malta, with intent.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Articles data
+        const articles = [
+            {
+                id: 1,
+                category: "Crypto Crime",
+                title: "Crypto Crime in 2026: What the Data Actually Shows",
+                excerpt: "Beyond the headlines and fear-mongering, what do the numbers tell us about illicit crypto activity?",
+                date: "February 18, 2026",
+                readTime: "5 min",
+                content: `
+                    <p>Every year, the narrative is the same: crypto is either a haven for criminals or it's been cleaned up entirely. The truth, as usual, is more nuanced.</p>
+                    
+                    <h4>The Numbers Don't Lie</h4>
+                    <p>According to the latest data from Chainalysis, illicit transaction volume in 2025 decreased by approximately 19% compared to 2024, settling at around $24.2 billion. That sounds like a lot — and it is — but it represents less than 0.5% of total crypto transaction volume.</p>
+                    
+                    <p>For context, the UN estimates that 2-5% of global GDP ($2-4 trillion) is laundered through traditional financial systems each year. Crypto crime, by comparison, is a rounding error.</p>
+                    
+                    <h4>Scams Still Dominate</h4>
+                    <p>The biggest slice of illicit crypto activity isn't sophisticated nation-state hacks or cartel money laundering — it's romance scams, fake investment platforms, and pig butchering schemes. These socially-engineered attacks prey on trust and greed, and they're devastatingly effective.</p>
+                    
+                    <p>Ransomware remains a persistent threat, though payments have plateaued. Many victims now refuse to pay, and law enforcement has gotten better at disrupting ransomware-as-a-service operations. Sanctions evasion, particularly by North Korea's Lazarus Group, continues to be a major concern, with state-sponsored actors increasingly targeting DeFi protocols and bridges.</p>
+                    
+                    <h4>The Blockchain Transparency Paradox</h4>
+                    <p>Here's what criminals are slowly realizing: blockchains are transparent ledgers. Every transaction is recorded forever. Privacy tools like mixers and privacy coins exist, but they're being delisted from exchanges, flagged by compliance tools, and scrutinized by regulators.</p>
+                    
+                    <p>The idea that crypto is anonymous is outdated. It's pseudonymous at best, and increasingly, it's forensically traceable. Cash is still king for criminals who know what they're doing.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>What users should do:</strong> Stay skeptical. If an investment opportunity promises guaranteed returns, it's a scam. Use hardware wallets. Enable 2FA. Don't click suspicious links.</p>
+                        <p><strong>What compliance pros should do:</strong> Focus on scam detection and VASP partnerships. The Travel Rule is rolling out — make sure you're ready. Monitor DeFi exposure and keep your transaction monitoring models updated with the latest typologies.</p>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                category: "Crypto Education",
+                title: "Airdrops, NFTs, and DeFi: A Beginner's Risk Guide",
+                excerpt: "These three things promise free money, exclusive access, and financial freedom. Here's how not to get wrecked.",
+                date: "February 15, 2026",
+                readTime: "6 min",
+                content: `
+                    <p>If you've spent any time on Crypto Twitter, you've seen the terms: airdrops, NFTs, DeFi. They're everywhere, and they're being sold as easy money. Some people genuinely make life-changing gains. Most lose everything. Here's how to tell the difference.</p>
+                    
+                    <h4>Airdrops: Free Money (With Strings Attached)</h4>
+                    <p>An airdrop is when a project distributes tokens to your wallet for free — usually as a marketing strategy or to reward early users. Projects like Uniswap, ENS, and Arbitrum have airdropped tokens worth thousands to early adopters.</p>
+                    
+                    <p><strong>The opportunity:</strong> If you use a protocol early and often, you might qualify for future airdrops. It's essentially getting paid to beta test.</p>
+                    
+                    <p><strong>The scam:</strong> Fake airdrops. You connect your wallet to claim free tokens, but the smart contract drains your wallet instead. Always verify the official website and contract address. Never connect your wallet to random links.</p>
+                    
+                    <h4>NFTs: Digital Art or Digital Receipts?</h4>
+                    <p>Non-fungible tokens are unique digital assets on a blockchain. They can represent art, music, virtual land, or membership passes. Some NFTs have sold for millions. Most are worth zero.</p>
+                    
+                    <p><strong>The opportunity:</strong> NFTs can provide access to exclusive communities, events, or utility within a project. Some artists have built sustainable careers selling digital art to collectors.</p>
+                    
+                    <p><strong>The scam:</strong> Celebrity-endorsed pump-and-dumps, fake mints, and phishing sites. If someone famous suddenly promotes an NFT project out of nowhere, they're probably being paid to dump on their followers. Also, right-click saving isn't theft — you're buying ownership rights and provenance, not the image itself.</p>
+                    
+                    <h4>DeFi: Be Your Own Bank (And Your Own Risk Manager)</h4>
+                    <p>Decentralized Finance lets you lend, borrow, trade, and earn yield without banks or intermediaries. Protocols like Aave, Compound, and Uniswap have billions in total value locked.</p>
+                    
+                    <p><strong>The opportunity:</strong> Higher yields than traditional finance, permissionless access, and composability — you can use multiple protocols together like financial Lego.</p>
+                    
+                    <p><strong>The scam:</strong> Rug pulls, smart contract exploits, and unsustainable yields. If an APY is 10,000%, ask yourself: where is that money coming from? Usually, it's coming from new users getting dumped on.</p>
+                    
+                    <h4>Smart Contract Risk is Real</h4>
+                    <p>Even "legitimate" DeFi protocols can have bugs that get exploited for millions. Audits help, but they're not guarantees. If you're using DeFi, only risk what you can afford to lose, and diversify across protocols.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>Safety checklist:</strong></p>
+                        <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Never connect your wallet to unverified sites</li>
+                            <li>Use a hardware wallet for large holdings</li>
+                            <li>Check contract addresses on official sources</li>
+                            <li>Be skeptical of promises that sound too good to be true</li>
+                            <li>Understand what you're signing before approving transactions</li>
+                            <li>Start small — learn with amounts you're okay losing</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                category: "AML & Compliance",
+                title: "What Is MiCA and Why Should You Care?",
+                excerpt: "The EU just dropped the most comprehensive crypto regulation in the world. Here's what it means for you.",
+                date: "February 12, 2026",
+                readTime: "5 min",
+                content: `
+                    <p>The Markets in Crypto-Assets Regulation (MiCA) is the European Union's attempt to bring crypto under a unified regulatory framework. It's ambitious, comprehensive, and already changing how crypto businesses operate in Europe and beyond.</p>
+                    
+                    <h4>What MiCA Actually Does</h4>
+                    <p>MiCA establishes rules for crypto asset issuers, service providers, and stablecoins. It creates licensing requirements, consumer protection standards, and transparency obligations across all EU member states. Think of it as the crypto equivalent of MiFID II for traditional finance.</p>
+                    
+                    <p>The regulation covers three main categories: asset-referenced tokens (like stablecoins), e-money tokens, and other crypto assets. Each has different rules, but the core principles are the same: transparency, consumer protection, and market integrity.</p>
+                    
+                    <h4>Who It Affects</h4>
+                    <p><strong>Exchanges and platforms:</strong> Crypto Asset Service Providers (CASPs) need to be licensed and comply with strict operational, governance, and transparency requirements. This includes custody rules, conflict of interest policies, and complaint handling procedures.</p>
+                    
+                    <p><strong>Stablecoin issuers:</strong> Stablecoins face some of the strictest requirements, including reserve requirements, redemption rights, and prudential safeguards. Large stablecoins will need authorization as e-money tokens and comply with significant issuer obligations.</p>
+                    
+                    <p><strong>NFT and DeFi projects:</strong> For now, NFTs are largely exempt unless they're fungible or part of a large collection. DeFi is in a grey area — fully decentralized protocols may fall outside MiCA's scope, but frontend interfaces and governance token issuers likely don't.</p>
+                    
+                    <h4>Timeline and Rollout</h4>
+                    <p>MiCA was officially adopted in 2023, and implementation is happening in phases through 2024-2026. Stablecoin rules went live in mid-2024, and full MiCA compliance for CASPs is required by the end of 2024 in most member states. That means exchanges, wallets, and service providers have already adjusted their operations.</p>
+                    
+                    <h4>The Global Ripple Effect</h4>
+                    <p>Even if you're not in Europe, MiCA matters. Just like GDPR became a de facto global standard for data privacy, MiCA is influencing regulatory approaches worldwide. Crypto businesses that want access to European markets need to comply, and many are applying MiCA-style standards globally to simplify operations.</p>
+                    
+                    <p>For users, this means more consumer protection, clearer terms of service, and (hopefully) fewer scams. For businesses, it means higher compliance costs, but also more regulatory clarity and legitimacy.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>For users:</strong> MiCA means more protections, but also more KYC. Exchanges will ask for more information, and some services may geo-block EU users if compliance is too burdensome. Check if your platform is MiCA-compliant.</p>
+                        <p><strong>For businesses:</strong> If you're operating in or targeting Europe, you need a MiCA compliance strategy. Licensing, governance, transparency, and consumer protection aren't optional anymore. Get legal counsel. Start early.</p>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                category: "Markets & Trends",
+                title: "Bitcoin Halving Cycles: Hype vs. Reality",
+                excerpt: "Every four years, Bitcoin's inflation rate cuts in half. Every four years, people argue about what that means.",
+                date: "February 9, 2026",
+                readTime: "5 min",
+                content: `
+                    <p>The Bitcoin halving is one of the most anticipated events in crypto. It's also one of the most misunderstood. Here's what actually happens, what the data shows, and why "this time is different" is both always wrong and sometimes right.</p>
+                    
+                    <h4>What the Halving Actually Is</h4>
+                    <p>Bitcoin miners are rewarded with new bitcoins for securing the network. Every 210,000 blocks (roughly every four years), that reward is cut in half. The last halving in 2024 reduced the block reward from 6.25 BTC to 3.125 BTC.</p>
+                    
+                    <p>This is Bitcoin's built-in monetary policy. It makes Bitcoin predictably scarce. Only 21 million BTC will ever exist, and the halving ensures issuance slows over time until the last bitcoin is mined around 2140.</p>
+                    
+                    <h4>Historical Price Patterns</h4>
+                    <p>Here's where it gets interesting. Historically, Bitcoin's price has entered a bull market roughly 12-18 months after each halving. The pattern is eerily consistent:</p>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        <li><strong>2012 halving:</strong> BTC went from ~$12 to over $1,100 (2013 peak)</li>
+                        <li><strong>2016 halving:</strong> BTC went from ~$650 to nearly $20,000 (2017 peak)</li>
+                        <li><strong>2020 halving:</strong> BTC went from ~$8,500 to $69,000 (2021 peak)</li>
+                    </ul>
+                    
+                    <p>Each cycle has seen diminishing returns in percentage terms, which makes sense as Bitcoin's market cap grows. But the pattern of post-halving rallies is undeniable — at least, it has been so far.</p>
+                    
+                    <h4>The Supply Shock Thesis</h4>
+                    <p>The theory is simple: when miner issuance is cut in half, the supply of new bitcoins hitting the market drops, but demand stays the same or increases. Basic economics says price should rise.</p>
+                    
+                    <p>Critics argue the halving is priced in — everyone knows it's coming, so the market should adjust in advance. And yet, the post-halving rally keeps happening. Why? Possibly because retail demand surges <em>after</em> the halving due to media coverage, or because the supply shock takes time to materialize as miners adjust their selling behavior.</p>
+                    
+                    <h4>Why This Time Might Actually Be Different</h4>
+                    <p>Bitcoin has matured. We now have spot ETFs in the US, institutional adoption, sovereign buyers (El Salvador), and corporations holding BTC on their balance sheets. The market structure is fundamentally different than it was in 2012, 2016, or even 2020.</p>
+                    
+                    <p>Some analysts argue this makes Bitcoin <em>more</em> resilient. Others say it makes it more correlated with traditional markets and less sensitive to halving-driven supply dynamics. The truth is, we won't know until the next cycle plays out.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>Watch for:</strong> Changes in miner behavior, exchange inflows/outflows, and macro conditions (interest rates, inflation, risk appetite). The halving matters, but it's not the only variable.</p>
+                        <p><strong>Don't assume:</strong> Past performance doesn't guarantee future results. The pattern could break. Plan accordingly, and don't over-leverage based on historical trends alone.</p>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                category: "Tech & Tools",
+                title: "How Onchain Analysis Actually Works",
+                excerpt: "Blockchains are transparent. That doesn't mean they're easy to read. Here's how analysts trace crypto from wallet to wallet.",
+                date: "February 6, 2026",
+                readTime: "6 min",
+                content: `
+                    <p>You've probably heard that "crypto is traceable" or that "blockchains are transparent." Both are true — but understanding <em>how</em> tracing works is essential if you're doing compliance, investigating crimes, or just trying to understand where your funds have been.</p>
+                    
+                    <h4>The Blockchain as a Public Ledger</h4>
+                    <p>Every transaction on most blockchains (Bitcoin, Ethereum, etc.) is recorded publicly and permanently. You can see who sent what to whom, when, and for how much. What you usually <em>can't</em> see is the real-world identity behind the wallet address.</p>
+                    
+                    <p>This is pseudonymity, not anonymity. Addresses are strings of characters like <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code>, but they're not inherently tied to a name, email, or passport.</p>
+                    
+                    <h4>Clustering: Grouping Addresses Together</h4>
+                    <p>Onchain analysts use clustering algorithms to group addresses that likely belong to the same entity. How? By analyzing transaction patterns:</p>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        <li><strong>Common input ownership heuristic:</strong> If multiple addresses are used as inputs in the same transaction, they likely belong to the same wallet or entity.</li>
+                        <li><strong>Change address detection:</strong> Bitcoin transactions often send leftover funds to a "change" address. Identifying these reveals wallet behavior.</li>
+                        <li><strong>Co-spending patterns:</strong> Addresses that consistently transact together are likely controlled by the same user.</li>
+                    </ul>
+                    
+                    <p>Tools like Chainalysis, TRM Labs, and Elliptic use these heuristics (plus proprietary methods) to map out clusters of related addresses.</p>
+                    
+                    <h4>Labeling: Attribution at Scale</h4>
+                    <p>Once addresses are clustered, analysts label them. Labels come from:</p>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        <li><strong>Known exchanges and services:</strong> Deposit addresses for Coinbase, Binance, and other platforms are often public or discoverable.</li>
+                        <li><strong>Darknet markets and scams:</strong> Wallets associated with illicit activity are tracked and labeled.</li>
+                        <li><strong>Ransomware and hacks:</strong> When a major exploit happens, investigators track the stolen funds in real time.</li>
+                        <li><strong>Voluntary disclosure:</strong> Some entities publish their addresses for transparency (e.g., public treasuries, charities).</li>
+                    </ul>
+                    
+                    <p>The result is a massive, constantly updated database of labeled addresses that tools query when analyzing a transaction.</p>
+                    
+                    <h4>Following the Money</h4>
+                    <p>Once you have clustering and labeling, you can trace funds through the blockchain. Analysts build transaction graphs — visual maps showing how money flows from address to address, through mixers, exchanges, and wallets.</p>
+                    
+                    <p>For example, if ransomware payments are sent to a known criminal address, analysts can track those funds as they move through intermediaries and eventually (often) to an exchange, where KYC rules might reveal the cash-out point.</p>
+                    
+                    <h4>The Limits of Onchain Analysis</h4>
+                    <p><strong>Privacy tools:</strong> Mixers (like Tornado Cash) and privacy coins (like Monero) obscure transaction history. They don't make tracing impossible, but they make it significantly harder.</p>
+                    
+                    <p><strong>Decentralized exchanges:</strong> DEXs don't require KYC, so tracing funds through them reveals transaction flow but not identity.</p>
+                    
+                    <p><strong>Layer 2 and cross-chain bridges:</strong> Moving funds between blockchains or onto Layer 2 networks can break the audit trail or make it harder to follow.</p>
+                    
+                    <p>Still, the blockchain is far more transparent than traditional banking. Cash is anonymous. Wire transfers are siloed. Crypto is a permanent, public record — and that's a double-edged sword.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>For users:</strong> Assume your transaction history is traceable. If privacy matters, use tools designed for it — but understand the trade-offs (fewer exchanges support privacy coins, mixers are flagged by compliance tools).</p>
+                        <p><strong>For compliance pros:</strong> Onchain analysis is powerful but not omniscient. Combine it with traditional KYC/AML, OSINT, and investigative techniques. The blockchain tells you what happened; your job is to figure out who and why.</p>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                category: "AML & Compliance",
+                title: "The Travel Rule: Crypto's KYC Moment",
+                excerpt: "FATF says crypto exchanges need to share customer data like banks do. Here's why that's harder than it sounds.",
+                date: "February 3, 2026",
+                readTime: "5 min",
+                content: `
+                    <p>The Travel Rule is one of the most significant regulatory requirements hitting the crypto industry — and one of the least understood. It's forcing crypto businesses to act more like banks, and it's exposing just how fragmented and complex crypto compliance really is.</p>
+                    
+                    <h4>What the Travel Rule Requires</h4>
+                    <p>The Financial Action Task Force (FATF) — the global standard-setter for AML/CFT — says that Virtual Asset Service Providers (VASPs, aka crypto exchanges, wallets, and custodians) must share information about their customers when transferring funds above a certain threshold (typically $1,000 or €1,000).</p>
+                    
+                    <p>Specifically, they must share:</p>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        <li>Originator's name, account number, and address</li>
+                        <li>Beneficiary's name and account number</li>
+                    </ul>
+                    
+                    <p>This is standard practice for banks using the SWIFT network. For crypto, it's a nightmare.</p>
+                    
+                    <h4>The Sunrise Problem</h4>
+                    <p>Imagine two VASPs: Exchange A and Exchange B. A user on Exchange A wants to send crypto to a user on Exchange B. Under the Travel Rule, Exchange A must send customer info to Exchange B <em>before</em> or <em>during</em> the transaction.</p>
+                    
+                    <p>But how? There's no global VASP directory. There's no standardized protocol for sharing this information. And there's no guarantee that Exchange B is even compliant or willing to receive the data.</p>
+                    
+                    <p>This is called the "sunrise problem" — everyone needs to comply at the same time for the system to work, but there's no central coordinator forcing compliance. It's the prisoner's dilemma of crypto regulation.</p>
+                    
+                    <h4>Technical Solutions (That Aren't Solving It Yet)</h4>
+                    <p>Several companies are building Travel Rule infrastructure:</p>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                        <li><strong>OpenVASP:</strong> Open-source protocol for peer-to-peer VASP communication</li>
+                        <li><strong>Sygna Bridge:</strong> Compliance bridge connecting VASPs globally</li>
+                        <li><strong>Notabene:</strong> Network for Travel Rule compliance data exchange</li>
+                        <li><strong>Netki:</strong> TransactID protocol for identity exchange</li>
+                    </ul>
+                    
+                    <p>The problem? None of these are universal. VASPs might use different solutions, or none at all. And until regulators mandate a specific standard, fragmentation will continue.</p>
+                    
+                    <h4>What It Means for Users</h4>
+                    <p>Expect more friction. Sending crypto to a wallet or exchange might trigger additional verification steps. Some exchanges are blocking or flagging transactions to non-compliant VASPs or unhosted wallets (your personal hardware wallet).</p>
+                    
+                    <p>Some jurisdictions are even considering restricting withdrawals to unhosted wallets entirely, which would fundamentally change crypto's value proposition. Self-custody is supposed to be a core feature, not a compliance loophole.</p>
+                    
+                    <h4>The Bigger Picture</h4>
+                    <p>The Travel Rule is part of a broader trend: crypto is being forced into the traditional financial compliance framework, whether it fits or not. That's good for reducing financial crime and building legitimacy. It's bad for privacy, decentralization, and permissionless innovation.</p>
+                    
+                    <p>Some projects are exploring privacy-preserving Travel Rule solutions using zero-knowledge proofs or encrypted messaging. Whether regulators will accept those remains to be seen.</p>
+                    
+                    <div class="key-takeaway">
+                        <h4>🔑 Key Takeaway</h4>
+                        <p><strong>For users:</strong> Expect more KYC, more delays, and more questions when moving crypto between platforms. Self-custody is still legal (for now), but transactions to and from unhosted wallets may be scrutinized.</p>
+                        <p><strong>For VASPs:</strong> Start implementing Travel Rule compliance now. Join a Travel Rule network, integrate with your partners, and prepare for enforcement. Regulators are watching, and fines are coming for non-compliance.</p>
+                    </div>
+                `
+            }
+        ];
+
+        // Generate article cards
+        function generateCards(containerId, filter = 'all') {
+            const container = document.getElementById(containerId);
+            const filteredArticles = filter === 'all' 
+                ? articles 
+                : articles.filter(a => a.category === filter);
+            
+            container.innerHTML = filteredArticles.map(article => {
+                const categoryClass = article.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+                return `
+                    <div class="card" onclick="showArticle(${article.id})">
+                        <div class="card-header">
+                            <span class="category cat-${categoryClass.split('-')[0]}">${article.category}</span>
+                        </div>
+                        <h3>${article.title}</h3>
+                        <p class="card-excerpt">${article.excerpt}</p>
+                        <div class="card-meta">
+                            <span>${article.date}</span>
+                            <span>•</span>
+                            <span>${article.readTime} read</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Show specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Regenerate cards if needed
+            if (sectionId === 'home') {
+                generateCards('homeCards');
+            } else if (sectionId === 'articles') {
+                generateCards('articlesCards', 'all');
+            }
+        }
+
+        // Show full article
+        function showArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+            
+            const categoryClass = article.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+            
+            document.getElementById('articleContent').innerHTML = `
+                <article class="article-header">
+                    <span class="category cat-${categoryClass.split('-')[0]}">${article.category}</span>
+                    <h1 class="article-title">${article.title}</h1>
+                    <div class="article-meta">
+                        <span>${article.date}</span>
+                        <span>•</span>
+                        <span>${article.readTime} read</span>
+                    </div>
+                </article>
+                <div class="article-content">
+                    ${article.content}
+                </div>
+            `;
+            
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('article-view').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Filter articles
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate initial cards
+            generateCards('homeCards');
+            generateCards('articlesCards');
+            
+            // Filter button handlers
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+                    generateCards('articlesCards', filter);
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

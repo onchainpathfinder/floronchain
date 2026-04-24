@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto AML Risk Checker — FLOR🦩NCHAIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000000;
+  --card:#141414;
+  --card-border:#1f1f1f;
+  --accent:#ff2db7;
+  --accent-dim:#ff2db733;
+  --accent-cyan:#00f0ff;
+  --red:#ef4444;
+  --red-dim:#ef444422;
+  --red-border:#ef444466;
+  --orange:#f59e0b;
+  --orange-dim:#f59e0b22;
+  --yellow:#eab308;
+  --green-safe:#22c55e;
+  --text:#e2e8f0;
+  --text-dim:#94a3b8;
+  --text-muted:#64748b;
+  --font-mono:'JetBrains Mono',monospace;
+  --font-body:'DM Sans',sans-serif;
+}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;line-height:1.6}
+
+/* NAV */
+.top-bar{padding:1rem 1.5rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--card-border)}
+.top-bar .logo{color:var(--accent);font-family:var(--font-mono);font-weight:700;font-size:.95rem;text-decoration:none}
+.top-bar .sep{color:var(--text-muted)}
+.top-bar .page-name{color:var(--text-dim);font-size:.85rem}
+.back-link{color:var(--text-muted);text-decoration:none;font-size:.85rem;margin-left:auto}
+.back-link:hover{color:var(--accent)}
+
+/* CONTAINER */
+.container{max-width:780px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+/* HEADER */
+.tool-header{margin-bottom:2rem}
+.tool-header h1{font-family:var(--font-mono);font-size:1.35rem;color:var(--accent);display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.tool-header h1 .icon{font-size:1.1rem}
+.tool-header p{color:var(--text-dim);font-size:.85rem}
+
+/* FORM INPUTS */
+.form-section{margin-bottom:1.5rem}
+.form-section label{display:block;font-family:var(--font-mono);font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+
+select,input[type="number"],input[type="text"]{
+  background:var(--card);border:1px solid var(--card-border);color:var(--text);
+  padding:.6rem .75rem;border-radius:6px;font-family:var(--font-body);font-size:.9rem;
+  width:100%;outline:none;transition:border .2s;appearance:none;
+  -webkit-appearance:none;
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .75rem center;padding-right:2rem;
+}
+select:focus,input:focus{border-color:var(--accent)}
+select option{background:var(--card);color:var(--text)}
+
+.small-label{font-size:.7rem;color:var(--text-muted);margin-bottom:.25rem;display:block}
+
+/* SCENARIO TEXTAREA */
+textarea{
+  width:100%;min-height:120px;background:var(--card);border:1px solid var(--card-border);
+  color:var(--text);padding:.75rem;border-radius:6px;font-family:var(--font-body);
+  font-size:.9rem;resize:vertical;outline:none;transition:border .2s;line-height:1.5;
+}
+textarea:focus{border-color:var(--accent)}
+textarea::placeholder{color:var(--text-muted)}
+
+/* CHIPS / TAGS */
+.chip-group{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.chip{
+  background:var(--card);border:1px solid var(--card-border);color:var(--text-dim);
+  padding:.3rem .65rem;border-radius:99px;font-size:.75rem;cursor:pointer;
+  transition:all .2s;user-select:none;font-family:var(--font-mono);
+}
+.chip:hover{border-color:var(--accent);color:var(--text)}
+.chip.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+
+/* BUTTON */
+.analyse-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;border:1px solid var(--accent);color:var(--accent);
+  font-family:var(--font-mono);font-size:.85rem;font-weight:600;
+  padding:.65rem 1.5rem;border-radius:6px;cursor:pointer;
+  transition:all .25s;margin-top:.5rem;
+}
+.analyse-btn:hover{background:var(--accent);color:var(--bg)}
+.analyse-btn:disabled{opacity:.4;cursor:not-allowed}
+.analyse-btn:disabled:hover{background:transparent;color:var(--accent)}
+.analyse-btn .arrow{transition:transform .2s}
+.analyse-btn:hover .arrow{transform:translateX(3px)}
+
+/* LOADING */
+.loading{display:none;align-items:center;gap:.75rem;padding:1.5rem;margin-top:1.5rem}
+.loading.show{display:flex}
+.spinner{width:20px;height:20px;border:2px solid var(--card-border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:var(--text-dim);font-size:.85rem;font-family:var(--font-mono)}
+
+/* RESULTS */
+.results{display:none;margin-top:2rem;animation:fadeUp .5s ease}
+.results.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* SCORE BADGE */
+.score-row{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:1.5rem}
+.score-badge{
+  flex-shrink:0;width:100px;height:100px;border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--font-mono);
+}
+.score-badge.high{background:var(--red-dim);border:2px solid var(--red-border)}
+.score-badge.medium{background:var(--orange-dim);border:2px solid #f59e0b66}
+.score-badge.low{background:#22c55e22;border:2px solid #22c55e66}
+.score-badge .number{font-size:1.8rem;font-weight:700;line-height:1}
+.score-badge.high .number{color:var(--red)}
+.score-badge.medium .number{color:var(--orange)}
+.score-badge.low .number{color:var(--green-safe)}
+.score-badge .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;font-weight:600}
+.score-badge.high .label{color:var(--red)}
+.score-badge.medium .label{color:var(--orange)}
+.score-badge.low .label{color:var(--green-safe)}
+
+.score-summary{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+
+/* PANELS */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.panels{grid-template-columns:1fr}}
+
+.panel{background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:1rem;overflow:hidden}
+.panel-title{font-family:var(--font-mono);font-size:.8rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.panel-title.red{color:var(--red)}
+.panel-title.green{color:var(--accent)}
+.panel ul{list-style:none;padding:0}
+.panel li{font-size:.8rem;color:var(--text-dim);padding:.35rem 0;line-height:1.45;border-bottom:1px solid #1e293b44}
+.panel li:last-child{border-bottom:none}
+.panel li strong{color:var(--text)}
+.panel.red-flags li strong{color:var(--red)}
+.panel.recommendations li strong{color:var(--accent)}
+
+/* DISCLAIMER */
+.disclaimer{
+  display:flex;align-items:flex-start;gap:.5rem;
+  font-size:.72rem;color:var(--text-muted);margin-top:1.5rem;
+  padding-top:1rem;border-top:1px solid var(--card-border);
+}
+.disclaimer .warn{flex-shrink:0}
+
+/* FOOTER */
+.tool-footer{
+  text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--text-muted);
+  font-family:var(--font-mono);
+}
+.tool-footer .accent{color:var(--accent)}
+
+/* ERROR */
+.error-msg{display:none;background:var(--red-dim);border:1px solid var(--red-border);border-radius:6px;padding:1rem;margin-top:1rem;color:var(--red);font-size:.85rem}
+.error-msg.show{display:block}
+
+/* EXAMPLE SCENARIOS */
+.examples-bar{margin-bottom:1rem}
+.examples-bar span{font-size:.72rem;color:var(--text-muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+.example-btn{
+  background:none;border:1px solid var(--card-border);color:var(--text-dim);
+  font-size:.75rem;padding:.3rem .6rem;border-radius:4px;cursor:pointer;
+  margin-top:.35rem;margin-right:.35rem;font-family:var(--font-body);transition:all .2s;
+}
+.example-btn:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/" class="logo">FLOR<span class="logo-o">&#x1F9A9;</span>NCHAIN</a>
+  <span class="sep">/</span>
+  <span class="page-name">Tools</span>
+  <a href="/" class="back-link">&larr; Back to blog</a>
+</div>
+
+<div class="container">
+  <div class="tool-header">
+    <h1><span class="icon">&#128270;</span> Crypto AML Risk Checker</h1>
+    <p>Rules-based red-flag library — pick indicators and describe the scenario</p>
+  </div>
+
+  <!-- FORM INPUTS -->
+  <div class="form-section">
+    <label>Quick context (optional)</label>
+    <div class="form-row">
+      <div>
+        <span class="small-label">Transaction type</span>
+        <select id="txType">
+          <option value="">— select —</option>
+          <option value="deposit">Deposit</option>
+          <option value="withdrawal">Withdrawal</option>
+          <option value="transfer">Transfer / Swap</option>
+          <option value="p2p">P2P Trade</option>
+          <option value="defi">DeFi Interaction</option>
+          <option value="nft">NFT Purchase / Sale</option>
+          <option value="mixed">Multiple / Mixed</option>
+        </select>
+      </div>
+      <div>
+        <span class="small-label">Approx. value (USD)</span>
+        <input type="text" id="txValue" placeholder="e.g. 23,800">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <span class="small-label">Crypto asset(s)</span>
+        <input type="text" id="txAsset" placeholder="e.g. ETH, USDT, BTC">
+      </div>
+      <div>
+        <span class="small-label">Platform(s)</span>
+        <input type="text" id="txPlatform" placeholder="e.g. Binance, Uniswap">
+      </div>
+    </div>
+
+    <label style="margin-top:.75rem">Known risk indicators</label>
+    <div class="chip-group" id="chipGroup">
+      <span class="chip" data-tag="mixer">Mixer / Tornado Cash</span>
+      <span class="chip" data-tag="flagged">Flagged address</span>
+      <span class="chip" data-tag="structuring">Structuring</span>
+      <span class="chip" data-tag="newaccount">New account</span>
+      <span class="chip" data-tag="highrisk-jurisdiction">High-risk jurisdiction</span>
+      <span class="chip" data-tag="pep">PEP / Sanctions</span>
+      <span class="chip" data-tag="rapid">Rapid movement</span>
+      <span class="chip" data-tag="crosschain">Cross-chain hops</span>
+      <span class="chip" data-tag="thirdparty">Third-party payment</span>
+      <span class="chip" data-tag="no-kyc">No KYC / Pseudonymous</span>
+    </div>
+  </div>
+
+  <!-- SCENARIO TEXT -->
+  <div class="form-section">
+    <label>Describe the scenario</label>
+    <textarea id="scenario" placeholder="e.g. Customer received 14.7 ETH from address 0x7a3B...9cF2 via Tornado Cash, then swapped to USDT on Uniswap. Within 2 hours, sent 23,800 USDT in 6 separate transactions to wallets on Binance and KuCoin..."></textarea>
+    <div class="examples-bar">
+      <span>Try an example:</span><br>
+      <button class="example-btn" onclick="loadExample(0)">Tornado Cash layering</button>
+      <button class="example-btn" onclick="loadExample(1)">Pig butchering pattern</button>
+      <button class="example-btn" onclick="loadExample(2)">NFT wash trading</button>
+    </div>
+  </div>
+
+  <button class="analyse-btn" id="analyseBtn" onclick="analyseRisk()">
+    <span class="arrow">&#x2192;</span> Analyse Risk
+  </button>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <span class="loading-text">Analysing scenario for AML red flags...</span>
+  </div>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+    <div class="score-row">
+      <div class="score-badge" id="scoreBadge">
+        <span class="number" id="scoreNumber">—</span>
+        <span class="label" id="scoreLabel">—</span>
+      </div>
+      <div class="score-summary" id="scoreSummary"></div>
+    </div>
+
+    <div class="panels">
+      <div class="panel red-flags">
+        <div class="panel-title red">&#x1F6A9; Red Flags Identified</div>
+        <ul id="redFlagsList"></ul>
+      </div>
+      <div class="panel recommendations">
+        <div class="panel-title green">&#x2705; Recommendations</div>
+        <ul id="recoList"></ul>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <span class="warn">&#x26A0;</span>
+      <span>This tool is for educational purposes only. It does not constitute legal or compliance advice. Always consult qualified AML professionals for real compliance decisions.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tool-footer">
+  <strong>FLOR<span class="accent">&#x1F9A9;</span>NCHAIN</strong> — Crypto compliance, without the corporate lawyer voice.
+</div>
+
+<script>
+const examples = [
+  {
+    type: 'transfer', value: '23,800', asset: 'ETH, USDT', platform: 'Uniswap, Binance, KuCoin',
+    tags: ['mixer','flagged','structuring','rapid'],
+    text: `Customer received 14.7 ETH from address 0x7a3B...9cF2 via Tornado Cash, then swapped to USDT on Uniswap. Within 2 hours, sent 23,800 USDT in 6 separate transactions to wallets on Binance and KuCoin. One of the receiving addresses (0x3eD1...a8B4) was previously flagged on Chainalysis for association with a romance scam cluster. Customer has no prior transaction history on our platform.`
+  },
+  {
+    type: 'deposit', value: '150,000', asset: 'USDT, USDC', platform: 'Coinbase, Binance',
+    tags: ['newaccount','thirdparty','highrisk-jurisdiction'],
+    text: `New account registered 3 days ago. Customer claims to be a retired teacher from Romania. Within 48 hours, received 5 separate deposits totalling 150,000 USDT from 3 different external wallets. Immediately began converting to USDC and withdrawing to a cold wallet. Customer provided minimal KYC and became aggressive when asked for source of funds documentation. IP geolocation shows connections from Cambodia.`
+  },
+  {
+    type: 'nft', value: '85,000', asset: 'ETH', platform: 'OpenSea, Blur',
+    tags: ['crosschain','no-kyc','rapid'],
+    text: `Wallet 0xF2b8...7aE1 minted 50 NFTs on a new collection with zero community following. Same wallet purchased 30 of its own NFTs from a second wallet (0x91cD...3bF0) at inflated prices totalling 42 ETH (~85,000 USD). Both wallets were funded from the same source within 24 hours. The NFTs have no secondary market activity. Proceeds were bridged to Arbitrum and swapped to USDC.`
+  }
+];
+
+function loadExample(idx) {
+  const ex = examples[idx];
+  document.getElementById('txType').value = ex.type;
+  document.getElementById('txValue').value = ex.value;
+  document.getElementById('txAsset').value = ex.asset;
+  document.getElementById('txPlatform').value = ex.platform;
+  document.getElementById('scenario').value = ex.text;
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('active', ex.tags.includes(c.dataset.tag));
+  });
+}
+
+// Chip toggles
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('active'));
+});
+
+// ==========================================================
+// Rules engine — FATF / Egmont-aligned red-flag library
+// ==========================================================
+const RULES = {
+  mixer: { weight: 25,
+    flag: { title: 'Mixing-service exposure', detail: 'Funds routed through a mixer (Tornado Cash, Wasabi, Samurai) — deliberate obfuscation of transaction history.' },
+    reco: 'File an STR with the FIU. Freeze the transaction pending MLRO review.' },
+  flagged: { weight: 22,
+    flag: { title: 'Flagged or sanctioned counterparty', detail: 'Interaction with an address on a watchlist (Chainalysis, Elliptic, OFAC SDN, EU sanctions).' },
+    reco: 'Block the counterparty, screen the customer, file an STR within statutory deadlines.' },
+  structuring: { weight: 18,
+    flag: { title: 'Structuring pattern', detail: 'Transactions broken into sub-threshold amounts to avoid reporting — classic smurfing.' },
+    reco: 'Aggregate the transaction chain for monitoring. Escalate to MLRO and document the pattern.' },
+  newaccount: { weight: 12,
+    flag: { title: 'New account, high-value activity', detail: 'A recently opened account moving significant value bypasses the usual customer risk baseline.' },
+    reco: 'Trigger enhanced due diligence (EDD). Re-verify ID and request source-of-funds documentation.' },
+  'highrisk-jurisdiction': { weight: 15,
+    flag: { title: 'High-risk jurisdiction exposure', detail: 'Activity linked to a FATF grey/black-listed country or an EU AML-listed third country.' },
+    reco: 'Apply EDD under FATF Recommendation 19 / AMLD6 Article 18. Document rationale in the customer file.' },
+  pep: { weight: 20,
+    flag: { title: 'PEP or sanctions exposure', detail: 'Politically Exposed Person or sanctioned individual involved — inherent higher-risk profile.' },
+    reco: 'Obtain senior-management approval for the relationship. Apply ongoing enhanced monitoring.' },
+  rapid: { weight: 10,
+    flag: { title: 'Rapid movement of funds', detail: 'Short dwell time between inbound and outbound — consistent with layering.' },
+    reco: 'Activate transaction-velocity alerts. Apply a 72-hour hold for MLRO review on similar patterns.' },
+  crosschain: { weight: 10,
+    flag: { title: 'Cross-chain hopping', detail: 'Bridging between blockchains obscures the audit trail and is a known layering technique.' },
+    reco: 'Trace the full chain using onchain analytics. Document the bridge path in the case file.' },
+  thirdparty: { weight: 12,
+    flag: { title: 'Third-party payment', detail: 'Funds moving through unrelated wallets suggest a possible straw-buyer or a layering tier.' },
+    reco: 'Verify beneficial ownership and relationship between parties. Request documentation of the business rationale.' },
+  'no-kyc': { weight: 12,
+    flag: { title: 'Pseudonymous / no-KYC counterparty', detail: 'Transacting with an unhosted wallet or unregulated P2P — Travel Rule exposure.' },
+    reco: 'Apply EDD on the customer. Block if Travel Rule data is unobtainable and required.' }
+};
+
+// Keyword scanners: if scenario text matches, add the tag to the signal set
+const KEYWORD_SCANNERS = [
+  { re: /\b(tornado|mixer|coinjoin|wasabi|samurai)\b/i, tag: 'mixer' },
+  { re: /\b(flagged|sanctioned|OFAC|blacklist)\b/i, tag: 'flagged' },
+  { re: /\b(structur|smurf|sub.threshold|\d+\s+separate (transactions|deposits|withdrawals))\b/i, tag: 'structuring' },
+  { re: /\b(new account|registered\s+\d+\s+days?\s+ago|recently opened|days old)\b/i, tag: 'newaccount' },
+  { re: /\b(Iran|North Korea|DPRK|Myanmar|Cambodia|Syria|Yemen|Russia|high.risk jurisdiction|FATF grey|FATF black)\b/i, tag: 'highrisk-jurisdiction' },
+  { re: /\b(PEP|politically exposed|sanctions? list)\b/i, tag: 'pep' },
+  { re: /\b(within\s+\d+\s+hours?|within\s+\d+\s+minutes?|immediately|rapidly|rapid movement|24 hours|48 hours)\b/i, tag: 'rapid' },
+  { re: /\b(bridge[ds]?|cross.chain|arbitrum|optimism|polygon bridge)\b/i, tag: 'crosschain' },
+  { re: /\b(third.party|unrelated (sender|wallet)|different wallets|unknown source)\b/i, tag: 'thirdparty' },
+  { re: /\b(no KYC|pseudonymous|unhosted wallet|anonymous wallet)\b/i, tag: 'no-kyc' }
+];
+
+// Qualitative flags drawn from scenario narrative
+const QUALITATIVE_SCANNERS = [
+  { re: /\b(romance scam|pig butchering|investment scam|fraud cluster)\b/i, weight: 20,
+    flag: { title: 'Suspected fraud proceeds', detail: 'Narrative matches known fraud typologies — funds may be crime proceeds.' },
+    reco: 'File a high-priority STR. Escalate to police liaison if victim contact is plausible.' },
+  { re: /\b(flash loan|self.trade|wash trad|inflated price|same source|same funding source)\b/i, weight: 15,
+    flag: { title: 'Possible wash trade or market manipulation', detail: 'Self-trade or flash-loan priced transaction — price is not market-driven.' },
+    reco: 'Do not rely on stated transaction value. Refer to market-abuse team and document in STR.' },
+  { re: /\b(aggressive|refused|reluctant|evasive|hostile)\b/i, weight: 8,
+    flag: { title: 'Customer behaviour flag', detail: 'Customer became evasive or hostile when asked for standard documentation — inconsistent with a legitimate profile.' },
+    reco: 'Note the interaction in the case file. EDD trigger.' },
+  { re: /\bIP\s+(geolocation|address).{0,60}(Cambodia|Philippines|Nigeria|different|mismatch|Russia|Iran)\b/i, weight: 10,
+    flag: { title: 'Geolocation inconsistent with KYC', detail: 'IP location does not match stated residence — possible identity misuse or account takeover.' },
+    reco: 'Trigger step-up authentication. Document the mismatch and review prior logins.' }
+];
+
+function analyseRisk() {
+  const scenario = document.getElementById('scenario').value.trim();
+  const results = document.getElementById('results');
+  const errorMsg = document.getElementById('errorMsg');
+  if (!scenario) { alert('Please describe a transaction scenario.'); return; }
+  errorMsg.classList.remove('show');
+  results.classList.remove('show');
+
+  // 1. collect signals from chips + text scanners
+  const signals = new Set([...document.querySelectorAll('.chip.active')].map(c => c.dataset.tag));
+  KEYWORD_SCANNERS.forEach(s => { if (s.re.test(scenario)) signals.add(s.tag); });
+
+  const flags = [];
+  const recos = new Set();
+  let score = 0;
+
+  signals.forEach(tag => {
+    const rule = RULES[tag];
+    if (!rule) return;
+    flags.push(rule.flag);
+    recos.add(rule.reco);
+    score += rule.weight;
+  });
+
+  QUALITATIVE_SCANNERS.forEach(q => {
+    if (q.re.test(scenario)) {
+      flags.push(q.flag);
+      recos.add(q.reco);
+      score += q.weight;
+    }
+  });
+
+  // Value-based escalation
+  const rawValue = parseInt((document.getElementById('txValue').value || '0').replace(/[^0-9]/g, ''), 10);
+  if (rawValue >= 100000) {
+    flags.push({ title: 'Large-value transaction', detail: `Value ~$${rawValue.toLocaleString()} is above the institutional high-value threshold.` });
+    recos.add('Apply reinforced source-of-funds checks. Require dual approval before release.');
+    score += 15;
+  } else if (rawValue >= 10000) {
+    flags.push({ title: 'Above reporting threshold', detail: `Value ~$${rawValue.toLocaleString()} sits in or above the CTR threshold used in most regimes.` });
+    recos.add('Confirm the transaction is captured by automated monitoring rules and logged correctly.');
+    score += 5;
+  }
+
+  if (flags.length === 0) {
+    flags.push({ title: 'No pre-set indicators triggered', detail: 'No indicators in this library matched. This does not mean the transaction is low risk — check narrative and behavioural signals manually.' });
+    recos.add('Run the scenario past your MLRO and against the firm\u2019s transaction-monitoring rules.');
+    score = 8;
+  }
+
+  score = Math.min(score, 100);
+  const risk_level = score >= 66 ? 'HIGH' : score >= 31 ? 'MEDIUM' : 'LOW';
+
+  recos.add('Log the scenario, decision rationale, and applicable red flags in the case-management system.');
+
+  const topFlags = flags.slice(0, 3).map(f => f.title.toLowerCase()).join(', ');
+  const summary = (risk_level === 'HIGH'
+    ? 'Multiple high-severity indicators triggered.'
+    : risk_level === 'MEDIUM'
+      ? 'A mix of indicators triggered — further review required.'
+      : 'Limited predefined indicators triggered.')
+    + ' Primary concerns: ' + topFlags + '. Apply the recommended steps and escalate per your MLRO policy.';
+
+  renderResults({ score, risk_level, summary, red_flags: flags, recommendations: [...recos] });
+}
+
+function renderResults(r) {
+  const results = document.getElementById('results');
+  const badge = document.getElementById('scoreBadge');
+  const scoreNum = document.getElementById('scoreNumber');
+  const scoreLabel = document.getElementById('scoreLabel');
+  const summary = document.getElementById('scoreSummary');
+  const flagsList = document.getElementById('redFlagsList');
+  const recoList = document.getElementById('recoList');
+
+  // Score badge
+  const level = r.risk_level.toUpperCase();
+  badge.className = 'score-badge ' + (level === 'HIGH' ? 'high' : level === 'MEDIUM' ? 'medium' : 'low');
+  scoreNum.textContent = r.score + '/100';
+  scoreLabel.textContent = level + ' RISK';
+
+  // Summary
+  summary.textContent = r.summary;
+
+  // Red flags
+  flagsList.innerHTML = '';
+  (r.red_flags || []).forEach(f => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${f.title}</strong> — ${f.detail}`;
+    flagsList.appendChild(li);
+  });
+
+  // Recommendations
+  recoList.innerHTML = '';
+  (r.recommendations || []).forEach(rec => {
+    const li = document.createElement('li');
+    li.textContent = '• ' + rec;
+    recoList.appendChild(li);
+  });
+
+  results.classList.add('show');
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flor Onchain — 10 Video Plan</title>
+<style>
+  :root {
+    --bg: #0a0e17; --card: #111827; --accent: #00ffa3; --accent2: #3b82f6;
+    --danger: #ef4444; --warning: #f59e0b; --purple: #8b5cf6;
+    --text: #e2e8f0; --dim: #94a3b8; --muted: #64748b; --border: #1e293b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
+  h1,h2,h3 { font-family: 'Courier New', monospace; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 48px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+  .hero .tag { font-size: 11px; color: var(--accent); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
+  .hero h1 { font-size: 38px; margin-bottom: 10px; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--dim); font-size: 15px; max-width: 580px; margin: 0 auto; }
+
+  /* REF BOX */
+  .ref-box { background: var(--card); border: 1px solid rgba(0,255,163,0.25); border-radius: 14px; padding: 22px 24px; margin-bottom: 40px; display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .ref-box .icon { font-size: 32px; flex-shrink: 0; }
+  .ref-box h3 { color: var(--accent); font-size: 15px; margin-bottom: 6px; }
+  .ref-box p { color: var(--dim); font-size: 13px; line-height: 1.6; }
+  .ref-box a { color: var(--accent); font-weight: 600; }
+
+  /* INFLUENCER STRIP */
+  .infl-strip { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .infl-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; flex: 1; min-width: 180px; }
+  .infl-card .name { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px; }
+  .infl-card .handle { font-size: 11px; color: var(--accent); margin-bottom: 6px; }
+  .infl-card .desc { font-size: 11px; color: var(--dim); line-height: 1.5; }
+  .infl-card .why { font-size: 11px; color: var(--warning); margin-top: 6px; font-weight: 600; }
+
+  /* VIDEO CARDS */
+  .video-list { display: flex; flex-direction: column; gap: 24px; }
+  .vid-card { background: var(--card); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; transition: border-color .2s; }
+  .vid-card:hover { border-color: rgba(0,255,163,0.3); }
+  .vid-header { padding: 20px 24px 0; display: flex; align-items: flex-start; gap: 16px; }
+  .vid-num { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; flex-shrink: 0; font-family: 'Courier New', monospace; }
+  .vid-meta { flex: 1; }
+  .vid-category { font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 4px; }
+  .vid-title { font-size: 18px; font-weight: 700; line-height: 1.3; color: var(--text); }
+  .vid-body { padding: 16px 24px 20px; }
+  .vid-hook { font-size: 13px; font-style: italic; color: var(--dim); border-left: 3px solid var(--accent); padding-left: 12px; margin-bottom: 16px; }
+  .vid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px) { .vid-grid { grid-template-columns: 1fr; } }
+  .vid-block { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px 14px; }
+  .vid-block h4 { font-size: 10px; color: var(--muted); letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+  .vid-block ul { list-style: none; }
+  .vid-block ul li { font-size: 12px; color: var(--dim); padding: 3px 0; }
+  .vid-block ul li::before { content: "→ "; color: var(--accent); }
+  .vid-ref { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .vid-ref-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; font-weight: 700; flex-shrink: 0; }
+  .vid-ref-name { font-size: 12px; font-weight: 700; }
+  .vid-ref-why { font-size: 11px; color: var(--dim); }
+  .pill { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-right: 4px; }
+  .pill-green { background: rgba(0,255,163,0.12); color: var(--accent); }
+  .pill-blue { background: rgba(59,130,246,0.12); color: var(--accent2); }
+  .pill-orange { background: rgba(245,158,11,0.12); color: var(--warning); }
+  .pill-red { background: rgba(239,68,68,0.12); color: var(--danger); }
+  .pill-purple { background: rgba(139,92,246,0.12); color: var(--purple); }
+
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">FLORONCHAIN.COM · CONTENT STRATEGY</div>
+    <h1>Your <span>10-Video</span> Plan</h1>
+    <p>Educational crypto videos 5–15 min. Each one modelled on a top influencer's style — with your compliance angle that nobody else has.</p>
+  </div>
+
+  <!-- BUBBLEMAPS REF -->
+  <div class="ref-box">
+    <div class="icon">🎥</div>
+    <div>
+      <h3>Best Bubblemaps tutorial to copy → AntoineRSX on X</h3>
+      <p>The tweet you shared originally (<a href="https://x.com/AntoineRSX/status/1822786850643398949" target="_blank">@AntoineRSX</a>) is one of the best short-form Bubblemaps explainers out there — he's a Bubblemaps power user and posts onchain investigation threads. Study his format: he picks a specific token, shows the map, explains the red flags step by step, and ends with the "so what." That's exactly your video structure.<br><br>
+      For a longer YouTube-style reference: search <strong>"Bubblemaps tutorial 2024"</strong> on YouTube — the Bubblemaps official channel (@bubblemaps on YouTube) posts walkthrough videos. Also check <a href="https://wiki.bubblemaps.io" target="_blank">wiki.bubblemaps.io</a> — they have a 2-min intro video linked there.</p>
+    </div>
+  </div>
+
+  <!-- INFLUENCER REFERENCES -->
+  <h2 style="color:var(--accent);font-size:16px;letter-spacing:2px;margin-bottom:16px">YOUR REFERENCE INFLUENCERS</h2>
+  <div class="infl-strip">
+    <div class="infl-card">
+      <div class="name">Miles Deutscher</div>
+      <div class="handle">@milesdeutscher</div>
+      <div class="desc">219K subs. Condenses 6 years of crypto knowledge into 10–16 min videos. Real talk, personal experience, no hype. Does deep dives on altcoins, market cycles, portfolio strategy.</div>
+      <div class="why">★ Copy his format: personal story hook → lesson → actionable takeaway</div>
+    </div>
+    <div class="infl-card">
+      <div class="name">Coin Bureau</div>
+      <div class="handle">@coinbureau</div>
+      <div class="desc">2.7M subs. Research-heavy, unbiased deep dives. 15–25 min explainers on regulations, tokens, DeFi. Zero hype. Heavy on data and sources.</div>
+      <div class="why">★ Copy his research style — cite reports, use real stats, explain like an expert</div>
+    </div>
+    <div class="infl-card">
+      <div class="name">WhiteboardCrypto</div>
+      <div class="handle">@whiteboardcrypto</div>
+      <div class="desc">1.4M subs. Explains complex concepts with analogies and visuals. "What is DeFi explained with a lemonade stand." Makes anything accessible.</div>
+      <div class="why">★ Copy his analogies — great for compliance topics that feel heavy</div>
+    </div>
+    <div class="infl-card">
+      <div class="name">Laura Shin (Unchained)</div>
+      <div class="handle">@laurashin</div>
+      <div class="desc">Investigative journalist, 72K subs. Deep dives on regulation, enforcement, founders. Trusted by compliance and legal communities.</div>
+      <div class="why">★ Your natural overlap — regulatory/investigative angle is your lane</div>
+    </div>
+    <div class="infl-card">
+      <div class="name">Bankless</div>
+      <div class="handle">@bankless</div>
+      <div class="desc">276K subs. DeFi and Ethereum focused. Long-form education, market research. Strong narrative structure.</div>
+      <div class="why">★ Copy their structured narrative: problem → solution → implications</div>
+    </div>
+  </div>
+
+  <!-- 10 VIDEO CARDS -->
+  <h2 style="color:var(--accent);font-size:16px;letter-spacing:2px;margin-bottom:20px">YOUR 10 VIDEOS</h2>
+  <div class="video-list">
+
+    <!-- 1 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(0,255,163,0.12);color:var(--accent)">01</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--accent)">TOOL TUTORIAL · TECH & TOOLS</div>
+          <div class="vid-title">How to Use Bubblemaps to Spot Crypto Manipulation in 60 Seconds</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"Before I invest in any new token, I run one check. It's free, it takes 60 seconds, and it's caught more rug pulls than any paid tool I've ever used."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What Bubblemaps is and how it works</li>
+              <li>Live screen recording — load a real token</li>
+              <li>Healthy vs suspicious map side by side</li>
+              <li>Magic Nodes walkthrough</li>
+              <li>Time Travel feature — real example</li>
+              <li>Cross-check on Etherscan</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments to hit</h4>
+            <ul>
+              <li>Pick a known rug pull — show the map BEFORE it rugged</li>
+              <li>"This is what 65% supply concentration looks like"</li>
+              <li>Show a clean token for contrast</li>
+              <li>HAWK Tuah token — 96% supply in one cluster before 95% crash</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(0,255,163,0.1);color:var(--accent)">MD</span>
+          <div>
+            <div class="vid-ref-name">Miles Deutscher style</div>
+            <div class="vid-ref-why">Personal hook + screen recording + "here's what I actually use" format</div>
+          </div>
+          <span class="pill pill-green" style="margin-left:auto">5–8 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(59,130,246,0.12);color:var(--accent2)">02</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--accent2)">REGULATION EXPLAINER · MiCA</div>
+          <div class="vid-title">MiCA Explained: What Every Crypto User in Europe Needs to Know</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"The EU just passed the biggest crypto regulation in history. Most people still have no idea what it means for them. Here's the plain English version."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What MiCA is and why it exists</li>
+              <li>Who it affects — exchanges, issuers, wallets</li>
+              <li>Key dates and transition timeline</li>
+              <li>Stablecoin rules (big one)</li>
+              <li>What changes for everyday users</li>
+              <li>Your take as a practitioner</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>"If you hold USDT in Europe, this affects you"</li>
+              <li>Timeline graphic — what's live now vs 2026</li>
+              <li>3 things crypto founders must do NOW</li>
+              <li>Comparison: MiCA vs US approach</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(59,130,246,0.1);color:var(--accent2)">CB</span>
+          <div>
+            <div class="vid-ref-name">Coin Bureau style</div>
+            <div class="vid-ref-why">Research-heavy, cite actual regulation text, explain like an expert talking to smart people</div>
+          </div>
+          <span class="pill pill-blue" style="margin-left:auto">10–12 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(239,68,68,0.12);color:var(--danger)">03</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--danger)">CRYPTO CRIME · INVESTIGATION</div>
+          <div class="vid-title">Pig Butchering: The $75 Billion Scam Most People Have Never Heard Of</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"They'll spend 3 months building a fake relationship with you. Then steal everything. It's called pig butchering — and it made $75 billion last year alone."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What pig butchering is — origin of the name</li>
+              <li>Exact playbook: how it starts on WhatsApp/Tinder</li>
+              <li>The fake crypto platform phase</li>
+              <li>Southeast Asia scam compound connection</li>
+              <li>Real victim case (anonymised)</li>
+              <li>Red flags and how to spot them early</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>Screenshot of a real opening message (anonymised)</li>
+              <li>Chainalysis 2026 stat: $75B in 2025</li>
+              <li>"Here's the exact moment the scam turns"</li>
+              <li>Bubblemaps view of a pig butchering wallet cluster</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(245,158,11,0.1);color:var(--warning)">LS</span>
+          <div>
+            <div class="vid-ref-name">Laura Shin / Unchained style</div>
+            <div class="vid-ref-why">Investigative narrative — tell the story, then explain the mechanism, then the implication</div>
+          </div>
+          <span class="pill pill-red" style="margin-left:auto">10–15 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(139,92,246,0.12);color:var(--purple)">04</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--purple)">BEGINNER EDUCATION · ONCHAIN</div>
+          <div class="vid-title">How to Read a Blockchain Like a Detective (No Experience Needed)</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"Every crypto transaction ever made is permanently public. I'm going to show you how to read it — like a detective. No coding, no experience needed."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>Etherscan basics — what you're looking at</li>
+              <li>How to trace a wallet's history</li>
+              <li>What suspicious patterns look like</li>
+              <li>Bubblemaps as the next layer</li>
+              <li>Live investigation of a real wallet</li>
+              <li>The 5 questions to ask about any wallet</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>"Let me show you a real criminal wallet" (documented case)</li>
+              <li>Beginner-friendly walkthrough of Etherscan UI</li>
+              <li>The "follow the money" moment — trace funds live</li>
+              <li>End with: your first investigation checklist</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(139,92,246,0.1);color:var(--purple)">WC</span>
+          <div>
+            <div class="vid-ref-name">WhiteboardCrypto style</div>
+            <div class="vid-ref-why">Use analogies: "Think of Etherscan like a bank statement that anyone can read" — accessible surface, depth underneath</div>
+          </div>
+          <span class="pill pill-purple" style="margin-left:auto">8–12 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(245,158,11,0.12);color:var(--warning)">05</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--warning)">AML EDUCATION · RED FLAGS</div>
+          <div class="vid-title">10 Crypto Red Flags That Every AML Professional Should Know</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"After 9 years in AML, I can spot a suspicious crypto transaction in under 2 minutes. Here are the 10 red flags that show up over and over again."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>Red flag 1–5: transaction-level signals</li>
+              <li>Red flag 6–10: customer/behavioural signals</li>
+              <li>Real case example for each</li>
+              <li>How these connect to FATF typologies</li>
+              <li>What to do when you spot them</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>On-screen red flag counter (visual hook)</li>
+              <li>"This one catches 80% of cases" — build suspense</li>
+              <li>Show a real transaction on Etherscan for each flag</li>
+              <li>Download your free red flag checklist (lead magnet)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(0,255,163,0.1);color:var(--accent)">MD</span>
+          <div>
+            <div class="vid-ref-name">Miles Deutscher list format</div>
+            <div class="vid-ref-why">Numbered list structure + personal credibility opener + practical examples = his most-watched format</div>
+          </div>
+          <span class="pill pill-orange" style="margin-left:auto">10–12 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(0,255,163,0.12);color:var(--accent)">06</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--accent)">MARKET ANALYSIS · CRYPTO CRIME</div>
+          <div class="vid-title">The 2026 Crypto Crime Report: Every Number That Matters</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"Chainalysis just dropped the biggest crypto crime report of the year. I read all 80 pages so you don't have to. Here's everything that matters."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>Headline numbers — total illicit crypto 2025</li>
+              <li>Biggest categories: fraud, ransomware, trafficking</li>
+              <li>Stablecoins overtaking Bitcoin for illicit use</li>
+              <li>North Korea hack stats</li>
+              <li>DeFi as laundering vehicle</li>
+              <li>What this means for compliance teams</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>Show the actual report on screen</li>
+              <li>"This number shocked me" — highlight one stat</li>
+              <li>Your practitioner take: what's new vs what's the same</li>
+              <li>Link: full article on floronchain.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(59,130,246,0.1);color:var(--accent2)">CB</span>
+          <div>
+            <div class="vid-ref-name">Coin Bureau report breakdown style</div>
+            <div class="vid-ref-why">Screen share the source, break it down section by section, add your own interpretation</div>
+          </div>
+          <span class="pill pill-green" style="margin-left:auto">12–15 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(59,130,246,0.12);color:var(--accent2)">07</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--accent2)">BEGINNER EDUCATION · DEFI</div>
+          <div class="vid-title">What Is DeFi? (And Why It's the Compliance World's Biggest Headache)</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"DeFi moves $100 billion a day with no KYC, no compliance team, and no one to call when something goes wrong. Let me explain exactly how it works — and why regulators are losing sleep over it."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What DeFi is — analogy-driven explanation</li>
+              <li>DEXs, liquidity pools, yield farming simplified</li>
+              <li>Why it's hard to regulate</li>
+              <li>How criminals use DeFi for layering</li>
+              <li>What FATF and MiCA say about DeFi</li>
+              <li>The future — will DeFi be regulated?</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>Analogy: "DeFi is like a vending machine bank"</li>
+              <li>Show a live DEX swap on screen</li>
+              <li>"This is how $100M was laundered through Tornado Cash"</li>
+              <li>Your take: regulation will come, here's how</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(139,92,246,0.1);color:var(--purple)">WC</span>
+          <div>
+            <div class="vid-ref-name">WhiteboardCrypto analogy style + Bankless depth</div>
+            <div class="vid-ref-why">Start simple (WhiteboardCrypto), go deep on the compliance angle (Bankless) — your unique combo</div>
+          </div>
+          <span class="pill pill-blue" style="margin-left:auto">10–14 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(245,158,11,0.12);color:var(--warning)">08</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--warning)">PERSONAL / EDUCATIONAL · CAREER</div>
+          <div class="vid-title">I'm a Crypto AML Officer. Here's What My Job Actually Looks Like</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"I file reports on criminal activity for a living. My job is to find the money launderers — inside a crypto company. Here's what that actually looks like day to day."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What an MLRO actually does</li>
+              <li>A real (anonymised) case I've worked on</li>
+              <li>Tools: TRM, Chainalysis, Bubblemaps</li>
+              <li>What a suspicious transaction looks like in practice</li>
+              <li>How to get into crypto compliance</li>
+              <li>Salary, demand, future of the role</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>Day-in-the-life narrative hook</li>
+              <li>"The case I'll never forget" — personal story</li>
+              <li>Show real tools on screen (anonymised data)</li>
+              <li>Career advice for compliance professionals moving into crypto</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(0,255,163,0.1);color:var(--accent)">MD</span>
+          <div>
+            <div class="vid-ref-name">Miles Deutscher personal experience format</div>
+            <div class="vid-ref-why">"It took me 6 years to learn this" energy — personal, real, relatable — your most shareable video type</div>
+          </div>
+          <span class="pill pill-orange" style="margin-left:auto">8–12 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(239,68,68,0.12);color:var(--danger)">09</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--danger)">CRYPTO CRIME · DARKNET</div>
+          <div class="vid-title">How Crypto Ransomware Works — And Who's Actually Behind It</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"A hospital in Germany paid $1.3M in Bitcoin to get their systems back. I'm going to show you exactly how ransomware gangs operate — and how they get caught."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>How ransomware attacks work (simplified)</li>
+              <li>The Bitcoin payment mechanics</li>
+              <li>How gangs launder ransomware proceeds</li>
+              <li>North Korea's Lazarus Group — key stats</li>
+              <li>How investigators trace and catch them</li>
+              <li>Chainalysis ransomware data 2025</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>Real case: Colonial Pipeline $4.4M payment</li>
+              <li>Show the Bitcoin wallet trail on a block explorer</li>
+              <li>"This is how the FBI recovered the Bitcoin"</li>
+              <li>Compliance implications for crypto businesses</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(245,158,11,0.1);color:var(--warning)">LS</span>
+          <div>
+            <div class="vid-ref-name">Laura Shin investigative journalism style</div>
+            <div class="vid-ref-why">Real case → mechanism explained → what it means for the industry → your compliance take</div>
+          </div>
+          <span class="pill pill-red" style="margin-left:auto">10–15 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="vid-card">
+      <div class="vid-header">
+        <div class="vid-num" style="background:rgba(139,92,246,0.12);color:var(--purple)">10</div>
+        <div class="vid-meta">
+          <div class="vid-category" style="color:var(--purple)">REGULATION · TRAVEL RULE</div>
+          <div class="vid-title">The Travel Rule: Why Every Crypto Transaction Is Being Tracked Right Now</div>
+        </div>
+      </div>
+      <div class="vid-body">
+        <div class="vid-hook">"Every time you move crypto between exchanges, someone is collecting your personal data. It's called the Travel Rule — and most crypto users have absolutely no idea it exists."</div>
+        <div class="vid-grid">
+          <div class="vid-block">
+            <h4>What to cover</h4>
+            <ul>
+              <li>What the Travel Rule is and where it came from</li>
+              <li>How it works in practice — what data is collected</li>
+              <li>EU implementation (strictest in the world)</li>
+              <li>What it means for self-custody wallets</li>
+              <li>Technical solutions: Notabene, Sygna, TRP</li>
+              <li>What's coming next</li>
+            </ul>
+          </div>
+          <div class="vid-block">
+            <h4>Key moments</h4>
+            <ul>
+              <li>"The EU has NO minimum threshold — even €1 transfers"</li>
+              <li>Show a real VASP-to-VASP transfer flow</li>
+              <li>Compare: Travel Rule vs traditional wire transfers</li>
+              <li>Practical: what will users notice changing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vid-ref">
+          <span class="vid-ref-label">MODELLED ON</span>
+          <span class="vid-num" style="width:28px;height:28px;font-size:12px;background:rgba(59,130,246,0.1);color:var(--accent2)">CB</span>
+          <div>
+            <div class="vid-ref-name">Coin Bureau regulation explainer style</div>
+            <div class="vid-ref-why">Data-driven, cite actual FATF text, break down who's affected in each jurisdiction — then your practitioner take</div>
+          </div>
+          <span class="pill pill-purple" style="margin-left:auto">10–12 min</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end video list -->
+
+  <!-- SHOOTING ORDER NOTE -->
+  <div style="background:var(--card);border-radius:14px;padding:24px;border:1px solid rgba(0,255,163,0.2);margin-top:40px">
+    <h3 style="color:var(--accent);font-size:14px;letter-spacing:2px;margin-bottom:12px">SUGGESTED SHOOTING ORDER</h3>
+    <p style="font-size:13px;color:var(--dim);line-height:1.8">Start with <strong style="color:var(--text)">Video 1 (Bubblemaps)</strong> — you already have the script and storyboard done. Then <strong style="color:var(--text)">Video 8 (Your Job)</strong> — this builds your personal brand fastest. Then <strong style="color:var(--text)">Video 3 (Pig Butchering)</strong> — biggest mass appeal. The rest can follow in any order. Aim for one video every 2 weeks to start — quality over quantity. Each video gets a companion article on floronchain.com (already in progress).</p>
+  </div>
+
+</div>
+<footer>Flor Onchain · floronchain.com · 10-Video Content Plan 2026</footer>
+</body>
+</html>

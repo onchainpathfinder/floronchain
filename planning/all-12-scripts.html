@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flor Onchain — All 12 Video Scripts</title>
+<style>
+:root{--bg:#080c14;--card:#0f1623;--card2:#141e2e;--accent:#00ffa3;--accent2:#3b82f6;--danger:#ef4444;--warn:#f59e0b;--purple:#a78bfa;--text:#e2e8f0;--dim:#94a3b8;--muted:#4b5563;--border:#1a2535}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.65}
+.container{max-width:900px;margin:0 auto;padding:32px 20px}
+
+/* HERO */
+.hero{text-align:center;padding:52px 0 40px;border-bottom:1px solid var(--border);margin-bottom:44px}
+.hero .eyebrow{font-size:10px;letter-spacing:4px;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:'Courier New',monospace;font-size:36px;font-weight:900;line-height:1.15;margin-bottom:10px}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero p{color:var(--dim);font-size:14px;max-width:540px;margin:0 auto}
+
+/* NAV */
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding:10px 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;background:var(--bg)}
+.nav a{padding:6px 14px;background:var(--card);color:var(--dim);border:1px solid var(--border);border-radius:16px;font-size:11px;font-weight:700;text-decoration:none;transition:all .15s;font-family:'Courier New',monospace}
+.nav a:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+
+/* SCRIPT CARD */
+.script-card{background:var(--card);border-radius:18px;border:1px solid var(--border);margin-bottom:40px;overflow:hidden}
+.script-header{padding:24px 28px 0;display:flex;gap:16px;align-items:flex-start}
+.script-num{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:22px;font-weight:900;flex-shrink:0}
+.script-meta{flex:1}
+.script-cat{font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:4px}
+.script-title{font-size:20px;font-weight:800;line-height:1.3;color:var(--text)}
+.script-pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:8px}
+.pg{background:rgba(0,255,163,.1);color:var(--accent)}
+.pb{background:rgba(59,130,246,.1);color:var(--accent2)}
+.pr{background:rgba(239,68,68,.1);color:var(--danger)}
+.pw{background:rgba(245,158,11,.1);color:var(--warn)}
+.pp{background:rgba(167,139,250,.1);color:var(--purple)}
+
+.script-body{padding:22px 28px 28px}
+
+/* SEO strip */
+.seo{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:20px}
+.seo strong{color:var(--accent2)}
+
+/* SCRIPT BOX */
+.sb{background:var(--bg);border-radius:10px;padding:20px;border:1px solid var(--border);font-size:13.5px;line-height:1.85}
+.scene{display:block;background:rgba(0,255,163,.06);border-left:3px solid var(--accent);padding:4px 12px;margin:16px 0 8px;font-size:10px;color:var(--accent);font-weight:800;letter-spacing:1px;border-radius:0 6px 6px 0}
+.spoken{display:block;color:var(--text);margin:0 0 6px 0}
+.direction{display:block;color:var(--purple);font-style:italic;font-size:12px;margin:2px 0 6px 0}
+.overlay{display:block;color:var(--warn);font-size:11px;font-weight:700;margin:3px 0 6px 0}
+.pause{display:block;color:var(--muted);font-size:11px;font-style:italic;margin:2px 0 6px 0}
+
+/* PROD NOTES */
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media(max-width:560px){.notes{grid-template-columns:1fr}}
+.note-block{background:var(--bg);border-radius:8px;padding:12px 14px;border:1px solid var(--border)}
+.note-block h4{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:700;margin-bottom:8px}
+.note-block ul{list-style:none;font-size:12px;color:var(--dim)}
+.note-block ul li{padding:2px 0}
+.note-block ul li::before{content:"→ ";color:var(--accent)}
+
+/* DIVIDER */
+.div-label{text-align:center;font-size:10px;letter-spacing:4px;color:var(--muted);padding:8px 0 24px;font-family:'Courier New',monospace}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <div class="eyebrow">FLORONCHAIN.COM · ALL 12 VIDEO SCRIPTS</div>
+  <h1>Complete <em>Script Bible</em></h1>
+  <p>All 12 word-for-word scripts in your voice. Timestamps · spoken lines · on-screen text · scene directions · production notes.</p>
+</div>
+
+<div class="nav">
+  <a href="#v1">01 Bubblemaps</a>
+  <a href="#v2">02 MiCA</a>
+  <a href="#v3">03 Pig Butchering</a>
+  <a href="#v4">04 Blockchain Detective</a>
+  <a href="#v5">05 AML Red Flags</a>
+  <a href="#v6">06 Crime Report</a>
+  <a href="#v7">07 DeFi</a>
+  <a href="#v8">08 My Job</a>
+  <a href="#v9">09 Ransomware</a>
+  <a href="#v10">10 Travel Rule</a>
+  <a href="#v11">11 Ledger ✅</a>
+  <a href="#v12">12 AI Agents ✅</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     VIDEO 01 — BUBBLEMAPS
+════════════════════════════════════════════════ -->
+<div class="script-card" id="v1">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(0,255,163,.1);color:var(--accent)">01</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--accent)">TECH & TOOLS</div>
+      <div class="script-title">How to Use Bubblemaps to Spot Crypto Manipulation in 60 Seconds</div>
+      <div class="script-pills"><span class="pill pg">5–8 min</span><span class="pill pb">All levels</span><span class="pill pw">Miles Deutscher style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> bubblemaps how to use &nbsp;·&nbsp; <strong>Secondary:</strong> bubblemaps crypto, how to spot rug pull, token distribution analysis, crypto manipulation detection &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Tool tutorial</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:08 · Direct to camera · Calm, matter-of-fact</span>
+      <span class="spoken">"This free tool will show you if a crypto token is being manipulated — in under 60 seconds."</span>
+      <span class="pause">[2-second pause. Don't rush it.]</span>
+      <span class="spoken">"It's called Bubblemaps. And before I invest in anything new — it's the first thing I open."</span>
+      <span class="overlay">📱 TEXT: BUBBLEMAPS — spot crypto manipulation instantly</span>
+
+      <span class="scene">WHAT IT IS — 0:08–1:30 · Camera · Keep it simple</span>
+      <span class="spoken">"Bubblemaps takes blockchain data — which is normally just walls of numbers and addresses — and turns it into a visual map. Every bubble is a wallet. The bigger the bubble, the more of a token that wallet holds. And the lines between bubbles? Those are transactions. Money moving between addresses."</span>
+      <span class="spoken">"The result is that you can see in one glance whether a token's supply is genuinely spread across thousands of independent holders — or whether it's sitting in 10 connected wallets all controlled by the same person."</span>
+      <span class="spoken">"This matters because concentrated supply is one of the most reliable indicators that a token is either a scam, a rug pull setup, or a pump and dump. And it takes about 60 seconds to check."</span>
+      <span class="overlay">📱 TEXT: Concentrated supply = biggest red flag in crypto</span>
+
+      <span class="scene">HOW TO USE IT — 1:30–4:00 · Screen recording — bubblemaps.io</span>
+      <span class="direction">[Open bubblemaps.io on screen]</span>
+      <span class="spoken">"Go to bubblemaps.io. Search any token — either by name or preferably by contract address. I always use the contract address because token names can be faked. Contract addresses can't."</span>
+      <span class="spoken">"When the map loads, the first thing I look at is: how spread out are the bubbles? Lots of different colours, different sizes, minimal connections between the top holders — that's healthy. A handful of giant bubbles, all the same colour, all connected to each other — that's a problem."</span>
+      <span class="overlay">📱 TEXT: Same colour = potentially the same entity. 🚩</span>
+      <span class="spoken">"Same colour means Bubblemaps has identified those wallets as likely linked — potentially the same entity operating multiple accounts. If the top five wallets are all the same colour and they hold 60% of supply? Walk away."</span>
+
+      <span class="scene">MAGIC NODES — 4:00–5:15 · Screen recording</span>
+      <span class="spoken">"Now here's the feature most people don't use: Magic Nodes. Enable it from the top menu."</span>
+      <span class="direction">[Click Magic Nodes on screen]</span>
+      <span class="spoken">"Magic Nodes expands the map to show hidden connections — second and third-degree wallet links that don't appear in the basic view. Intermediate wallets. Hop addresses. The layered transfer chains that projects use to make one entity look like twenty. When Magic Nodes connects those hidden wallets back to the same cluster? That's confirmation of centralised control."</span>
+      <span class="overlay">📱 TEXT: Magic Nodes → reveals the hidden connections</span>
+
+      <span class="scene">TIME TRAVEL — 5:15–6:15 · Screen recording</span>
+      <span class="spoken">"The other feature I use constantly is Time Travel. It lets you scroll back through the token's history and see how the distribution has changed over time."</span>
+      <span class="spoken">"The question I'm always asking: were certain wallets holding tokens before the public launch? That's an insider pattern. Did a cluster of wallets all receive tokens on the same day at the same time? Coordinated distribution. Did supply suddenly concentrate into one wallet right before a price crash? That's a dump in progress. Time Travel shows you all of it."</span>
+      <span class="overlay">📱 TEXT: Time Travel = see who held tokens BEFORE launch</span>
+
+      <span class="scene">FLOR'S TAKE — 6:15–7:00 · Camera · Direct</span>
+      <span class="spoken">"I want to be clear about what Bubblemaps is and isn't. It's not a replacement for professional blockchain analytics tools. It doesn't score wallets against sanctions lists. It doesn't give you identity. For that you need Chainalysis, TRM, the serious tooling."</span>
+      <span class="spoken">"What Bubblemaps gives you is a fast, free, visual first pass. In my compliance work, I use it as a triage layer — a 60-second check that tells me whether something needs deeper investigation or can be deprioritised. For investors, it's a habit that could save you from the next rug pull. It's free. There's no reason not to use it."</span>
+      <span class="overlay">📱 TEXT: Free · 60 seconds · Could save you from a rug pull</span>
+
+      <span class="scene">CTA — 7:00–7:30 · Camera</span>
+      <span class="spoken">"Full written guide with screenshots is at floronchain.com — link in bio. Go check any token you've been looking at. You might be surprised what you find. Subscribe for one video a week on crypto, compliance, and how to actually navigate this space. See you next week."</span>
+      <span class="overlay">📱 TEXT: floronchain.com · New video every week</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>SCREEN RECORDING NEEDED</h4><ul><li>bubblemaps.io loading with a real token</li><li>A healthy distribution example</li><li>A suspicious clustered example — pick a documented rug pull</li><li>Magic Nodes being toggled on</li><li>Time Travel slider being moved</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL + HOOK IDEAS</h4><ul><li>You + screenshot of a clustered red bubble map</li><li>Big text: "I check this before every crypto investment"</li><li>Or: "This free tool exposed a $50M rug pull"</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 02 — MiCA ═══════ -->
+<div class="script-card" id="v2">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(59,130,246,.1);color:var(--accent2)">02</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--accent2)">REGULATION EXPLAINER</div>
+      <div class="script-title">MiCA Explained: What Every Crypto User in Europe Needs to Know Right Now</div>
+      <div class="script-pills"><span class="pill pg">10–12 min</span><span class="pill pb">All levels</span><span class="pill pw">Coin Bureau style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> MiCA regulation explained &nbsp;·&nbsp; <strong>Secondary:</strong> Markets in Crypto Assets regulation, MiCA stablecoin rules, MiCA crypto exchange requirements, EU crypto regulation 2025 &nbsp;·&nbsp; <strong>Intent:</strong> Informational</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera</span>
+      <span class="spoken">"The European Union just created the most comprehensive crypto regulation framework in the world. It's called MiCA. And whether you're a crypto user, a founder, or a compliance professional — it affects you. Here's what it actually says, and what it actually means."</span>
+      <span class="overlay">📱 TEXT: MiCA — the biggest crypto regulation in history</span>
+
+      <span class="scene">WHAT IS MiCA — 0:12–2:00 · Camera</span>
+      <span class="spoken">"MiCA stands for Markets in Crypto Assets Regulation. It's a European Union law that creates a single regulatory framework for crypto across all 27 EU member states. Before MiCA, every country in Europe had its own rules — or no rules at all. MiCA harmonises everything."</span>
+      <span class="spoken">"It came into full force at the end of 2024. If you're operating a crypto business anywhere in the EU — or you're an EU citizen using crypto — you're operating under MiCA right now."</span>
+      <span class="overlay">📱 TEXT: MiCA — fully in force since December 2024</span>
+      <span class="spoken">"And here's what makes MiCA significant globally: it's the first major jurisdiction to pass comprehensive crypto regulation. The US still hasn't. The UK is working on it. The EU got there first, and everyone else is watching."</span>
+
+      <span class="scene">WHO DOES IT AFFECT — 2:00–4:00 · Camera · Screen graphics help here</span>
+      <span class="spoken">"MiCA covers three main groups. First — crypto asset issuers. If you're launching a token in the EU, you now need to publish a white paper that meets specific legal requirements. No more anonymous launches with no accountability."</span>
+      <span class="spoken">"Second — Crypto Asset Service Providers, or CASPs. This is exchanges, custodians, brokers, portfolio managers — anyone providing crypto services in the EU. They need a MiCA licence. Without it, they can't operate legally in the EU."</span>
+      <span class="spoken">"Third — stablecoin issuers. This is the strictest part. If you issue a stablecoin in the EU, you need to meet reserve requirements, redemption rights, and transaction limits. Tether was specifically in the crosshairs here — and several exchanges delisted USDT for EU customers as a direct result."</span>
+      <span class="overlay">📱 TEXT: USDT delisted by some EU exchanges because of MiCA stablecoin rules</span>
+
+      <span class="scene">KEY REQUIREMENTS — 4:00–6:30 · Camera + screen if useful</span>
+      <span class="spoken">"Let me give you the key requirements that matter in practice."</span>
+      <span class="spoken">"For exchanges and service providers: you need a CASP licence from your national regulator. Once you have it, you get a EU passport — you can operate across all 27 member states. This is actually good news for legitimate businesses. One licence, one market."</span>
+      <span class="spoken">"For stablecoin issuers: if your stablecoin transacts more than one million times a day or reaches one billion euros in daily volume — it gets flagged as a significant stablecoin and faces tighter supervision directly from the European Banking Authority."</span>
+      <span class="overlay">📱 TEXT: Significant stablecoins → supervised directly by the EBA</span>
+      <span class="spoken">"For token issuers: you need a white paper with specific disclosures — what the token is, what it's for, what the risks are. You're liable for misleading information. The anonymous no-accountability token launch is over in Europe."</span>
+      <span class="spoken">"And for consumers: you now have more protection. Exchanges must segregate your funds from their own. They must have clear complaints procedures. They can't use misleading marketing. And if they lose your assets, there are liability rules."</span>
+
+      <span class="scene">WHAT'S NOT COVERED — 6:30–7:30 · Camera</span>
+      <span class="spoken">"Now — what MiCA doesn't cover, because this confuses a lot of people."</span>
+      <span class="spoken">"MiCA does not cover NFTs — most of them. It doesn't cover truly decentralised DeFi protocols where there's no identifiable issuer. It doesn't cover central bank digital currencies. And it doesn't fully address DAOs."</span>
+      <span class="spoken">"The EU knows these are gaps. There's already discussion of a MiCA 2 that would address DeFi and NFTs. But for now — those spaces remain largely unregulated under MiCA."</span>
+      <span class="overlay">📱 TEXT: DeFi + NFTs = mostly outside MiCA. For now.</span>
+
+      <span class="scene">FLOR'S TAKE — 7:30–9:00 · Camera · Honest practitioner view</span>
+      <span class="spoken">"Here's my honest take after working in regulated crypto markets in the EU."</span>
+      <span class="spoken">"MiCA is a genuine step forward. It creates legal certainty that didn't exist before. For legitimate crypto businesses, that's valuable — you know what you need to do, and if you do it, you have a clear path to market. The EU passport is a real commercial advantage."</span>
+      <span class="spoken">"The challenges are implementation speed and regulatory capacity. National regulators are still building the teams and systems to process CASP licence applications properly. In some member states, the practical capacity to deal with MiCA is still catching up with the legal requirements."</span>
+      <span class="spoken">"And the stablecoin situation is genuinely disruptive. Losing access to USDT — which is the most widely used stablecoin in the world — created real friction for EU traders and businesses. The long-term intention is to push the market toward EU-compliant stablecoins, but in the short term it's been painful."</span>
+      <span class="overlay">📱 TEXT: "MiCA is a step forward. But the transition has been painful."</span>
+
+      <span class="scene">CTA — 9:00–9:30 · Camera</span>
+      <span class="spoken">"Full breakdown of MiCA with the specific articles, timelines, and what it means for each type of business is on floronchain.com — link in bio. If you're operating in the EU crypto space, bookmark it. Subscribe for weekly content on crypto regulation, compliance, and onchain analysis. See you next week."</span>
+      <span class="overlay">📱 TEXT: Full MiCA breakdown → floronchain.com</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>VISUALS NEEDED</h4><ul><li>MiCA regulation text on screen briefly (credibility)</li><li>Map of EU 27 member states graphic</li><li>USDT delisting headlines — screenshot these</li><li>EBA logo for the significant stablecoin section</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>EU flag + crypto symbol + "What MiCA means for YOUR crypto"</li><li>Or: USDT crossed out + "EU just banned this stablecoin"</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 03 — PIG BUTCHERING ═══════ -->
+<div class="script-card" id="v3">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(239,68,68,.1);color:var(--danger)">03</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--danger)">CRYPTO CRIME</div>
+      <div class="script-title">Pig Butchering: The $75 Billion Scam Most People Have Never Heard Of</div>
+      <div class="script-pills"><span class="pill pg">10–13 min</span><span class="pill pb">All levels</span><span class="pill pw">Laura Shin investigative style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> pig butchering scam crypto &nbsp;·&nbsp; <strong>Secondary:</strong> crypto romance scam, sha zhu pan scam, how pig butchering works, crypto investment scam 2025 &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Warning</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:15 · Camera · Slow, deliberate delivery</span>
+      <span class="spoken">"She got a message on WhatsApp. Wrong number, the sender said. They started talking. Three months later, she had invested her entire life savings — $340,000 — into a crypto platform she trusted completely. Then the platform disappeared. Along with every dollar she had."</span>
+      <span class="pause">[pause]</span>
+      <span class="spoken">"This isn't a rare case. This is the most profitable type of crypto fraud in the world. It made $75 billion last year alone. And most people have never heard of it."</span>
+      <span class="overlay">📱 TEXT: $75 BILLION — the most profitable scam you've never heard of</span>
+
+      <span class="scene">THE NAME — 0:15–1:00 · Camera</span>
+      <span class="spoken">"It's called pig butchering. The name comes from the Chinese phrase 'sha zhu pan' — which translates roughly to 'fattening the pig before slaughter.' The victim is the pig. The scammer spends months building trust, gaining emotional investment, slowly feeding the relationship — before taking everything."</span>
+      <span class="spoken">"It originated in Southeast Asia. It's now global. And it is one of the most psychologically sophisticated fraud operations ever run."</span>
+      <span class="overlay">📱 TEXT: "Sha zhu pan" — fatten the pig before the slaughter</span>
+
+      <span class="scene">HOW IT WORKS — 1:00–4:00 · Camera · Step by step</span>
+      <span class="spoken">"Let me walk you through exactly how it works, because understanding the playbook is the best protection against it."</span>
+      <span class="spoken">"It almost always starts with an unsolicited message. WhatsApp, Telegram, Instagram, LinkedIn, dating apps — anywhere people accept messages from strangers. The opening is usually something disarming. A wrong number. A connection request. Someone who seems interesting and attractive."</span>
+      <span class="overlay">📱 TEXT: Phase 1: The random message. Never actually random.</span>
+      <span class="spoken">"Then comes weeks — sometimes months — of genuine relationship building. The scammer invests real time. They learn about your life, your family, your problems. They're charming, attentive, often romantic. They share personal details that feel authentic. This is called 'love bombing', and it works because it's activating real psychological responses — trust, affection, obligation."</span>
+      <span class="overlay">📱 TEXT: Phase 2: Weeks or months of relationship building. This is the fattening.</span>
+      <span class="spoken">"Then, at some point, they mention crypto. Casually at first. 'I made some money recently, nothing major.' They show you returns. They introduce you to a platform. They might even walk you through making your first small investment — and it works. You make money. You withdraw it. Real money hits your account. This is deliberate. It's designed to build trust in the platform."</span>
+      <span class="overlay">📱 TEXT: Phase 3: The intro to crypto. Small wins first. Build trust.</span>
+      <span class="spoken">"Then they encourage you to invest more. You do. The platform shows enormous returns. You invest more again. At some point you try to withdraw a larger amount — and suddenly there are 'taxes' to pay, or a 'compliance fee', or your account is 'frozen pending verification.' Every additional payment is designed to extract more before the final exit."</span>
+      <span class="overlay">📱 TEXT: Phase 4: Fake fees. Fake taxes. Keep paying. Then — nothing.</span>
+      <span class="spoken">"Then the platform disappears. The person disappears. The money is gone. Gone through crypto wallets that have already been layered and mixed beyond recovery."</span>
+
+      <span class="scene">THE SCAM COMPOUND CONNECTION — 4:00–6:00 · Camera</span>
+      <span class="spoken">"Here's the part that doesn't get reported enough. The people running these scams are often victims themselves."</span>
+      <span class="spoken">"In Cambodia, Myanmar, Laos, and the Philippines, there are what investigators call scam compounds. Industrial-scale fraud operations, often controlled by criminal syndicates, operating out of facilities that look like office parks behind razor wire."</span>
+      <span class="spoken">"Workers are trafficked there. Lured with job advertisements — customer service roles, IT positions, sometimes offering up to $22,000. They arrive, their passports are confiscated, and they're forced to run pig butchering operations. Quotas. Scripts. Punishments for underperformance."</span>
+      <span class="overlay">📱 TEXT: The person scamming you is often a trafficking victim themselves.</span>
+      <span class="spoken">"The Chainalysis 2026 Crypto Crime Report identified an 85% increase in crypto flows to suspected human trafficking operations — operations that directly overlap with these scam compounds. This is one of the most disturbing financial crime intersections in the world right now."</span>
+
+      <span class="scene">THE RED FLAGS — 6:00–8:00 · Camera · Practical</span>
+      <span class="spoken">"So — how do you protect yourself? Here are the red flags I tell everyone to watch for."</span>
+      <span class="spoken">"Number one: unsolicited contact from an attractive stranger. This is the most reliable warning sign. Legitimate relationships don't start with a random wrong number."</span>
+      <span class="spoken">"Number two: they introduce a crypto investment opportunity. Any romantic interest that leads to a crypto investment conversation is a red flag. Full stop."</span>
+      <span class="spoken">"Number three: the platform is one you've never heard of, can't find reviews for, or was introduced exclusively through this person. Legitimate platforms are findable. Scam platforms are proprietary and untraceable."</span>
+      <span class="spoken">"Number four: you made money once and it was easy to withdraw. That was designed. They needed you to trust the platform enough to invest more."</span>
+      <span class="spoken">"Number five: there are fees, taxes, or compliance requirements before you can withdraw. Legitimate platforms don't hold withdrawals hostage. This is the extraction phase."</span>
+      <span class="overlay">📱 TEXT: 5 red flags — screenshot this.</span>
+
+      <span class="scene">FLOR'S TAKE — 8:00–9:30 · Camera · Emotionally honest</span>
+      <span class="spoken">"I want to say something directly to anyone who is currently in what might be a pig butchering situation — or knows someone who is."</span>
+      <span class="spoken">"These scams work because they exploit trust, loneliness, and the very human desire for connection and financial security. Being victimised by this is not a sign of stupidity. These are professionally designed operations with experienced teams and carefully tested psychological scripts. The FBI, Interpol, and major financial institutions have all fallen for similar tactics in various forms."</span>
+      <span class="spoken">"If you think you're in this situation: stop sending money immediately. Contact your national fraud reporting service. In the UK that's Action Fraud. In the US it's the FBI's Internet Crime Complaint Center, IC3. In Malta it's the Malta Police Cyber Crime Unit. And report the platform to your country's financial regulator."</span>
+      <span class="overlay">📱 TEXT: Stop. Report. IC3.gov (US) · Action Fraud (UK) · Your national regulator</span>
+      <span class="spoken">"And from a compliance perspective — this is why crypto businesses need proper onboarding, transaction monitoring, and scam detection. The victims are often sending money from legitimate accounts at regulated exchanges. There is a role for the industry to play in detection, and not enough of them are playing it."</span>
+
+      <span class="scene">CTA — 9:30–10:00 · Camera</span>
+      <span class="spoken">"Full article with sources and the Chainalysis data is at floronchain.com. Share this video — someone you know may need to see it. Subscribe for weekly content on crypto crime, compliance, and how to stay safe in this space. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>B-ROLL / SCREEN RECORDING</h4><ul><li>Headlines about pig butchering (search and screenshot)</li><li>Scam compound news coverage images (documentary-style)</li><li>Chainalysis 2026 report — show the trafficking section</li><li>Anonymised WhatsApp screenshot showing opening message style</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"$75 Billion Scam — and it started with a wrong number"</li><li>Or: your face with shocked expression + "$75B" big text</li><li>Most shareable video — optimise the title carefully</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 04 — BLOCKCHAIN DETECTIVE ═══════ -->
+<div class="script-card" id="v4">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(167,139,250,.1);color:var(--purple)">04</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--purple)">BEGINNER EDUCATION · ONCHAIN</div>
+      <div class="script-title">How to Read a Blockchain Like a Detective (No Experience Needed)</div>
+      <div class="script-pills"><span class="pill pg">9–12 min</span><span class="pill pb">Beginners</span><span class="pill pw">WhiteboardCrypto analogy style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> how to read blockchain transactions &nbsp;·&nbsp; <strong>Secondary:</strong> Etherscan tutorial beginners, how to trace crypto wallet, blockchain explorer guide, onchain analysis for beginners &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Tutorial</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera</span>
+      <span class="spoken">"Every single crypto transaction ever made — every one — is permanently recorded on a public database that anyone in the world can read. Right now. For free. No special access, no technical knowledge required."</span>
+      <span class="spoken">"Most people have no idea this exists. But I'm going to teach you how to use it like a detective. And by the end of this video, you'll be able to trace wallets, spot patterns, and understand what's actually happening onchain."</span>
+      <span class="overlay">📱 TEXT: Every crypto transaction. Public. Forever. Here's how to read it.</span>
+
+      <span class="scene">THE ANALOGY — 0:12–1:30 · Camera</span>
+      <span class="spoken">"Let me start with an analogy that makes this click immediately."</span>
+      <span class="spoken">"Imagine every bank transaction you've ever made — every coffee, every salary payment, every transfer — was written in a public ledger that sits in a public library. Anyone could walk in and read it. But here's the thing: there's no name on the account. Just a random 42-character code. You can see all the transactions — but you don't automatically know whose account it is."</span>
+      <span class="spoken">"That's the blockchain. Transparent, pseudonymous, permanent. And blockchain explorers — tools like Etherscan — are the library catalogue. They help you navigate it."</span>
+      <span class="overlay">📱 TEXT: Blockchain = public ledger. No names. But everything else is visible.</span>
+
+      <span class="scene">ETHERSCAN BASICS — 1:30–4:00 · Screen recording</span>
+      <span class="direction">[Open etherscan.io]</span>
+      <span class="spoken">"This is Etherscan. It's the most used blockchain explorer for Ethereum. You can search by wallet address, transaction hash, or token. Let me show you the basics."</span>
+      <span class="spoken">"Paste in any wallet address and you see: the current balance, every transaction that wallet has ever made, what tokens it holds, and when it was first active. Everything. Going back to the very first transaction."</span>
+      <span class="direction">[Click on a sample wallet]</span>
+      <span class="spoken">"Each transaction shows you: the date and time, how much was sent, what the gas fee was, where it came from, where it went, and whether it succeeded or failed. Every single one is permanent. You cannot delete it. You cannot hide it. It's there forever."</span>
+      <span class="overlay">📱 TEXT: Date · Amount · From · To · Gas fee. All permanent. All public.</span>
+
+      <span class="scene">WHAT SUSPICIOUS LOOKS LIKE — 4:00–6:30 · Screen recording</span>
+      <span class="spoken">"Now here's the detective part. I'm going to show you what suspicious activity patterns actually look like on a block explorer."</span>
+      <span class="spoken">"Pattern one: rapid structuring. This is when a wallet receives a large amount and then immediately splits it into smaller amounts and sends them to multiple different wallets — often within the same hour. This is called layering. It's designed to obscure the trail. On Etherscan it looks like a burst of outgoing transactions all happening within a few minutes of a large incoming transfer."</span>
+      <span class="overlay">📱 TEXT: LAYERING — big amount in → many small amounts out → immediately</span>
+      <span class="spoken">"Pattern two: mixer interaction. If a wallet sends funds to a known mixer address — like Tornado Cash — that's a deliberate attempt to break the transaction trail. Etherscan and Bubblemaps will show you this. The trail stops at the mixer."</span>
+      <span class="spoken">"Pattern three: dormant wallet suddenly active. A wallet that hasn't moved in 2 years suddenly transfers a large amount. This often means either someone finally cashed out long-held assets — or a criminal operation just got activated. Context matters."</span>
+      <span class="spoken">"Pattern four: the round number test. Legitimate transactions tend to be irregular amounts — 0.347 ETH, $2,847. Criminal transactions — particularly ransom payments and structured transfers — often use suspiciously round numbers. $100,000 exactly. 10 BTC exactly."</span>
+      <span class="overlay">📱 TEXT: Round numbers are a red flag. Real transactions are messy.</span>
+
+      <span class="scene">LIVE INVESTIGATION — 6:30–8:30 · Screen recording</span>
+      <span class="spoken">"Let me do a quick live trace so you can see how this actually works in practice."</span>
+      <span class="direction">[Open a documented, publicly known criminal wallet address — Colonial Pipeline, Ronin Bridge, or similar. Search on Etherscan.]</span>
+      <span class="spoken">"This is a publicly documented wallet associated with a known hack. Watch what we can see. Transaction history going back to the event. The layering pattern — funds split across multiple addresses immediately after the hack. Interactions with exchanges — which jurisdictions those exchanges operate in. And we can even trace forward to see where the funds ended up."</span>
+      <span class="spoken">"This is exactly what blockchain forensics analysts at Chainalysis and TRM Labs do — at much greater scale and with proprietary attribution data. But the raw data they work from? This is it. Available to anyone."</span>
+
+      <span class="scene">FLOR'S TAKE — 8:30–9:30 · Camera</span>
+      <span class="spoken">"The thing I find most fascinating about blockchain transparency is what it means for financial crime investigation. We've never had anything like this before. Cash is anonymous. Traditional banking records require warrants and legal processes. But crypto? The trail is there. Always. For everyone."</span>
+      <span class="spoken">"The challenge is interpretation, not access. Anyone can see the data. Understanding what it means — connecting pseudonymous addresses to real identities, following complex layering chains, identifying clustering patterns — that requires expertise and tooling. But the starting point? It's a free website. And now you know how to use it."</span>
+      <span class="overlay">📱 TEXT: The data is free. The skill is in reading it.</span>
+
+      <span class="scene">CTA — 9:30–10:00 · Camera</span>
+      <span class="spoken">"Go to etherscan.io right now, paste in any wallet address — even yours — and see what you can find. It's your first investigation. Full guide with the 5 questions to ask about any wallet is at floronchain.com. Subscribe for weekly crypto education. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>WALLETS TO USE FOR DEMO</h4><ul><li>Colonial Pipeline Bitcoin wallet (publicly documented by DOJ)</li><li>Lazarus Group documented wallets from OFAC sanctions list</li><li>Your own wallet to show it's truly public — builds trust</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"I traced a criminal's crypto wallet live — here's what I found"</li><li>Etherscan screenshot background + detective/magnifying glass graphic</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 05 — AML RED FLAGS ═══════ -->
+<div class="script-card" id="v5">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(245,158,11,.1);color:var(--warn)">05</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--warn)">AML EDUCATION</div>
+      <div class="script-title">10 Crypto Red Flags That Every AML Professional Should Know (And Every Investor Should Recognise)</div>
+      <div class="script-pills"><span class="pill pg">10–12 min</span><span class="pill pb">Compliance + Beginners</span><span class="pill pw">Miles Deutscher list format</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> crypto AML red flags &nbsp;·&nbsp; <strong>Secondary:</strong> money laundering signs crypto, suspicious crypto transactions, crypto compliance red flags, AML crypto checklist &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Educational</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera</span>
+      <span class="spoken">"After years in AML, reviewing thousands of crypto transactions, I can usually tell within two minutes whether something is suspicious. Not always. But usually. It comes down to patterns. Specific patterns that show up over and over again. Here are the ten I see most."</span>
+      <span class="overlay">📱 TEXT: 10 AML red flags — from someone who files STRs for a living</span>
+
+      <span class="scene">RED FLAG 1 — 0:12–1:15 · Camera</span>
+      <span class="spoken">"Red flag one: layering immediately after receipt. A customer receives a large crypto deposit and within hours — sometimes minutes — starts splitting it across multiple wallets, converting between tokens, moving across chains. This is textbook layering. Legitimate holders don't need to fragment and move funds at speed immediately after receipt."</span>
+      <span class="overlay">📱 TEXT: 🚩 #1 — Rapid layering immediately after large deposit</span>
+
+      <span class="scene">RED FLAG 2 — 1:15–2:15 · Camera</span>
+      <span class="spoken">"Red flag two: mixer or privacy coin interaction. If a wallet sends funds to Tornado Cash, Railgun, or similar mixers — or converts into Monero, Zcash, or Dash before moving funds — that is a deliberate attempt to break the transaction trail. This is one of the most consistent patterns I see in investigations. Legitimate users don't need to make their transactions invisible."</span>
+      <span class="overlay">📱 TEXT: 🚩 #2 — Mixer interaction or privacy coin conversion</span>
+
+      <span class="scene">RED FLAG 3 — 2:15–3:10 · Camera</span>
+      <span class="spoken">"Red flag three: high-risk jurisdiction flows. Transactions consistently routed through exchanges or wallets based in jurisdictions on the FATF grey list, OFAC sanctions lists, or known crypto crime hubs. This isn't automatic guilt — but it's automatic enhanced due diligence."</span>
+      <span class="overlay">📱 TEXT: 🚩 #3 — Consistent flows through high-risk jurisdictions</span>
+
+      <span class="scene">RED FLAG 4 — 3:10–4:05 · Camera</span>
+      <span class="spoken">"Red flag four: structuring below thresholds. A customer makes repeated transactions just below reporting or monitoring thresholds — say, $9,800 repeatedly when the threshold is $10,000. This is called smurfing. It's one of the oldest ML techniques in the book, and it works just as well in crypto as it does in cash."</span>
+      <span class="overlay">📱 TEXT: 🚩 #4 — Structuring just below reporting thresholds</span>
+
+      <span class="scene">RED FLAG 5 — 4:05–5:00 · Camera</span>
+      <span class="spoken">"Red flag five: source of funds inconsistency. A customer claims the funds came from a legitimate source — salary, business income, investment returns — but their onchain history tells a different story. Funds arriving from darknet-adjacent wallets, from unhosted wallets with no clear origin, or in patterns inconsistent with their stated occupation. The blockchain doesn't lie. Customers sometimes do."</span>
+      <span class="overlay">📱 TEXT: 🚩 #5 — Source of funds doesn't match the onchain history</span>
+
+      <span class="scene">RED FLAG 6 — 5:00–5:50 · Camera</span>
+      <span class="spoken">"Red flag six: sudden behavioural change. A customer who has been transacting normally for months suddenly starts transacting at unusual times, in unusual amounts, with unusual counterparties. Behavioural baselines are your most powerful tool in transaction monitoring. Deviation from baseline is the signal."</span>
+      <span class="overlay">📱 TEXT: 🚩 #6 — Sudden unexplained change in transaction behaviour</span>
+
+      <span class="scene">RED FLAG 7 — 5:50–6:45 · Camera</span>
+      <span class="spoken">"Red flag seven: interaction with sanctioned addresses. Blockchain analytics tools will flag this automatically — wallets that have directly interacted with OFAC-sanctioned addresses, or that are within a certain number of hops from sanctioned entities. This is non-negotiable for any regulated crypto business. Sanctions exposure triggers immediate action."</span>
+      <span class="overlay">📱 TEXT: 🚩 #7 — Interaction with sanctioned addresses (even indirect)</span>
+
+      <span class="scene">RED FLAG 8 — 6:45–7:40 · Camera</span>
+      <span class="spoken">"Red flag eight: peer-to-peer platform origin. Funds arriving consistently from P2P platforms — LocalBitcoins, Paxful, Bisq — rather than regulated exchanges. These platforms have historically had weaker KYC. Funds arriving from P2P without a clear reason why the customer isn't using a regulated exchange is worth examining."</span>
+      <span class="overlay">📱 TEXT: 🚩 #8 — Consistent use of P2P platforms with weak KYC</span>
+
+      <span class="scene">RED FLAG 9 — 7:40–8:35 · Camera</span>
+      <span class="spoken">"Red flag nine: unusual token types. Customers consistently transacting in tokens associated with darknet markets, gambling, or known criminal operations. Or heavy use of newly issued anonymous tokens with no clear legitimate use case. The type of asset matters, not just the amounts."</span>
+      <span class="overlay">📱 TEXT: 🚩 #9 — Consistent use of darknet-associated tokens</span>
+
+      <span class="scene">RED FLAG 10 — 8:35–9:30 · Camera</span>
+      <span class="spoken">"Red flag ten: velocity inconsistent with stated profile. A student or low-income individual transacting millions per month. A retail customer moving institutional volumes. When transaction volumes are wildly inconsistent with what the customer told you about themselves during onboarding — that discrepancy is the flag. Either they lied during onboarding, or their circumstances changed and they didn't tell you. Either way — it needs investigation."</span>
+      <span class="overlay">📱 TEXT: 🚩 #10 — Transaction velocity wildly inconsistent with customer profile</span>
+
+      <span class="scene">FLOR'S TAKE — 9:30–10:30 · Camera</span>
+      <span class="spoken">"One important caveat. None of these red flags is evidence of crime on its own. Red flags trigger investigation, not accusation. The job is to ask: is there a legitimate explanation? Can the customer provide it? If yes — document it and move on. If no — that's when you consider a suspicious activity report."</span>
+      <span class="spoken">"The other thing I want to say: the best detection systems combine rule-based monitoring with analyst judgment. No automated system catches everything. The 10 flags I've just described are things that experienced analysts learn to recognise — and the more you understand the patterns, the better you get at spotting the ones that rules alone would miss."</span>
+      <span class="overlay">📱 TEXT: Red flags = start an investigation. Not an accusation.</span>
+
+      <span class="scene">CTA — 10:30–11:00 · Camera</span>
+      <span class="spoken">"Free downloadable red flag checklist is at floronchain.com. If you work in compliance — share this with your team. If you're a crypto investor — use it as your own due diligence list. Subscribe for one video a week. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>LEAD MAGNET IDEA</h4><ul><li>Create a downloadable PDF checklist of the 10 red flags</li><li>Gate it with email signup → grows your newsletter list</li><li>Mention it in the video and put it in the link in bio</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"10 AML Red Flags — a compliance officer's checklist"</li><li>Red flag emoji + big number + your face</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 06 — CRIME REPORT ═══════ -->
+<div class="script-card" id="v6">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(0,255,163,.1);color:var(--accent)">06</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--accent)">MARKET ANALYSIS · CRYPTO CRIME</div>
+      <div class="script-title">The 2026 Crypto Crime Report: Every Number That Matters</div>
+      <div class="script-pills"><span class="pill pg">12–15 min</span><span class="pill pb">All levels</span><span class="pill pw">Coin Bureau report breakdown style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> Chainalysis crypto crime report 2026 &nbsp;·&nbsp; <strong>Secondary:</strong> crypto crime statistics 2025, illicit crypto 2026, crypto money laundering stats, crypto scam data 2025 &nbsp;·&nbsp; <strong>Intent:</strong> Informational</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera + show report on screen</span>
+      <span class="spoken">"Chainalysis just published the most comprehensive analysis of crypto crime ever produced. 80+ pages. Three months of research. Every major category of illicit activity — fraud, ransomware, human trafficking, North Korean hacks, darknet markets. I read all of it. Here is everything that matters."</span>
+      <span class="overlay">📱 TEXT: Chainalysis 2026 Crypto Crime Report — everything that matters</span>
+
+      <span class="scene">HEADLINE NUMBER — 0:12–1:30 · Camera</span>
+      <span class="spoken">"Let's start with the headline. Total illicit crypto activity in 2025 was substantial — and the report notes that the figure is likely an undercount, because blockchain analysis improves over time and historical numbers get revised upward as more addresses get attributed."</span>
+      <span class="spoken">"But the more important story isn't the total number. It's the shift in what's driving it. Fraud has overtaken everything else. Not ransomware, not darknet markets, not hacks. Fraud — primarily investment scams and pig butchering — is now the single largest category of crypto crime by value. That's a meaningful shift from five years ago."</span>
+      <span class="overlay">📱 TEXT: Fraud is now the #1 crypto crime category. Not ransomware. Not hacks. Fraud.</span>
+
+      <span class="scene">STABLECOINS — 1:30–3:00 · Camera</span>
+      <span class="spoken">"The stablecoin finding is one I want to spend a minute on, because it surprises people. For the first time, stablecoins — primarily USDT — account for a majority of illicit crypto transaction volume. More than Bitcoin. More than Ethereum."</span>
+      <span class="spoken">"Why? Because stablecoins are now the dominant form of crypto used for everything. Legitimate transactions, remittances, DeFi — stablecoins are the most widely used. So it follows that they're also the most widely used for illicit purposes. This doesn't mean stablecoins are inherently more risky — it means their market share has grown enough that they now represent the largest slice of everything, including the bad stuff."</span>
+      <span class="overlay">📱 TEXT: Stablecoins now #1 for illicit volume. Because they're #1 for everything.</span>
+
+      <span class="scene">NORTH KOREA — 3:00–4:30 · Camera</span>
+      <span class="spoken">"North Korea continues to be one of the most significant actors in crypto crime — specifically in hacking. The Lazarus Group and affiliated North Korean state hackers have stolen billions from crypto protocols, exchanges, and bridges over the past three years."</span>
+      <span class="spoken">"What's notable in the 2026 report is the sophistication of their laundering operations. Increasingly they're using: cross-chain bridges to move funds across blockchains, mixers to break transaction trails, over-the-counter brokers in permissive jurisdictions to convert to fiat, and — new in this cycle — AI-generated identity documents for KYC bypass at exchanges."</span>
+      <span class="overlay">📱 TEXT: North Korea: crypto theft is state-sponsored infrastructure funding.</span>
+
+      <span class="scene">RANSOMWARE — 4:30–6:00 · Camera</span>
+      <span class="spoken">"Ransomware payments decreased slightly compared to the prior year — not because ransomware became less common, but because more victims are refusing to pay and law enforcement disruptions have taken down major groups like LockBit and ALPHV/BlackCat."</span>
+      <span class="spoken">"But the groups keep coming back. Ransomware is a franchise model now. The infrastructure gets taken down, the operators regroup under a new brand, and the affiliate model means new recruits are always available. The report notes that ransomware is becoming more targeted — less spray-and-pray, more precise attacks on high-value targets like hospitals, infrastructure operators, and financial institutions."</span>
+
+      <span class="scene">HUMAN TRAFFICKING — 6:00–7:00 · Camera</span>
+      <span class="spoken">"The human trafficking section is the one that hit me hardest. Flows to suspected trafficking operations increased 85% year over year. This is largely driven by the expansion of scam compound operations in Southeast Asia — the same operations that power pig butchering scams."</span>
+      <span class="spoken">"This is not an abstract financial crime statistic. There are real people behind every transaction in that category — both victims being defrauded, and workers being trafficked to run the scams. The crypto trail connects both."</span>
+
+      <span class="scene">WHAT THIS MEANS FOR COMPLIANCE — 7:00–9:00 · Camera</span>
+      <span class="spoken">"From a compliance perspective, here are the three things I take from this report."</span>
+      <span class="spoken">"First: fraud detection is now as important as sanctions screening and AML monitoring. The old compliance model was heavily focused on sanctions and AML. Fraud — especially pig butchering and investment scams — is now the dominant risk. Systems and training need to reflect that."</span>
+      <span class="spoken">"Second: stablecoin monitoring needs to be as rigorous as Bitcoin monitoring. I still see compliance teams that have lighter-touch monitoring for USDT because it 'feels' more legitimate than Bitcoin. The data says that's wrong."</span>
+      <span class="spoken">"Third: AI-generated document fraud is real and it's here. KYC processes that rely purely on automated document verification without human review are being actively circumvented. This is an industry-wide problem that doesn't have a fully solved solution yet."</span>
+      <span class="overlay">📱 TEXT: 3 compliance takeaways — fraud detection · stablecoin monitoring · AI document fraud</span>
+
+      <span class="scene">FLOR'S TAKE — 9:00–10:00 · Camera</span>
+      <span class="spoken">"Every year this report comes out I read it cover to cover. Every year the scale is larger and the typologies are more sophisticated. And every year the same basic question comes back: is the industry keeping up?"</span>
+      <span class="spoken">"My honest answer is: partially. The tooling is genuinely good now. The data is better than it's ever been. Law enforcement cooperation has improved. But the speed of criminal innovation — particularly the integration of AI into fraud operations — is outpacing the speed of compliance response. The gap isn't growing, but it's not closing fast enough."</span>
+
+      <span class="scene">CTA — 10:00–10:30 · Camera</span>
+      <span class="spoken">"Link to the full Chainalysis report is in the description. My full analysis with the compliance implications is at floronchain.com. Subscribe for weekly content. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>SCREEN RECORDING</h4><ul><li>Actual Chainalysis report open on screen — flip through it</li><li>Charts from the report (they're public — you can screenshot)</li><li>Chainalysis website for credibility</li></ul></div>
+      <div class="note-block"><h4>TIMING NOTE</h4><ul><li>Publish this video the same week the report drops for maximum SEO</li><li>It will rank for "Chainalysis report 2026" searches if published early</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 07 — DEFI ═══════ -->
+<div class="script-card" id="v7">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(59,130,246,.1);color:var(--accent2)">07</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--accent2)">BEGINNER EDUCATION · DEFI</div>
+      <div class="script-title">What Is DeFi? (And Why Regulators Are Losing Sleep Over It)</div>
+      <div class="script-pills"><span class="pill pg">10–13 min</span><span class="pill pb">Beginners</span><span class="pill pw">WhiteboardCrypto + compliance angle</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> what is DeFi explained &nbsp;·&nbsp; <strong>Secondary:</strong> decentralised finance explained simply, DeFi regulation, how does DeFi work beginners, DeFi risks 2025 &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Beginner</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera</span>
+      <span class="spoken">"DeFi moves over $100 billion every single day. There's no CEO. No compliance department. No customer service number. No one you can call if something goes wrong. And regulators around the world are trying to figure out what on earth to do about it. Let me explain what it actually is — and why it's so disruptive."</span>
+      <span class="overlay">📱 TEXT: $100 BILLION daily. No CEO. No compliance. No phone number.</span>
+
+      <span class="scene">THE ANALOGY — 0:12–2:00 · Camera</span>
+      <span class="spoken">"Let me start with an analogy. Traditional finance is like a bank. You walk in, a human being reviews your application, makes decisions, lends you money, charges you interest, and keeps records. It requires trust — trust in the bank, trust in the staff, trust in the system."</span>
+      <span class="spoken">"DeFi is like replacing that entire bank with a vending machine. You put money in, the machine follows its programmed rules, and out comes whatever the program says you should get. No human decisions. No discretion. No trust required — because the rules are written in code that anyone can read and verify."</span>
+      <span class="overlay">📱 TEXT: DeFi = replacing banks with vending machines. No trust required.</span>
+      <span class="spoken">"Those coded rules are called smart contracts. They live on blockchains like Ethereum. And once they're deployed, they execute automatically. No one can stop them. Not even the people who wrote them."</span>
+
+      <span class="scene">WHAT DeFi ACTUALLY DOES — 2:00–4:30 · Camera + simple screen recordings</span>
+      <span class="spoken">"In practice, DeFi has replicated almost every financial service that traditional banks provide — but without the bank."</span>
+      <span class="spoken">"Lending and borrowing: platforms like Aave and Compound let you deposit crypto as collateral and borrow against it — or lend your crypto and earn interest. The interest rates are set by supply and demand, automatically, in real time."</span>
+      <span class="spoken">"Trading: Decentralised exchanges — DEXs — like Uniswap let you swap tokens directly from your wallet, without an exchange holding your funds at any point. The trades execute against liquidity pools — pools of tokens that other users have deposited to earn trading fees."</span>
+      <span class="overlay">📱 TEXT: DEX = trade directly from your wallet. No exchange holds your funds.</span>
+      <span class="spoken">"Yield farming: depositing crypto into DeFi protocols to earn returns — sometimes from interest, sometimes from newly issued tokens, sometimes from a share of trading fees. This is where the highest returns — and highest risks — live."</span>
+
+      <span class="scene">THE RISKS — 4:30–6:30 · Camera · Honest</span>
+      <span class="spoken">"I want to be clear about the risks, because DeFi gets oversold."</span>
+      <span class="spoken">"Smart contract risk: the code running these protocols can have bugs. If there's a bug, and someone finds it, they can drain the protocol. No customer service. No insurance. No recourse. Billions have been lost this way."</span>
+      <span class="spoken">"Rug pulls: anyone can launch a DeFi protocol. Some are built specifically to attract liquidity and then drain it. The protocol's developers hold admin keys that let them withdraw all funds. This is called a rug pull, and it happens constantly."</span>
+      <span class="spoken">"No KYC, no AML: anyone in the world can use most DeFi protocols with no identity verification whatsoever. This is why DeFi has become a primary tool for crypto money laundering — particularly for layering funds from scams, hacks, and ransomware."</span>
+      <span class="overlay">📱 TEXT: No KYC. No AML. No recourse. The risks are real.</span>
+
+      <span class="scene">WHAT REGULATORS ARE DOING — 6:30–8:30 · Camera</span>
+      <span class="spoken">"This brings me to the regulatory question. How do you regulate something that has no operator, no headquarters, and no identifiable person to hold accountable?"</span>
+      <span class="spoken">"The current approach from regulators is focused on the edges of DeFi — the on-ramps and off-ramps. If you want to get money into DeFi, you probably go through a regulated exchange. If you want to convert your DeFi gains back to fiat, you need an exchange again. Those points — where the regulated world touches DeFi — are where compliance controls can be applied."</span>
+      <span class="spoken">"MiCA in the EU explicitly acknowledges that truly decentralised protocols — where there's no identifiable issuer or service provider — sit outside its scope. But it also says that if there IS an identifiable operator — a team that controls admin keys, that takes fees, that has governance power — then that person or entity has regulatory obligations."</span>
+      <span class="overlay">📱 TEXT: If someone controls it, they're responsible for it. That's the regulatory theory.</span>
+      <span class="spoken">"The FATF has similar language. The question is always: is this truly decentralised, or is someone — somewhere — in control? If someone's in control, they're a VASP, and VASPs have obligations."</span>
+
+      <span class="scene">FLOR'S TAKE — 8:30–9:30 · Camera</span>
+      <span class="spoken">"I've been watching DeFi evolve since its early days, and my view is that the technology is genuinely transformative — access to financial services without gatekeepers has real value, particularly in parts of the world with limited banking infrastructure."</span>
+      <span class="spoken">"But the current reality is that DeFi is also the most significant unregulated financial system in history. And when something this large operates with no compliance infrastructure, it inevitably becomes infrastructure for financial crime. Not exclusively — mostly it's just people using a more efficient financial system. But the proportion used for crime is not negligible, and it will drive regulation eventually."</span>
+      <span class="overlay">📱 TEXT: "Transformative technology. Also the world's largest unregulated financial system."</span>
+
+      <span class="scene">CTA — 9:30–10:00 · Camera</span>
+      <span class="spoken">"Full explainer on DeFi and regulation — including the specific FATF and MiCA language — is at floronchain.com. Subscribe for weekly crypto education. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>SCREEN RECORDINGS</h4><ul><li>Uniswap interface — show a live swap</li><li>Aave lending dashboard briefly</li><li>A documented DeFi rug pull chart (price went to zero)</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"$100 billion/day — and no one's in charge"</li><li>Or: DeFi logos + "Why regulators are scared of THIS"</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 08 — MY JOB ═══════ -->
+<div class="script-card" id="v8">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(239,68,68,.1);color:var(--danger)">08</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--danger)">PERSONAL BRAND · DAY IN THE LIFE</div>
+      <div class="script-title">I'm a Crypto AML Officer. Here's What My Job Actually Looks Like.</div>
+      <div class="script-pills"><span class="pill pg">9–12 min</span><span class="pill pb">All levels</span><span class="pill pw">Miles Deutscher personal experience format</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> crypto AML officer job &nbsp;·&nbsp; <strong>Secondary:</strong> MLRO crypto career, what does AML compliance do, crypto compliance job 2025, how to get into crypto compliance &nbsp;·&nbsp; <strong>Intent:</strong> Informational / Career</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:15 · Camera · Personal, warm opener</span>
+      <span class="spoken">"Most people, when I tell them what I do, have one of two reactions. Either 'that sounds boring' — because the word compliance does that to people. Or 'wait, you actually catch crypto criminals?' Which is closer to the truth, but still not quite right. Let me tell you what the job actually is."</span>
+      <span class="overlay">📱 TEXT: What does a Crypto AML Officer actually do?</span>
+
+      <span class="scene">THE TITLE — 0:15–1:30 · Camera</span>
+      <span class="spoken">"My formal title is MLRO — Money Laundering Reporting Officer. In the EU, every regulated financial business — including crypto businesses — is required to have one. The MLRO is the person legally responsible for the company's anti-money laundering programme. That means if the company fails to detect or report suspicious activity, it's on me."</span>
+      <span class="spoken">"I cover nine EU regulated markets in iGaming — the gaming and gambling sector. And crypto compliance within that space is one of the most active, fast-moving areas of financial crime risk there is. Every day is different. No two cases are the same."</span>
+      <span class="overlay">📱 TEXT: MLRO = legally responsible for the AML programme. High stakes.</span>
+
+      <span class="scene">WHAT I ACTUALLY DO — 1:30–4:30 · Camera · Conversational</span>
+      <span class="spoken">"So what does a typical day look like? It varies a lot, but let me walk you through the core responsibilities."</span>
+      <span class="spoken">"Transaction monitoring. Every business I cover runs automated systems that flag transactions meeting certain criteria — large amounts, unusual patterns, high-risk jurisdictions, known typologies. Those flags come to my team as alerts. We review them, investigate them, and make a decision: legitimate activity with an explanation, or something that needs to go further."</span>
+      <span class="overlay">📱 TEXT: Transaction monitoring → alerts → investigate → decide</span>
+      <span class="spoken">"STRs — Suspicious Transaction Reports. When we determine that a transaction or customer is suspicious and can't be explained, I file a report with the Financial Intelligence Unit. This is called an STR, or in some jurisdictions an SAR. I've filed a lot of these. The quality of an STR matters — a well-written report gives law enforcement something actionable. A poorly written one ends up in a drawer."</span>
+      <span class="spoken">"Customer due diligence reviews. This is the ongoing process of reviewing customers — not just when they onboard, but throughout the relationship. Someone who looked fine at sign-up might look very different six months later when their transaction profile has changed dramatically."</span>
+      <span class="spoken">"Policy and training. I write the AML policies, I design the training programmes, and I advise the business on whether new products or markets create new compliance risks. Launching a new product in a new jurisdiction? That comes to me first."</span>
+
+      <span class="scene">A REAL CASE — 4:30–7:00 · Camera · Story format — keep it anonymised</span>
+      <span class="spoken">"Let me tell you about a type of case I see regularly — anonymised and generalised, obviously."</span>
+      <span class="spoken">"A customer opens an account. Normal onboarding. Deposits moderate amounts. Plays normally. Then — over about three weeks — the pattern changes. Deposits accelerate significantly. The source of funds they've declared doesn't match the volumes. They're depositing in crypto, converting to fiat, and withdrawing. The timing of deposits is unusual — always late at night."</span>
+      <span class="spoken">"We review their onchain history through our blockchain analytics tools. The crypto they're depositing originates from wallets that have interacted with known high-risk exchanges. Some of the funds are a few hops from wallets flagged for illicit activity — nothing confirmed, but elevated risk."</span>
+      <span class="spoken">"We request enhanced due diligence documentation — source of wealth, source of funds, explanation of the activity. The customer provides documents. We review them. We find inconsistencies. At that point — we file an STR, we exit the customer relationship, and we freeze any remaining funds pending further investigation. The FIU takes it from there."</span>
+      <span class="overlay">📱 TEXT: Pattern change → onchain review → EDD → inconsistencies → STR → exit</span>
+      <span class="spoken">"That's the workflow. The conclusion of these cases varies widely. Some turn out to be legitimate with unusual circumstances. Some lead to law enforcement action. What matters is that the process is followed and documented correctly."</span>
+
+      <span class="scene">HOW TO GET INTO THIS FIELD — 7:00–9:00 · Camera · Career advice</span>
+      <span class="spoken">"I get a lot of messages asking how to get into crypto compliance. Here's my honest answer."</span>
+      <span class="spoken">"The field is growing fast. Regulation is expanding, more businesses need MLROs and compliance analysts, and there aren't enough qualified people. The demand is real."</span>
+      <span class="spoken">"What helps: a background in traditional financial crime compliance is gold. If you've worked in banking AML, you already understand the frameworks. The crypto-specific knowledge can be learned. The ACAMS Cryptoasset Certificate is well-regarded. Understanding blockchain basics — how to read a block explorer, basic onchain analysis — is increasingly expected."</span>
+      <span class="overlay">📱 TEXT: Banking AML background + crypto knowledge = highly in demand</span>
+      <span class="spoken">"What I tell people who are starting from scratch: get the ACAMS qualification or equivalent. Learn the FATF recommendations — they're public, they're free. Set up a crypto wallet and actually use blockchain explorers. Read the annual Chainalysis crime report. Follow the regulatory developments in your jurisdiction. And talk to people already in the field — most of us are happy to have a conversation."</span>
+      <span class="spoken">"The salary range varies by seniority and jurisdiction. Senior MLROs at regulated crypto businesses in Europe can command very competitive packages. The more regulated markets a person covers and the more complex the business, the higher the value."</span>
+
+      <span class="scene">CTA — 9:00–9:30 · Camera</span>
+      <span class="spoken">"If you have questions about getting into crypto compliance — drop them in the comments. I read them. I also write about this at floronchain.com, where you'll find resources, articles, and practical guidance. Subscribe for weekly content. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>PRODUCTION NOTES</h4><ul><li>This is your most personal video — deliver it warmly, not stiffly</li><li>The case study section should feel like you're telling a story to a friend</li><li>No screen recording needed — this is all camera</li><li>Consider filming at your desk for authenticity</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"I'm a crypto compliance officer. Here's what I actually do."</li><li>You at desk / looking directly at camera / confident</li><li>This video will attract compliance professionals AND curious beginners</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 09 — RANSOMWARE ═══════ -->
+<div class="script-card" id="v9">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(245,158,11,.1);color:var(--warn)">09</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--warn)">CRYPTO CRIME · INVESTIGATION</div>
+      <div class="script-title">How Crypto Ransomware Works — And How They Get Caught</div>
+      <div class="script-pills"><span class="pill pg">10–14 min</span><span class="pill pb">All levels</span><span class="pill pw">Laura Shin investigative style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> how crypto ransomware works &nbsp;·&nbsp; <strong>Secondary:</strong> ransomware Bitcoin payment, Colonial Pipeline Bitcoin recovery, how ransomware gangs get caught, ransomware money laundering &nbsp;·&nbsp; <strong>Intent:</strong> Informational</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:15 · Camera · Slow, deliberate</span>
+      <span class="spoken">"May 2021. The largest fuel pipeline in the United States shuts down. Petrol stations run dry. The US government declares a state of emergency. The cause? A criminal gang sent one email. And to get the pipeline back online, the company paid $4.4 million in Bitcoin."</span>
+      <span class="pause">[pause]</span>
+      <span class="spoken">"That's ransomware. And the story doesn't end there — because the FBI got most of that Bitcoin back. Here's how both sides of this work."</span>
+      <span class="overlay">📱 TEXT: $4.4 million in Bitcoin. One email. US declares emergency.</span>
+
+      <span class="scene">WHAT IS RANSOMWARE — 0:15–2:00 · Camera</span>
+      <span class="spoken">"Ransomware is malicious software that encrypts the victim's files and systems — makes them completely unreadable — and then demands a payment to provide the decryption key. Without the key, the data is gone. Or recoverable only at enormous expense and time."</span>
+      <span class="spoken">"Why crypto? Because crypto allows the attackers to receive payment pseudonymously, across borders, instantly, without going through a bank that could freeze the transfer. Bitcoin was the original ransomware payment method. More recently, attackers have moved toward Monero for greater anonymity — though some exchanges refuse to handle Monero for exactly this reason."</span>
+      <span class="overlay">📱 TEXT: Crypto = instant · cross-border · pseudonymous. Perfect for ransom demands.</span>
+      <span class="spoken">"The scale is significant. Ransomware payments reached hundreds of millions of dollars in 2025 according to Chainalysis. And that's only the payments that were made — many attacks go unreported."</span>
+
+      <span class="scene">HOW AN ATTACK WORKS — 2:00–4:30 · Camera · Step by step</span>
+      <span class="spoken">"Let me walk through how a typical ransomware attack actually unfolds."</span>
+      <span class="spoken">"Step one: initial access. Most attacks start with a phishing email. Someone in the organisation clicks a link, downloads an attachment, enters credentials on a fake login page. That's all it takes. The attackers are now inside the network."</span>
+      <span class="spoken">"Step two: reconnaissance and lateral movement. The attackers spend days — sometimes weeks — quietly moving through the network, identifying the most valuable systems and data, escalating their access privileges. During this phase, the victim has no idea they've been compromised."</span>
+      <span class="overlay">📱 TEXT: Attackers are inside for WEEKS before you know. That's the plan.</span>
+      <span class="spoken">"Step three: exfiltration. Before encrypting anything, many modern ransomware groups copy the most sensitive data. This is for 'double extortion' — pay or we release your data publicly. Healthcare records. Financial data. Employee information. All copied."</span>
+      <span class="spoken">"Step four: deployment. When they're ready, they deploy the encryption simultaneously across as many systems as possible. Everything locks at once. And then the ransom note appears."</span>
+      <span class="spoken">"Step five: negotiation and payment. Yes, there's a negotiation. Ransomware groups have professional customer service operations — response times, payment portals, even discounts for early payment. The Bitcoin address in the ransom note is unique to that victim. The payment is tracked."</span>
+      <span class="overlay">📱 TEXT: Ransomware gangs have customer service departments. This is a business.</span>
+
+      <span class="scene">HOW THEY LAUNDER IT — 4:30–6:30 · Camera</span>
+      <span class="spoken">"Once the ransom is paid — how do they get the money out?"</span>
+      <span class="spoken">"The payment arrives in a Bitcoin wallet. That wallet is immediately visible onchain. Law enforcement can see it. So the laundering begins."</span>
+      <span class="spoken">"The most common technique: chain-hop. Convert Bitcoin to Monero or another privacy coin to break the trail. Then convert back to Bitcoin or another liquid asset. Move through multiple wallets, multiple blockchains, multiple jurisdictions."</span>
+      <span class="spoken">"Use mixers or tumblers to blend the funds with other transactions. Convert to stablecoins for easier fiat conversion. Use over-the-counter brokers in lenient jurisdictions — Russia, China, certain Middle Eastern markets — to convert to cash. Sometimes use nested exchanges — crypto exchanges operating within larger exchanges, with looser KYC."</span>
+      <span class="overlay">📱 TEXT: Chain-hop → mixer → OTC broker → cash. The laundering playbook.</span>
+
+      <span class="scene">HOW THEY GET CAUGHT — 6:30–9:00 · Camera · The satisfying part</span>
+      <span class="spoken">"Here's the thing about all this laundering: the blockchain is permanent. Every transaction is there forever. And blockchain analytics technology has become extraordinarily good at following these trails, even through mixers and chain-hops."</span>
+      <span class="spoken">"The Colonial Pipeline case is the best example. The FBI tracked the ransom payment — $4.4 million in Bitcoin — through multiple wallets and transactions. They identified a wallet that the attackers used to consolidate funds. And they obtained the private key for that wallet — how exactly is classified, but it likely involved either a compromised server, a legal process, or cooperation from an exchange — and recovered $2.3 million."</span>
+      <span class="overlay">📱 TEXT: FBI recovered $2.3M of the Colonial ransom. Using blockchain tracing.</span>
+      <span class="spoken">"The Bitfinex hack recovery is even more dramatic. In 2016, $72 million in Bitcoin was stolen from Bitfinex. In 2022 — six years later — the DOJ arrested a couple in New York and seized $3.6 billion in Bitcoin. The funds had sat in a wallet for years. When they finally tried to move and convert them, the tracing caught them immediately."</span>
+      <span class="spoken">"The lesson ransomware groups keep learning the hard way: moving crypto is the moment of maximum risk. Every hop is a tracing opportunity. And the longer they wait to move funds, the better the analytics get. There is no truly clean exit."</span>
+      <span class="overlay">📱 TEXT: Every transaction = a tracing opportunity. The trail is permanent.</span>
+
+      <span class="scene">FLOR'S TAKE — 9:00–10:00 · Camera</span>
+      <span class="spoken">"What fascinates me about ransomware from a compliance perspective is that it's one of the clearest demonstrations that crypto's transparency is a double-edged sword. It enables the criminals to receive payment without a traditional bank. But it also leaves a permanent, traceable record of every move they make with those funds."</span>
+      <span class="spoken">"Cash ransoms would actually be harder to trace. The choice to demand crypto has enabled countless successful law enforcement actions that would have been impossible with traditional payment methods. Every major ransomware seizure in the last five years was enabled by blockchain tracing."</span>
+      <span class="overlay">📱 TEXT: "Crypto ransoms are easier to trace than cash. Criminals keep forgetting this."</span>
+
+      <span class="scene">CTA — 10:00–10:30 · Camera</span>
+      <span class="spoken">"Full deep dive into ransomware typologies and the compliance implications is at floronchain.com. Subscribe for weekly content on crypto crime and compliance. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>CASE STUDIES TO USE</h4><ul><li>Colonial Pipeline — well documented, DOJ published details</li><li>Bitfinex hack + 2022 arrest — dramatic story</li><li>LockBit takedown by FBI + Europol 2024</li><li>All publicly available information</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"The FBI recovered $2.3M in Bitcoin. Here's how."</li><li>Or: ransomware note screenshot (generic) + your face</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 10 — TRAVEL RULE ═══════ -->
+<div class="script-card" id="v10">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(167,139,250,.1);color:var(--purple)">10</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--purple)">REGULATION · PRIVACY</div>
+      <div class="script-title">The Travel Rule: Why Every Crypto Transaction Is Being Tracked Right Now</div>
+      <div class="script-pills"><span class="pill pg">10–12 min</span><span class="pill pb">All levels</span><span class="pill pw">Coin Bureau regulation style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> crypto travel rule explained &nbsp;·&nbsp; <strong>Secondary:</strong> FATF travel rule crypto, VASP travel rule, crypto KYC requirements, crypto transaction tracking 2025 &nbsp;·&nbsp; <strong>Intent:</strong> Informational</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:12 · Camera</span>
+      <span class="spoken">"Every time you transfer crypto between exchanges, someone is now required by law to record your name, your wallet address, and your personal details — and share that information with the receiving exchange. Most crypto users have no idea this is happening. It's called the Travel Rule, and it's already in force in your jurisdiction."</span>
+      <span class="overlay">📱 TEXT: Your name + wallet address + personal data is being shared with every transfer. By law.</span>
+
+      <span class="scene">ORIGIN — 0:12–1:30 · Camera</span>
+      <span class="spoken">"The Travel Rule was originally created for traditional wire transfers in 1996 — a US banking regulation that required banks to pass along information about the sender and receiver when transferring funds. The logic was straightforward: if you can follow the money, you can follow criminals."</span>
+      <span class="spoken">"In 2019, the FATF — the global financial crime standard-setter — extended the Travel Rule to virtual assets. Any transfer of cryptocurrency between two Virtual Asset Service Providers — exchanges, custodians, brokers — above a certain threshold must now include identifying information about the sender and receiver."</span>
+      <span class="overlay">📱 TEXT: FATF extended the Travel Rule to crypto in 2019. Enforcement is now happening.</span>
+
+      <span class="scene">WHAT INFORMATION IS REQUIRED — 1:30–3:00 · Camera</span>
+      <span class="spoken">"What information exactly? For the sender: full name, account number, physical address or national ID number or customer identification number, and date and place of birth. For the receiver: full name and account number."</span>
+      <span class="spoken">"This information travels with the transaction. Just like your name and details are included in a SWIFT wire transfer between banks — hence the name 'Travel Rule'. The data travels with the funds."</span>
+      <span class="spoken">"The threshold varies by jurisdiction. Under FATF guidance, it applies to transfers of $1,000 USD equivalent or more. In the EU, under the Transfer of Funds Regulation which is part of the MiCA package, there is no minimum threshold. Every transfer. Every single one."</span>
+      <span class="overlay">📱 TEXT: EU: NO minimum threshold. Every crypto transfer triggers the Travel Rule.</span>
+
+      <span class="scene">WHERE IS IT IN FORCE — 3:00–4:30 · Camera</span>
+      <span class="spoken">"As of 2025 and 2026, the Travel Rule is in force or being implemented across most major jurisdictions. The EU, Switzerland, Singapore, Japan, South Korea, and the UK all have enforceable Travel Rule requirements for crypto transfers. The US has had it since the 1970s for traditional finance, and FinCEN has been extending it to crypto through various rulemakings."</span>
+      <span class="spoken">"The laggards are smaller or less regulated jurisdictions — and this creates what the industry calls the 'sunrise problem'. If Exchange A in Switzerland must comply but Exchange B in an unregulated jurisdiction doesn't, the transaction can still happen — but the data doesn't flow. This is being addressed through international coordination, but it remains a gap."</span>
+      <span class="overlay">📱 TEXT: The "sunrise problem" — not every jurisdiction is compliant yet.</span>
+
+      <span class="scene">THE TECHNICAL CHALLENGE — 4:30–6:00 · Camera</span>
+      <span class="spoken">"Here's something that surprises people: there's no equivalent of SWIFT for crypto. In traditional banking, one messaging network handles the information transfer between institutions globally. In crypto, there was nothing — so the industry had to build it."</span>
+      <span class="spoken">"Several competing solutions have emerged. Notabene, Sygna, TRP, and OpenVASP are the main ones. They're essentially secure messaging layers that allow exchanges to share Travel Rule data with each other. The problem is interoperability — not every exchange uses the same system, and if they can't communicate, the data transfer breaks down."</span>
+      <span class="overlay">📱 TEXT: The industry had to build SWIFT for crypto from scratch. Multiple competing solutions.</span>
+      <span class="spoken">"This is still being worked out. The good news is that major exchanges have largely adopted solutions. The challenge is the long tail of smaller VASPs and the non-compliant jurisdictions."</span>
+
+      <span class="scene">WHAT IT MEANS FOR USERS — 6:00–7:30 · Camera</span>
+      <span class="spoken">"What does this actually mean if you're a normal crypto user? A few practical things."</span>
+      <span class="spoken">"First: exchanges will ask for more information. When you send crypto to another exchange, your exchange may ask you to confirm the receiving wallet belongs to you, or to provide information about the receiving exchange. This is the Travel Rule in action."</span>
+      <span class="spoken">"Second: transfers to unhosted wallets — your personal hardware wallet, a software wallet you control — face increased scrutiny. In the EU, transfers above €1,000 to unhosted wallets require the VASP to collect and verify the wallet owner's identity. Some jurisdictions are even stricter."</span>
+      <span class="overlay">📱 TEXT: Sending to your own hardware wallet? You may need to prove it's yours.</span>
+      <span class="spoken">"Third: non-compliant exchanges may refuse transfers from compliant ones, or compliant ones may refuse transfers to non-compliant ones. The regulated market is increasingly segregating from the unregulated one."</span>
+
+      <span class="scene">FLOR'S TAKE — 7:30–9:00 · Camera · Honest and balanced</span>
+      <span class="spoken">"The Travel Rule is one of those regulations where I have genuinely mixed feelings."</span>
+      <span class="spoken">"On one hand, it's the single most important AML tool for crypto. The ability to attach identity information to transactions at the transfer point closes the pseudonymity gap that makes crypto attractive for financial crime. If it's properly implemented, it makes crypto substantially harder to use for money laundering."</span>
+      <span class="spoken">"On the other hand, the implementation has been messy. The technical fragmentation — multiple competing standards, interoperability issues — means the data isn't flowing cleanly across the system yet. And the privacy implications for ordinary users are significant. We're essentially applying bank-level data collection to a technology that was partly built on financial privacy."</span>
+      <span class="spoken">"Where I land: the regulation is necessary. But the industry and regulators need to do better on interoperability, on proportionality, and on ensuring that Travel Rule compliance doesn't just push legitimate users toward unregulated platforms that don't ask any questions at all."</span>
+      <span class="overlay">📱 TEXT: Necessary regulation. Messy implementation. The privacy vs safety tension is real.</span>
+
+      <span class="scene">CTA — 9:00–9:30 · Camera</span>
+      <span class="spoken">"Full breakdown of the Travel Rule — including the specific EU regulation text, the threshold requirements by jurisdiction, and what exchanges need to do to comply — is at floronchain.com. Subscribe for weekly content on crypto regulation. See you next week."</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>VISUALS</h4><ul><li>FATF recommendation 16 text briefly on screen</li><li>Map showing jurisdiction implementation status</li><li>Notabene or Sygna interface briefly for the technical section</li><li>EU TFR regulation title page — credibility</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"Your crypto transfers are being tracked. By law. Here's what you need to know."</li><li>Or: surveillance eye + crypto logo + "Travel Rule explained"</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 11 — LEDGER ═══════ -->
+<div class="script-card" id="v11">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(0,255,163,.1);color:var(--accent)">11</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--accent)">BEGINNER EDUCATION · HARDWARE WALLETS</div>
+      <div class="script-title">What Is a Hardware Wallet? (And Why Leaving Crypto on an Exchange Is a Gamble)</div>
+      <div class="script-pills"><span class="pill pg">8–10 min</span><span class="pill pb">Beginners</span><span class="pill pw">WhiteboardCrypto style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> what is a hardware wallet &nbsp;·&nbsp; <strong>Secondary:</strong> Ledger wallet explained, cold wallet vs hot wallet, how to store crypto safely, Ledger setup beginners &nbsp;·&nbsp; <strong>Intent:</strong> Informational (beginner)</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:08 · Direct to camera · Hold up your Ledger device</span>
+      <span class="spoken">"This little thing. It costs €80. And it could save you from losing everything you own in crypto."</span>
+      <span class="pause">[2-second pause. Let it land.]</span>
+      <span class="spoken">"It's called a hardware wallet. And if you have crypto sitting on an exchange right now — you need to understand what this is."</span>
+      <span class="overlay">📱 TEXT: Hardware wallet — the most important device in crypto</span>
+
+      <span class="scene">CONTEXT — 0:08–1:00 · Cut to screen recording of FTX headline</span>
+      <span class="spoken">"In November 2022, FTX collapsed. Overnight. 8 million customers lost access to their funds. Some of them lost everything they had. FTX was one of the largest exchanges in the world. Trusted by everyone. Gone in 72 hours."</span>
+      <span class="spoken">"But here's the thing. The people who had their crypto in a hardware wallet? They lost nothing. Because their crypto was never on FTX to begin with."</span>
+      <span class="overlay">📱 TEXT: FTX: $8 billion lost. Hardware wallet users: $0 lost.</span>
+
+      <span class="scene">THE ANALOGY — 1:00–2:30 · Camera</span>
+      <span class="spoken">"Let me break this down simply. When you buy crypto on an exchange — Coinbase, Binance, Kraken — you don't technically own that crypto. You own an IOU. Think of it like this: imagine you give your cash to a friend to hold. You trust them. But if your friend gets robbed, or disappears, or decides they want to keep your money — that cash is gone. And you have no legal right to get it back. That's what it means to keep crypto on an exchange. Not your keys, not your coins."</span>
+      <span class="overlay">📱 TEXT: Not your keys, not your coins.</span>
+
+      <span class="scene">HOW A HARDWARE WALLET WORKS — 2:30–4:30 · Camera + Ledger device</span>
+      <span class="spoken">"A hardware wallet changes this completely. Instead of the exchange holding your crypto, YOU hold it. The device generates and stores something called a private key — a secret code that proves you own your assets. And it never leaves the device. Think of the hardware wallet like a safe. A physical, offline safe. Even if every exchange in the world collapsed tomorrow — your safe is still there. Your crypto is still there."</span>
+      <span class="overlay">📱 TEXT: Private key = your ownership proof. Never leaves the device.</span>
+      <span class="direction">[Hold up Ledger device to camera]</span>
+      <span class="spoken">"This is a Ledger Nano X. Most popular hardware wallet in the world. When you first set it up, it gives you a 24-word recovery phrase. This is the most important thing I will tell you today: write these 24 words down on paper. Store the paper somewhere safe. Never photograph it. Never type it anywhere. Never, ever enter it on any website."</span>
+      <span class="overlay">📱 TEXT: 24-word seed phrase = NEVER share this. With anyone. Ever.</span>
+      <span class="pause">[pause. Look directly at camera]</span>
+      <span class="spoken">"There is no customer support team that will ever ask for your seed phrase. If anyone asks for it — it's a scam. Full stop."</span>
+
+      <span class="scene">LEDGER LIVE DEMO — 4:30–6:30 · Screen recording</span>
+      <span class="spoken">"Day to day, you manage it through an app called Ledger Live. You can see your balances, send and receive crypto, and connect to DeFi apps. All of it is confirmed on the device with a physical button press — so even if your computer is hacked, the transaction can't go through without your confirmation."</span>
+      <span class="spoken">"The private key is stored in a secure chip inside the device. It never touches the internet. It never touches your computer. Hackers can't steal what they can never see."</span>
+      <span class="overlay">📱 TEXT: Private key = offline. Always. Hackers can't steal what isn't online.</span>
+
+      <span class="scene">FLOR'S TAKE — 6:30–8:00 · Camera</span>
+      <span class="spoken">"Now, I need to be honest with you about something. A hardware wallet is not for everyone — yet. If you're buying €50 of crypto to test it out, leaving it on a reputable exchange is fine. The risk is proportionate. But if you're holding meaningful amounts — anything you'd genuinely feel sick about losing — a hardware wallet stops being a luxury and starts being a necessity."</span>
+      <span class="spoken">"The history of crypto is littered with exchanges that seemed solid right until they weren't. Mt. Gox. Bitfinex. Celsius. FTX. Self-custody is still the safest option. €80 is a cheap insurance policy."</span>
+      <span class="overlay">📱 TEXT: €80 = the cheapest insurance policy in crypto.</span>
+
+      <span class="scene">CTA — 8:00–8:30 · Camera</span>
+      <span class="spoken">"Step-by-step Ledger setup guide is at floronchain.com — link in bio. Subscribe for weekly crypto education. See you next week."</span>
+      <span class="overlay">📱 TEXT: floronchain.com · Setup guide in description</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>PROPS NEEDED</h4><ul><li>Your actual Ledger device — hold it up on camera</li><li>Ledger Live on screen for demo section</li><li>Optional: piece of paper with fake seed phrase words visible</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>You holding Ledger + "€80 that could save your crypto"</li><li>Or: FTX headline screenshot + Ledger device split image</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO 12 — AI AGENTS ═══════ -->
+<div class="script-card" id="v12">
+  <div class="script-header">
+    <div class="script-num" style="background:rgba(167,139,250,.1);color:var(--purple)">12</div>
+    <div class="script-meta">
+      <div class="script-cat" style="color:var(--purple)">BEGINNER EDUCATION · AI & CRYPTO</div>
+      <div class="script-title">What Are AI Agent Tokens? The Newest Thing in Crypto — Explained Simply</div>
+      <div class="script-pills"><span class="pill pg">8–11 min</span><span class="pill pb">Beginners + Professionals</span><span class="pill pp">Miles Deutscher style</span></div>
+    </div>
+  </div>
+  <div class="script-body">
+    <div class="seo"><strong>Primary keyword:</strong> AI agent tokens explained &nbsp;·&nbsp; <strong>Secondary:</strong> what are AI agents crypto, Virtuals Protocol explained, ai16z token, AI crypto 2025, autonomous AI crypto agents &nbsp;·&nbsp; <strong>Intent:</strong> Informational (trending)</div>
+    <div class="sb">
+
+      <span class="scene">HOOK — 0:00–0:10 · Camera · Slight edge of excitement</span>
+      <span class="spoken">"What if there was a crypto token backed by an AI that trades on your behalf, manages a portfolio, runs its own social media account, and operates 24 hours a day — completely autonomously. No human in the loop. That's not science fiction. That's happening right now. It's called an AI agent token. And it's the newest, most controversial thing in crypto."</span>
+      <span class="overlay">📱 TEXT: AI Agent Tokens — the most controversial thing in crypto right now</span>
+
+      <span class="scene">WHAT IS AN AI AGENT — 0:10–2:00 · Camera</span>
+      <span class="spoken">"Let me back up. What actually is an AI agent? An AI agent is a software program that can take actions autonomously. It's not just answering questions like ChatGPT — it can execute tasks. Browse the internet, interact with other software, make decisions, act on them. Without a human telling it what to do step by step."</span>
+      <span class="spoken">"Think about it like this. ChatGPT is like a really smart assistant that answers your questions when you ask. An AI agent is like hiring that same assistant, giving them a credit card, and saying: 'Go handle my crypto portfolio. Make good decisions. Report back.' And then — they actually do it."</span>
+      <span class="overlay">📱 TEXT: AI Agent = takes actions autonomously. No human required.</span>
+
+      <span class="scene">AI AGENTS IN CRYPTO — 2:00–4:00 · Camera</span>
+      <span class="spoken">"In crypto, AI agents are being built to do things like: manage DeFi yield strategies automatically, trade tokens based on market signals, post on X and build audiences to drive token value, conduct smart contract audits, and even negotiate with other AI agents on your behalf."</span>
+      <span class="spoken">"The most famous early example was an AI agent called AIXBT. It analysed crypto market data and posted insights on X. It built a real following. And it had its own token. At peak, that token was worth over $800 million."</span>
+      <span class="overlay">📱 TEXT: AIXBT: AI-run crypto analyst. $800M peak market cap.</span>
+
+      <span class="scene">WHAT IS AN AI AGENT TOKEN — 4:00–5:30 · Camera</span>
+      <span class="spoken">"So where does the token come in? An AI agent token is the economic layer around an AI agent. You buy the token, and in return you might get: revenue sharing from what the agent earns, governance rights over how the agent behaves, early access to the agent's services, or simply exposure to whether people think that agent will become valuable."</span>
+      <span class="spoken">"The biggest platform right now is Virtuals Protocol, on Base — Coinbase's Layer 2. It lets anyone launch an AI agent with a token. Think of it like Pump.fun but for AI agents instead of meme coins. Another major one is ai16z — an AI-managed venture capital fund on Solana. Genuinely run by an AI agent that decides what to invest in. At peak it had a $2 billion market cap."</span>
+      <span class="overlay">📱 TEXT: Virtuals Protocol + ai16z — the two biggest AI agent platforms right now</span>
+
+      <span class="scene">REAL OR HYPE — 5:30–7:30 · Camera · Direct and honest</span>
+      <span class="spoken">"Okay, here's where I'm going to be straight with you, because a lot of coverage of this topic is either pure hype or pure dismissal. The truth is more interesting."</span>
+      <span class="spoken">"The underlying technology is real. AI agents that can execute onchain transactions autonomously — that's genuinely new and genuinely powerful. The ability to create economic primitives around AI behaviour is a legitimately novel idea."</span>
+      <span class="spoken">"But. The current market for AI agent tokens is 95% speculation. Most have no revenue, no real utility, and no moat. The question to ask about any AI agent token is: does this agent actually create real, measurable value? Or is the token just a bet that other people will buy it later? Those are very different things."</span>
+      <span class="overlay">📱 TEXT: Real technology. 95% speculation. Most tokens will go to zero.</span>
+
+      <span class="scene">THE COMPLIANCE ANGLE — 7:30–9:00 · Camera · Your unique lens</span>
+      <span class="spoken">"Here's the angle no one else is talking about. If an AI agent executes a financial transaction autonomously — who is responsible for that transaction? Legally. From an AML perspective. If an AI agent interacts with a mixer, sends funds to a sanctioned wallet, or executes a suspicious transaction — who files the STR?"</span>
+      <span class="spoken">"Right now, there is no clear answer. AML regulation is built around the assumption that a human made a decision. AI agents break that assumption completely. The FATF hasn't published guidance. MiCA doesn't fully address this. It's a regulatory gap — and as agents become more capable, it will become impossible to ignore."</span>
+      <span class="overlay">📱 TEXT: "Who's responsible when an AI agent launders money? Nobody knows yet."</span>
+      <span class="spoken">"I think the first enforcement action involving an AI agent executing suspicious transactions is going to be a landmark moment — and it's probably coming within 2 years."</span>
+
+      <span class="scene">FLOR'S TAKE — 9:00–9:45 · Camera</span>
+      <span class="spoken">"My honest take? I'm more excited about the underlying technology than I am about any specific token. The idea of AI agents that can autonomously execute complex financial strategies is genuinely transformative. But the tokens trading right now are mostly speculation on future value that may or may not materialise."</span>
+      <span class="spoken">"If you want exposure to this space, the smarter play is probably the platforms — Virtuals Protocol, the infrastructure layer — not individual agent tokens. And as always: small position sizes. Money you can afford to lose."</span>
+      <span class="overlay">📱 TEXT: "Exciting technology. Speculative tokens. Small positions only."</span>
+
+      <span class="scene">CTA — 9:45–10:15 · Camera</span>
+      <span class="spoken">"I'll be covering the compliance and regulatory angle of AI agents as it develops — it's one of the most interesting open questions in financial regulation right now. Full write-up at floronchain.com. Subscribe for weekly content. See you next week."</span>
+      <span class="overlay">📱 TEXT: floronchain.com · New video every week</span>
+
+    </div>
+    <div class="notes">
+      <div class="note-block"><h4>SCREEN RECORDINGS</h4><ul><li>AIXBT Twitter/X profile — show the AI posting autonomously</li><li>Virtuals Protocol homepage</li><li>ai16z token on DexScreener showing volatility</li><li>A token chart — dramatic price movement</li></ul></div>
+      <div class="note-block"><h4>THUMBNAIL</h4><ul><li>"This AI manages $2 BILLION in crypto. Autonomously."</li><li>Or: "Who's responsible when an AI launders money?" — controversial = clicks</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="div-label">— END OF ALL 12 SCRIPTS — floronchain.com —</div>
+
+</div><!-- container -->
+<footer style="text-align:center;padding:40px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)">
+  Flor Onchain · floronchain.com · All 12 Scripts · 2026<br>
+  <span style="font-size:11px;margin-top:6px;display:block">Say "write the full script for video [number]" to request revisions or expanded versions</span>
+</footer>
+
+<script>
+// Smooth scroll to video
+document.querySelectorAll('.nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+</body>
+</html>

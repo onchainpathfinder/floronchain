@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flor Onchain — Content Bible</title>
+<style>
+:root{--bg:#080c14;--card:#0f1623;--card2:#141e2e;--accent:#00ffa3;--accent2:#3b82f6;--danger:#ef4444;--warn:#f59e0b;--purple:#a78bfa;--pink:#f472b6;--text:#e2e8f0;--dim:#94a3b8;--muted:#4b5563;--border:#1a2535}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.65}
+.mono{font-family:'Courier New',monospace}
+
+/* LAYOUT */
+.container{max-width:1060px;margin:0 auto;padding:28px 20px}
+section{margin-bottom:56px}
+h2.section-title{font-family:'Courier New',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* HERO */
+.hero{text-align:center;padding:60px 0 44px;border-bottom:1px solid var(--border);margin-bottom:48px}
+.hero .eyebrow{font-size:10px;letter-spacing:4px;color:var(--accent);font-weight:700;margin-bottom:14px}
+.hero h1{font-family:'Courier New',monospace;font-size:42px;font-weight:900;line-height:1.1;margin-bottom:12px}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero p{color:var(--dim);font-size:15px;max-width:560px;margin:0 auto 20px}
+.hero .stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.hero .stat{text-align:center}
+.hero .stat .n{font-family:'Courier New',monospace;font-size:28px;font-weight:900;color:var(--accent)}
+.hero .stat .l{font-size:11px;color:var(--dim);letter-spacing:1px}
+
+/* NAV TABS */
+.nav-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;position:sticky;top:0;z-index:50;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--border)}
+.nav-tab{padding:8px 18px;background:transparent;color:var(--dim);border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.nav-tab.active,.nav-tab:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+
+.tab-section{display:none}
+.tab-section.active{display:block}
+
+/* VOICE BOX */
+.voice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.voice-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.voice-card h4{font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.voice-card p{font-size:12px;color:var(--dim);line-height:1.6}
+.voice-card .example{font-size:11px;color:var(--text);font-style:italic;margin-top:6px;border-left:2px solid var(--accent);padding-left:8px}
+
+/* PRODUCTION SETUP */
+.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.setup-grid{grid-template-columns:1fr}}
+.setup-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
+.setup-card h3{font-size:13px;color:var(--accent);font-family:'Courier New',monospace;margin-bottom:14px}
+.spec{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.spec:last-child{border-bottom:none}
+.spec .label{color:var(--muted);min-width:90px;font-weight:600}
+.spec .val{color:var(--text)}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.cal-week{background:var(--card);border-radius:10px;padding:14px;border:1px solid var(--border)}
+.cal-week .wk{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:2px;margin-bottom:4px}
+.cal-week .title{font-size:12px;color:var(--text);font-weight:700;margin-bottom:4px;line-height:1.4}
+.cal-week .date{font-size:10px;color:var(--muted)}
+
+/* VIDEO CARDS */
+.vid-card{background:var(--card);border-radius:16px;border:1px solid var(--border);margin-bottom:24px;overflow:hidden}
+.vid-header{padding:22px 26px 0;display:flex;gap:16px;align-items:flex-start}
+.vid-n{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:20px;font-weight:900;flex-shrink:0}
+.vid-top{flex:1}
+.vid-cat{font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:4px}
+.vid-title{font-size:19px;font-weight:800;line-height:1.3}
+.vid-pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;display:inline-block}
+.pill-green{background:rgba(0,255,163,.12);color:var(--accent)}
+.pill-blue{background:rgba(59,130,246,.12);color:var(--accent2)}
+.pill-red{background:rgba(239,68,68,.12);color:var(--danger)}
+.pill-warn{background:rgba(245,158,11,.12);color:var(--warn)}
+.pill-purple{background:rgba(167,139,250,.12);color:var(--purple)}
+
+.vid-body{padding:20px 26px 24px}
+.vid-section{margin-bottom:18px}
+.vid-section-label{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:700;margin-bottom:8px}
+
+/* SCRIPT BOX */
+.script-box{background:var(--bg);border-radius:10px;padding:18px;border:1px solid var(--border);font-size:13px;line-height:1.8}
+.script-box .ts{font-family:'Courier New',monospace;font-size:10px;color:var(--accent);font-weight:700;display:inline-block;min-width:90px}
+.script-box .scene{background:rgba(0,255,163,.06);border-left:3px solid var(--accent);padding:2px 10px;margin:10px 0 6px;font-size:11px;color:var(--accent);font-weight:700;letter-spacing:1px}
+.script-box .spoken{color:var(--text);margin:0 0 4px 0}
+.script-box .direction{color:var(--purple);font-style:italic;font-size:12px}
+.script-box .overlay{color:var(--warn);font-size:11px;font-weight:700}
+.script-box .pause{color:var(--muted);font-size:11px;font-style:italic}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr}}
+.info-block{background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.info-block h4{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:700;margin-bottom:8px}
+.info-block ul{list-style:none;font-size:12px;color:var(--dim)}
+.info-block ul li{padding:3px 0}
+.info-block ul li::before{content:"→ ";color:var(--accent)}
+
+/* SEO BOX */
+.seo-box{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px 16px;font-size:12px}
+.seo-box strong{color:var(--accent2)}
+
+/* INFLUENCER TAG */
+.infl-tag{display:inline-flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px}
+.infl-tag .name{color:var(--text);font-weight:700}
+.infl-tag .why{color:var(--dim)}
+
+footer{text-align:center;padding:40px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:48px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">FLORONCHAIN.COM · CONTENT BIBLE 2026</div>
+  <h1>Your <em>Content Bible</em></h1>
+  <p>12 videos. Word-for-word scripts. Camera settings. Weekly calendar. SEO keywords. Everything you need to show up, shoot, and publish.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">12</div><div class="l">VIDEOS PLANNED</div></div>
+    <div class="stat"><div class="n">1x</div><div class="l">PER WEEK</div></div>
+    <div class="stat"><div class="n">5–15</div><div class="l">MIN EACH</div></div>
+    <div class="stat"><div class="n">Q2 '26</div><div class="l">LAUNCH TARGET</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('voice')">🎙 Your Voice</button>
+  <button class="nav-tab" onclick="showTab('setup')">📷 Camera Setup</button>
+  <button class="nav-tab" onclick="showTab('calendar')">📅 12-Week Calendar</button>
+  <button class="nav-tab" onclick="showTab('scripts')">📝 Full Scripts</button>
+  <button class="nav-tab" onclick="showTab('overview')">🗺 All 12 Videos</button>
+</div>
+
+<!-- ═══════════════ TAB: VOICE ═══════════════ -->
+<div id="tab-voice" class="tab-section active">
+<h2 class="section-title">YOUR BRAND VOICE — THE RULES</h2>
+<div class="voice-grid">
+  <div class="voice-card">
+    <h4>THE TONE</h4>
+    <p>Bloomberg meets crypto Twitter. Smart, direct, slightly sharp. You're not performing — you're <em>telling</em>. Like a brilliant friend who happens to be a compliance expert.</p>
+    <div class="example">"I file STRs for a living. Here's what criminal crypto actually looks like."</div>
+  </div>
+  <div class="voice-card">
+    <h4>HOOK FORMULA</h4>
+    <p>Every video opens with ONE of: a shocking number, a bold claim, or a question that makes people feel slightly anxious. NEVER "In today's video we're going to talk about..."</p>
+    <div class="example">"$75 billion. That's how much was laundered through crypto last year. Let me show you how."</div>
+  </div>
+  <div class="voice-card">
+    <h4>FIRST PERSON ALWAYS</h4>
+    <p>You're not a narrator. You're a practitioner sharing what you know. Use "In my experience", "What I actually see", "I've filed reports on exactly this."</p>
+    <div class="example">"I've reviewed hundreds of suspicious transactions. This pattern shows up every time."</div>
+  </div>
+  <div class="voice-card">
+    <h4>THE COMPLIANCE ANGLE</h4>
+    <p>It's your unfair advantage. Every topic gets the compliance layer that no one else gives. Not heavy-handed — just: "and here's what this means if you're a compliance professional."</p>
+    <div class="example">"For everyday users this is great. For compliance teams — here's your new headache."</div>
+  </div>
+  <div class="voice-card">
+    <h4>MAKE IT VISCERAL</h4>
+    <p>Use real numbers. Real cases. Real names (when documented). Make abstract concepts feel like something that happened to a real person.</p>
+    <div class="example">"A hospital in Germany. $1.3 million in Bitcoin. Paid to criminals. In 24 hours."</div>
+  </div>
+  <div class="voice-card">
+    <h4>END WITH YOUR TAKE</h4>
+    <p>Every video ends with 30–45 seconds of YOUR opinion. Not a summary — your honest view. This is what makes people subscribe: they want to know what Flor actually thinks.</p>
+    <div class="example">"Honestly? I think this regulation is 3 years too late. But here's why it might still work."</div>
+  </div>
+  <div class="voice-card">
+    <h4>SENTENCE LENGTH</h4>
+    <p>Short. Punchy. Pause after a big statement. Let it land. Then continue. Your delivery should feel like each sentence was chosen deliberately.</p>
+    <div class="example">"It's free. It takes 60 seconds. And it's caught more rug pulls than any paid tool I've used."</div>
+  </div>
+  <div class="voice-card">
+    <h4>WHAT YOU NEVER SAY</h4>
+    <p>"In today's rapidly evolving landscape..." / "It's important to note that..." / "As we can see..." / "To summarise..." — banned. Cut them every time.</p>
+    <div class="example">Instead of "It's important to note the regulatory implications" → "Here's what this means for compliance."</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ TAB: SETUP ═══════════════ -->
+<div id="tab-setup" class="tab-section">
+<h2 class="section-title">PRODUCTION SETUP — CAMERA, AUDIO, LIGHTING</h2>
+<div class="setup-grid">
+
+  <div class="setup-card">
+    <h3>📱 CAMERA (iPhone)</h3>
+    <div class="spec"><span class="label">App</span><span class="val">Native Camera or Filmic Pro</span></div>
+    <div class="spec"><span class="label">Format</span><span class="val">4K 30fps (talking head) / 1080p 60fps (screen recording)</span></div>
+    <div class="spec"><span class="label">Orientation</span><span class="val">Vertical for Reels/TikTok · Horizontal for YouTube</span></div>
+    <div class="spec"><span class="label">Grid</span><span class="val">ON — eyes on upper-third line (not centre)</span></div>
+    <div class="spec"><span class="label">Stabilisation</span><span class="val">ON always · Use a tripod if possible</span></div>
+    <div class="spec"><span class="label">Lock AE/AF</span><span class="val">YES — tap and hold on your face before recording</span></div>
+    <div class="spec"><span class="label">Distance</span><span class="val">Arm's length + 30cm. Not too close, not too far.</span></div>
+    <div class="spec"><span class="label">Framing</span><span class="val">Head + shoulders + small gap above head. Not chest-up.</span></div>
+  </div>
+
+  <div class="setup-card">
+    <h3>🎙 AUDIO</h3>
+    <div class="spec"><span class="label">Mic (ideal)</span><span class="val">DJI Mic Mini or Rode Wireless ME (clip-on)</span></div>
+    <div class="spec"><span class="label">Mic (budget)</span><span class="val">Apple AirPods as microphone — genuinely good</span></div>
+    <div class="spec"><span class="label">Room</span><span class="val">Small room with soft furnishings. NOT a bathroom or kitchen.</span></div>
+    <div class="spec"><span class="label">Background noise</span><span class="val">Record a 10-sec room tone at the start. Use in post.</span></div>
+    <div class="spec"><span class="label">Distance</span><span class="val">Clip mic at collar level if possible.</span></div>
+    <div class="spec"><span class="label">Speaking pace</span><span class="val">SLOW DOWN. You know this material — speak with authority, not speed.</span></div>
+    <div class="spec"><span class="label">Retakes</span><span class="val">If you stumble, pause 2 seconds and redo the line. Easy edit.</span></div>
+  </div>
+
+  <div class="setup-card">
+    <h3>💡 LIGHTING</h3>
+    <div class="spec"><span class="label">Best option</span><span class="val">Face a window. Natural light is unbeatable. Film before 2pm.</span></div>
+    <div class="spec"><span class="label">Artificial</span><span class="val">Ring light OR softbox in front of you, slightly above eye level.</span></div>
+    <div class="spec"><span class="label">Background</span><span class="val">Slightly darker than you. A second small light on the wall behind you looks cinematic.</span></div>
+    <div class="spec"><span class="label">Colour temp</span><span class="val">4000K–5000K (neutral/cool). Not warm yellow.</span></div>
+    <div class="spec"><span class="label">Sunglasses test</span><span class="val">No harsh shadows across your face. If you see one — move the light.</span></div>
+    <div class="spec"><span class="label">Check</span><span class="val">Record a 5-sec test and zoom in on your face on playback before shooting the full video.</span></div>
+  </div>
+
+  <div class="setup-card">
+    <h3>🖥 SCREEN RECORDING</h3>
+    <div class="spec"><span class="label">Tool</span><span class="val">iPhone: built-in screen record (Control Centre). Mac: QuickTime.</span></div>
+    <div class="spec"><span class="label">Resolution</span><span class="val">Max resolution. Clean your desktop/browser first.</span></div>
+    <div class="spec"><span class="label">Zoom</span><span class="val">Use pinch-to-zoom on Bubblemaps. It looks great on camera.</span></div>
+    <div class="spec"><span class="label">Cursor</span><span class="val">Move slowly and deliberately. Don't wave the mouse around.</span></div>
+    <div class="spec"><span class="label">Notifications</span><span class="val">DO NOT DISTURB before every screen recording. Always.</span></div>
+    <div class="spec"><span class="label">Structure</span><span class="val">Record screen + face in picture-in-picture for tutorial sections.</span></div>
+  </div>
+
+  <div class="setup-card">
+    <h3>✂️ EDITING (CapCut or Descript)</h3>
+    <div class="spec"><span class="label">App</span><span class="val">CapCut (free, mobile) · Descript (AI removes filler words)</span></div>
+    <div class="spec"><span class="label">Cuts</span><span class="val">Cut every pause longer than 1.5 seconds. Keep energy up.</span></div>
+    <div class="spec"><span class="label">Subtitles</span><span class="val">ALWAYS. Auto-generate in CapCut. 40% watch muted.</span></div>
+    <div class="spec"><span class="label">Text overlays</span><span class="val">Every key stat goes on screen. White bold text, dark stroke.</span></div>
+    <div class="spec"><span class="label">B-roll</span><span class="val">Screen recordings, Pexels crypto stock footage, Bubblemaps screenshots.</span></div>
+    <div class="spec"><span class="label">Colour grade</span><span class="val">CapCut preset: "Cinematic Cool" or slightly desaturated. Suits the dark brand.</span></div>
+    <div class="spec"><span class="label">Music</span><span class="val">Epidemic Sound: "dark electronic minimal". Volume at -20dB under voice.</span></div>
+  </div>
+
+  <div class="setup-card">
+    <h3>🎨 ON-SCREEN BRANDING</h3>
+    <div class="spec"><span class="label">Colours</span><span class="val">#00ffa3 (accent green) · #0a0e17 (dark bg) · White text</span></div>
+    <div class="spec"><span class="label">Font</span><span class="val">JetBrains Mono (headings) · Inter (body). Both free on Google Fonts.</span></div>
+    <div class="spec"><span class="label">Lower third</span><span class="val">"Flor · floronchain.com" — appears first 5 seconds</span></div>
+    <div class="spec"><span class="label">Stats</span><span class="val">Big numbers pop: white, 36px+, centre frame for 2 seconds</span></div>
+    <div class="spec"><span class="label">End card</span><span class="val">floronchain.com + "Subscribe for weekly crypto compliance" + next video teaser</span></div>
+    <div class="spec"><span class="label">Thumbnail</span><span class="val">Your face + 3-5 word headline + 1 big number. Dark bg, green accent. Face emotion: curious/slightly shocked.</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════ TAB: CALENDAR ═══════════════ -->
+<div id="tab-calendar" class="tab-section">
+<h2 class="section-title">12-WEEK SHOOTING CALENDAR — ONE VIDEO PER WEEK</h2>
+<div class="cal-grid">
+  <div class="cal-week"><div class="wk">WEEK 1</div><div class="title">Bubblemaps: Spot Crypto Manipulation</div><div class="date">Script done ✅ · Shoot ready</div></div>
+  <div class="cal-week"><div class="wk">WEEK 2</div><div class="title">What Is a Hardware Wallet? (Ledger)</div><div class="date">Full script below ↓</div></div>
+  <div class="cal-week"><div class="wk">WEEK 3</div><div class="title">What My Job Actually Looks Like (MLRO Day in Life)</div><div class="date">Personal brand builder</div></div>
+  <div class="cal-week"><div class="wk">WEEK 4</div><div class="title">Pig Butchering: The $75B Scam</div><div class="date">Most shareable — publish Thurs</div></div>
+  <div class="cal-week"><div class="wk">WEEK 5</div><div class="title">How to Read a Blockchain Like a Detective</div><div class="date">Beginner magnet</div></div>
+  <div class="cal-week"><div class="wk">WEEK 6</div><div class="title">AI Agent Tokens Explained</div><div class="date">Full script below ↓ · Trending topic</div></div>
+  <div class="cal-week"><div class="wk">WEEK 7</div><div class="title">MiCA Explained for Everyone</div><div class="date">Regulation deep dive</div></div>
+  <div class="cal-week"><div class="wk">WEEK 8</div><div class="title">10 AML Red Flags Every Crypto User Should Know</div><div class="date">List format — high retention</div></div>
+  <div class="cal-week"><div class="wk">WEEK 9</div><div class="title">What Is DeFi? (And Why Regulators Are Scared)</div><div class="date">Analogy-led beginner video</div></div>
+  <div class="cal-week"><div class="wk">WEEK 10</div><div class="title">2026 Crypto Crime Report Breakdown</div><div class="date">Report reaction — post same week it drops</div></div>
+  <div class="cal-week"><div class="wk">WEEK 11</div><div class="title">How Ransomware Works — And How They Get Caught</div><div class="date">True crime energy</div></div>
+  <div class="cal-week"><div class="wk">WEEK 12</div><div class="title">The Travel Rule: Your Transactions Are Being Tracked</div><div class="date">Regulation + privacy angle</div></div>
+</div>
+<div style="background:var(--card);border-radius:12px;padding:20px;margin-top:24px;border:1px solid rgba(0,255,163,.15)">
+  <h3 style="color:var(--accent);font-size:12px;letter-spacing:2px;margin-bottom:10px">📅 WEEKLY WORKFLOW</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;font-size:12px;color:var(--dim)">
+    <div style="background:var(--bg);border-radius:8px;padding:10px"><strong style="color:var(--text)">MONDAY</strong><br>Read your script out loud. Edit anything clunky. Prep your location + lighting.</div>
+    <div style="background:var(--bg);border-radius:8px;padding:10px"><strong style="color:var(--text)">TUESDAY</strong><br>SHOOT. Camera to camera sections + screen recordings. Do 2 takes of each section minimum.</div>
+    <div style="background:var(--bg);border-radius:8px;padding:10px"><strong style="color:var(--text)">WEDNESDAY</strong><br>Edit in CapCut. Add subtitles, text overlays, music, b-roll. Export draft.</div>
+    <div style="background:var(--bg);border-radius:8px;padding:10px"><strong style="color:var(--text)">THURSDAY</strong><br>Watch draft on your phone. Fix anything. Write article version for floronchain.com.</div>
+    <div style="background:var(--bg);border-radius:8px;padding:10px"><strong style="color:var(--text)">FRIDAY</strong><br>PUBLISH. YouTube + Instagram Reel + short clip cut for TikTok. Post article. X thread.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ TAB: SCRIPTS ═══════════════ -->
+<div id="tab-scripts" class="tab-section">
+<h2 class="section-title">FULL WORD-FOR-WORD SCRIPTS</h2>
+
+<!-- ──────── SCRIPT: LEDGER ──────── -->
+<div class="vid-card" id="script-ledger">
+  <div class="vid-header">
+    <div class="vid-n" style="background:rgba(0,255,163,.1);color:var(--accent)">11</div>
+    <div class="vid-top">
+      <div class="vid-cat" style="color:var(--accent)">BEGINNER EDUCATION · HARDWARE WALLETS</div>
+      <div class="vid-title">What Is a Hardware Wallet? (And Why Leaving Crypto on an Exchange Is a Gamble)</div>
+      <div class="vid-pills">
+        <span class="pill pill-green">8–10 min</span>
+        <span class="pill pill-blue">Beginners</span>
+        <span class="pill pill-warn">WhiteboardCrypto style</span>
+      </div>
+    </div>
+  </div>
+  <div class="vid-body">
+
+    <div class="vid-section">
+      <div class="vid-section-label">SEO</div>
+      <div class="seo-box"><strong>Primary keyword:</strong> what is a hardware wallet · <strong>Secondary:</strong> Ledger wallet explained, cold wallet vs hot wallet, how to store crypto safely, Ledger setup beginners · <strong>Intent:</strong> Informational (beginner)</div>
+    </div>
+
+    <div class="vid-section">
+      <div class="vid-section-label">FULL SCRIPT</div>
+      <div class="script-box">
+
+        <div class="scene">HOOK — 0:00–0:08 · Direct to camera · Hold up your Ledger device</div>
+        <p class="spoken">"This little thing. It costs €80. And it could save you from losing everything you own in crypto."</p>
+        <p class="pause">[2-second pause. Let it land.]</p>
+        <p class="spoken">"It's called a hardware wallet. And if you have crypto sitting on an exchange right now — you need to understand what this is."</p>
+        <p class="overlay">📱 TEXT: "Hardware wallet — the most important device in crypto"</p>
+
+        <div class="scene">CONTEXT — 0:08–1:00 · Cut to screen recording of FTX headline</div>
+        <p class="spoken">"In November 2022, FTX collapsed. Overnight. 8 million customers lost access to their funds. Some of them lost everything they had."</p>
+        <p class="spoken">"FTX was one of the largest exchanges in the world. Trusted by everyone. Gone in 72 hours."</p>
+        <p class="spoken">"But here's the thing. The people who had their crypto in a hardware wallet? They lost nothing. Because their crypto was never on FTX to begin with."</p>
+        <p class="overlay">📱 TEXT: "FTX: $8 billion lost. Hardware wallet users: $0 lost."</p>
+
+        <div class="scene">EXPLANATION 1 — 1:00–2:30 · Camera · Use hand gestures</div>
+        <p class="spoken">"Okay, let me break this down simply. When you buy crypto on an exchange — Coinbase, Binance, Kraken — you don't technically own that crypto. You own an IOU."</p>
+        <p class="pause">[pause]</p>
+        <p class="spoken">"Think of it like this. Imagine you give your cash to a friend to hold. You trust them. But if your friend gets robbed, or disappears, or decides they want to keep your money — that cash is gone. And you have no legal right to get it back."</p>
+        <p class="spoken">"That's what it means to keep crypto on an exchange. Not your keys, not your coins. This phrase? It's the most important sentence in crypto."</p>
+        <p class="overlay">📱 TEXT: "Not your keys, not your coins."</p>
+
+        <div class="scene">EXPLANATION 2 — 2:30–4:00 · Camera + graphic animation if possible</div>
+        <p class="spoken">"A hardware wallet changes this completely. Instead of the exchange holding your crypto, YOU hold it. The device generates and stores something called a private key — a secret code that proves you own your assets. And it never leaves the device."</p>
+        <p class="spoken">"Think of the hardware wallet like a safe. A physical, offline safe. Even if every exchange in the world collapsed tomorrow — your safe is still there. Your crypto is still there. Because it was never on their server."</p>
+        <p class="overlay">📱 TEXT: "Private key = your ownership proof. Never leave the device."</p>
+
+        <div class="scene">HOW IT WORKS — 4:00–6:00 · Screen recording — hands on Ledger</div>
+        <p class="direction">[Hold up Ledger device to camera]</p>
+        <p class="spoken">"This is a Ledger Nano X. Most popular hardware wallet in the world. Let me show you how it actually works."</p>
+        <p class="spoken">"When you first set it up, it gives you a 24-word recovery phrase. This is the most important thing I will tell you today: write these 24 words down on paper. Store the paper somewhere safe. Never photograph it. Never type it anywhere. Never, ever enter it on any website."</p>
+        <p class="spoken">"Those 24 words ARE your wallet. Anyone who has those words has your crypto. Anyone. Including people who work at Ledger. The device itself is just a tool — the 24 words are the actual key."</p>
+        <p class="overlay">📱 TEXT: "24-word seed phrase = NEVER share this. With anyone. Ever."</p>
+        <p class="pause">[pause. Look directly at camera]</p>
+        <p class="spoken">"I'll say that one more time. There is no customer support team that will ever ask for your seed phrase. If anyone asks for it — it's a scam. Full stop."</p>
+
+        <div class="scene">DEMO — 6:00–7:30 · Screen recording — Ledger Live app</div>
+        <p class="spoken">"Day to day, you manage it through an app called Ledger Live. You can see your balances, send and receive crypto, and connect to DeFi apps. All of it is confirmed on the device with a physical button press — so even if your computer is hacked, the transaction can't go through without your confirmation."</p>
+        <p class="spoken">"And here's what makes it so powerful from a security standpoint. The private key is stored in a secure chip inside the device. It never touches the internet. It never touches your computer. Hackers can't steal what they can never see."</p>
+        <p class="overlay">📱 TEXT: "Private key = offline. Always. Hackers can't steal what isn't online."</p>
+
+        <div class="scene">FLOR'S TAKE — 7:30–8:30 · Camera · Honest, direct</div>
+        <p class="spoken">"Now, I need to be honest with you about something. A hardware wallet is not for everyone — yet."</p>
+        <p class="spoken">"If you're buying £50 of crypto to test it out, leaving it on a reputable exchange is fine. The risk is proportionate. But if you're holding meaningful amounts — anything you'd genuinely feel sick about losing — a hardware wallet stops being a luxury and starts being a necessity."</p>
+        <p class="spoken">"From my perspective as someone who works in compliance: the exchanges are getting safer. Regulation is improving. But the history of crypto is littered with exchanges that seemed solid right until they weren't. Mt. Gox. Bitfinex. Celsius. FTX. Self-custody is still the safest option. €80 is a cheap insurance policy."</p>
+        <p class="overlay">📱 TEXT: "€80 = the cheapest insurance policy in crypto."</p>
+
+        <div class="scene">CTA — 8:30–9:00 · Camera · Energy up slightly</div>
+        <p class="spoken">"If you want to see the step-by-step Ledger setup — full tutorial — I've written it all up at floronchain.com. Link in bio. And if this was useful, subscribe — I post one video a week on crypto, compliance, and how to actually navigate this space safely. See you next week."</p>
+        <p class="overlay">📱 TEXT: "floronchain.com · Subscribe for weekly crypto education"</p>
+
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h4>PROPS NEEDED</h4>
+        <ul><li>Your actual Ledger device — hold it up</li><li>Ledger Live on screen for demo section</li><li>Optional: piece of paper showing "seed phrase" (fake words)</li></ul>
+      </div>
+      <div class="info-block">
+        <h4>THUMBNAIL IDEA</h4>
+        <ul><li>You holding Ledger device · big text: "€80 that saved my crypto"</li><li>Or: split image — exchange crash headline / you smiling with Ledger</li></ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ──────── SCRIPT: AI AGENTS ──────── -->
+<div class="vid-card" id="script-ai">
+  <div class="vid-header">
+    <div class="vid-n" style="background:rgba(167,139,250,.1);color:var(--purple)">12</div>
+    <div class="vid-top">
+      <div class="vid-cat" style="color:var(--purple)">BEGINNER EDUCATION · AI & CRYPTO</div>
+      <div class="vid-title">What Are AI Agent Tokens? The Newest Thing in Crypto — Explained Simply</div>
+      <div class="vid-pills">
+        <span class="pill pill-green">8–11 min</span>
+        <span class="pill pill-blue">Beginners + Curious professionals</span>
+        <span class="pill pill-purple">Miles Deutscher style</span>
+      </div>
+    </div>
+  </div>
+  <div class="vid-body">
+
+    <div class="vid-section">
+      <div class="vid-section-label">SEO</div>
+      <div class="seo-box"><strong>Primary keyword:</strong> AI agent tokens explained · <strong>Secondary:</strong> what are AI agents crypto, Virtuals Protocol explained, ai16z token, AI crypto 2025, autonomous AI crypto agents · <strong>Intent:</strong> Informational (trending)</div>
+    </div>
+
+    <div class="vid-section">
+      <div class="vid-section-label">FULL SCRIPT</div>
+      <div class="script-box">
+
+        <div class="scene">HOOK — 0:00–0:10 · Direct to camera · Slight edge of excitement in voice</div>
+        <p class="spoken">"What if there was a crypto token backed by an AI that trades on your behalf, manages a portfolio, runs its own social media account, and operates 24 hours a day — completely autonomously. No human in the loop."</p>
+        <p class="pause">[pause]</p>
+        <p class="spoken">"That's not science fiction. That's happening right now. It's called an AI agent token. And it's the newest, most controversial thing in crypto."</p>
+        <p class="overlay">📱 TEXT: "AI Agent Tokens — the most controversial thing in crypto right now"</p>
+
+        <div class="scene">WHAT IS AN AI AGENT — 0:10–2:00 · Camera + simple graphic if possible</div>
+        <p class="spoken">"Okay, let me back up. What actually is an AI agent?"</p>
+        <p class="spoken">"An AI agent is a software program that can take actions autonomously. It's not just answering questions like ChatGPT — it can execute tasks. It can browse the internet, interact with other software, make decisions, and act on them. Without a human telling it what to do step by step."</p>
+        <p class="spoken">"Think about it like this. ChatGPT is like a really smart assistant that answers your questions when you ask. An AI agent is like hiring that same assistant, giving them a credit card, and saying: 'Go handle my crypto portfolio. Make good decisions. Report back.' And then — they actually do it."</p>
+        <p class="overlay">📱 TEXT: "AI Agent = takes actions autonomously. No human required."</p>
+
+        <div class="scene">AI AGENTS IN CRYPTO — 2:00–3:30 · Camera</div>
+        <p class="spoken">"In crypto, AI agents are being built to do things like: manage DeFi yield strategies automatically, trade tokens based on market signals, post on X and build audiences to drive token value, conduct smart contract audits, and even negotiate with other AI agents on your behalf."</p>
+        <p class="spoken">"The most famous early example was an AI agent called AIXBT. It analysed crypto market data and posted insights on X. It built a real following. And it had its own token. At peak, that token was worth over $800 million."</p>
+        <p class="overlay">📱 TEXT: "AIXBT: AI-run crypto analyst. $800M peak market cap."</p>
+
+        <div class="scene">WHAT IS AN AI AGENT TOKEN — 3:30–5:00 · Camera</div>
+        <p class="spoken">"So where does the token come in? An AI agent token is basically the economic layer around an AI agent. You buy the token, and in return you might get: revenue sharing from what the agent earns, governance rights over how the agent behaves, early access to the agent's services, or simply exposure to whether people think that agent will become valuable."</p>
+        <p class="spoken">"The biggest platform for this right now is called Virtuals Protocol, which runs on Base — Coinbase's Layer 2. It lets anyone launch an AI agent with a token. Think of it like Pump.fun but for AI agents instead of meme coins."</p>
+        <p class="overlay">📱 TEXT: "Virtuals Protocol — launch your own AI agent token"</p>
+        <p class="spoken">"Another major one is ai16z — an AI-managed venture capital fund on Solana. Genuinely run by an AI agent that decides what to invest in. At peak it had a $2 billion market cap."</p>
+        <p class="overlay">📱 TEXT: "ai16z: AI-run VC fund. $2B market cap at peak."</p>
+
+        <div class="scene">IS IT REAL OR IS IT HYPE — 5:00–7:00 · Camera · Direct, honest</div>
+        <p class="spoken">"Okay, here's where I'm going to be straight with you, because I think a lot of coverage of this topic is either pure hype or pure dismissal. The truth is somewhere more interesting."</p>
+        <p class="spoken">"The underlying technology is real. AI agents that can execute onchain transactions autonomously — that's genuinely new and genuinely powerful. The ability to create economic primitives around AI behaviour is a legitimately novel idea."</p>
+        <p class="spoken">"But. The current market for AI agent tokens is 95% speculation. Most of these tokens have no revenue, no real utility, and no moat. They're betting that a particular AI agent will become dominant — and most won't. Just like 99% of DeFi tokens in 2021 went to zero, most AI agent tokens will too."</p>
+        <p class="overlay">📱 TEXT: "Real tech. But 95% speculation. Most will go to zero."</p>
+        <p class="spoken">"The question to ask about any AI agent token is: does this agent actually do something that creates value? Real, measurable value? Or is the token just a bet that other people will buy it later? Those are very different things."</p>
+
+        <div class="scene">THE COMPLIANCE ANGLE — 7:00–8:30 · Camera · Your unique lens</div>
+        <p class="spoken">"Now here's the angle no one else is talking about — and this is where it gets genuinely fascinating from my side of the table."</p>
+        <p class="spoken">"If an AI agent executes a financial transaction — buys a token, moves funds across chains, interacts with a mixer — who is responsible for that transaction? Legally? From an AML perspective?"</p>
+        <p class="spoken">"Right now, there is no clear answer. Current AML regulation is built around the assumption that a human being made a decision. AI agents break that assumption completely. The FATF hasn't published guidance on autonomous agents. The EU's AI Act and MiCA don't fully address this overlap. It's a regulatory gap — and as these agents get more capable, it's one that's going to become impossible to ignore."</p>
+        <p class="overlay">📱 TEXT: "Who's responsible when an AI agent launders money? Nobody knows yet."</p>
+        <p class="spoken">"I'm watching this space very closely because I think the first enforcement action involving an AI agent executing suspicious transactions is going to be a landmark moment — and it's probably coming within 2 years."</p>
+
+        <div class="scene">FLOR'S TAKE — 8:30–9:30 · Camera · Honest, no hype</div>
+        <p class="spoken">"My honest take? I'm more excited about the underlying technology than I am about any specific token right now."</p>
+        <p class="spoken">"The idea of AI agents that can autonomously execute complex financial strategies is genuinely transformative — for DeFi, for compliance automation, for portfolio management. But the tokens that are trading right now are mostly speculation on future value that may or may not materialise."</p>
+        <p class="spoken">"If you want exposure to this space, the smarter play is probably the platforms — Virtuals Protocol, the infrastructure layer — not individual agent tokens. And as always with new sectors: small position sizes, and money you can afford to lose."</p>
+        <p class="overlay">📱 TEXT: "My take: exciting technology. Speculative tokens. Small positions only."</p>
+
+        <div class="scene">CTA — 9:30–10:00 · Camera</div>
+        <p class="spoken">"I'm going to keep covering this space as it develops — especially the compliance and regulatory angle, which I think is genuinely underreported. Full write-up on floronchain.com, link in bio. Subscribe if you want to stay ahead of the regulatory curve on crypto. See you next week."</p>
+        <p class="overlay">📱 TEXT: "floronchain.com · New video every week"</p>
+
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h4>SCREEN RECORDINGS NEEDED</h4>
+        <ul><li>AIXBT Twitter/X profile — show the AI posting</li><li>Virtuals Protocol homepage</li><li>ai16z token page on DexScreener</li><li>A token chart showing the volatility (show don't tell)</li></ul>
+      </div>
+      <div class="info-block">
+        <h4>THUMBNAIL IDEA</h4>
+        <ul><li>You + robot icon + big text: "AI is managing $2 BILLION in crypto"</li><li>Or: "Who's responsible when an AI launders money?" — that question alone will get clicks</li></ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="background:var(--card);border-radius:12px;padding:20px;border:1px solid rgba(0,255,163,.15);margin-top:8px">
+  <h3 style="color:var(--accent);font-size:12px;letter-spacing:2px;margin-bottom:8px">THE OTHER 10 SCRIPTS</h3>
+  <p style="font-size:13px;color:var(--dim);line-height:1.7">Full word-for-word scripts for Videos 1–10 are available on request — say <strong style="color:var(--text)">"write the full script for video [number]"</strong> and I'll produce the complete script in your voice with all timestamps, on-screen text overlays, and production notes. Same format as above.</p>
+</div>
+
+</div>
+
+<!-- ═══════════════ TAB: OVERVIEW ═══════════════ -->
+<div id="tab-overview" class="tab-section">
+<h2 class="section-title">ALL 12 VIDEOS AT A GLANCE</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">01</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">Bubblemaps: Spot Crypto Manipulation in 60 Seconds</div><div style="font-size:11px;color:var(--dim)">Tech & Tools · 5–8 min · Script done ✅</div></div>
+    <span class="pill pill-green">WEEK 1</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">02</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">MiCA Explained: What Every Crypto User in Europe Needs to Know</div><div style="font-size:11px;color:var(--dim)">Regulation · 10–12 min · Coin Bureau style</div></div>
+    <span class="pill pill-blue">WEEK 7</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">03</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">Pig Butchering: The $75 Billion Scam Most People Have Never Heard Of</div><div style="font-size:11px;color:var(--dim)">Crypto Crime · 10–15 min · Most shareable</div></div>
+    <span class="pill pill-red">WEEK 4</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">04</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">How to Read a Blockchain Like a Detective (No Experience Needed)</div><div style="font-size:11px;color:var(--dim)">Beginner Education · 8–12 min · Beginner magnet</div></div>
+    <span class="pill pill-purple">WEEK 5</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">05</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">10 Crypto Red Flags Every AML Professional Should Know</div><div style="font-size:11px;color:var(--dim)">AML Education · 10–12 min · List format, high retention</div></div>
+    <span class="pill pill-warn">WEEK 8</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">06</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">The 2026 Crypto Crime Report: Every Number That Matters</div><div style="font-size:11px;color:var(--dim)">Market Analysis · 12–15 min · Coin Bureau style</div></div>
+    <span class="pill pill-green">WEEK 10</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">07</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">What Is DeFi? (And Why Regulators Are Losing Sleep Over It)</div><div style="font-size:11px;color:var(--dim)">Beginner Education · 10–14 min · Analogy-led</div></div>
+    <span class="pill pill-blue">WEEK 9</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">08</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">I'm a Crypto AML Officer. Here's What My Job Actually Looks Like.</div><div style="font-size:11px;color:var(--dim)">Personal Brand · 8–12 min · Your fastest brand builder</div></div>
+    <span class="pill pill-red">WEEK 3</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">09</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">How Crypto Ransomware Works — And How They Get Caught</div><div style="font-size:11px;color:var(--dim)">Crypto Crime · 10–15 min · True crime energy</div></div>
+    <span class="pill pill-warn">WEEK 11</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">10</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">The Travel Rule: Why Every Crypto Transaction Is Being Tracked Right Now</div><div style="font-size:11px;color:var(--dim)">Regulation · 10–12 min · Privacy angle</div></div>
+    <span class="pill pill-purple">WEEK 12</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:2px solid rgba(0,255,163,.25);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--accent);min-width:32px">11</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">What Is a Hardware Wallet? (Ledger Explained for Beginners)</div><div style="font-size:11px;color:var(--accent)">Beginner Education · 8–10 min · Full script above ↑ NEW</div></div>
+    <span class="pill pill-green">WEEK 2</span>
+  </div>
+
+  <div style="background:var(--card);border-radius:12px;padding:16px 20px;border:2px solid rgba(167,139,250,.25);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-family:'Courier New',monospace;font-size:18px;font-weight:900;color:var(--purple);min-width:32px">12</span>
+    <div style="flex:1;min-width:200px"><div style="font-size:14px;font-weight:700">What Are AI Agent Tokens? The Newest Thing in Crypto — Explained Simply</div><div style="font-size:11px;color:var(--purple)">Beginner Education · 8–11 min · Full script above ↑ NEW</div></div>
+    <span class="pill pill-purple">WEEK 6</span>
+  </div>
+
+</div>
+</div>
+
+</div><!-- container -->
+
+<footer>Flor Onchain · floronchain.com · Content Bible 2026 · Your marketing manager built this 🤝</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
