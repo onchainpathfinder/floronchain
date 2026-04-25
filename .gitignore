@@ -13,3 +13,4 @@ telegram-bot/
 
 # Local Claude sessions (keep skill defs, ignore runtime)
 .claude/launch.json
+.vercel

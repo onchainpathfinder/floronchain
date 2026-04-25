@@ -238,6 +238,60 @@
             color: var(--text-secondary);
         }
         
+        /* Tools / Red Flags Feature Strip */
+        .tools-feature {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin: 0 0 3rem;
+        }
+        .feature-card {
+            display: block;
+            text-decoration: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left-width: 3px;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem 1.4rem;
+            transition: all 0.25s ease;
+            color: var(--text-secondary);
+        }
+        .feature-card--red { border-left-color: #ef4444; }
+        .feature-card--cyan { border-left-color: var(--accent-cyan); }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            border-left-color: var(--accent);
+        }
+        .feature-eyebrow {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.6rem;
+        }
+        .feature-title {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.55rem;
+            line-height: 1.3;
+        }
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.85rem;
+            line-height: 1.55;
+        }
+        .feature-cta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* Cards Grid */
         .cards-grid {
             display: grid;
@@ -596,7 +650,23 @@
                 <p class="tagline">Crypto compliance, without the corporate lawyer voice.</p>
                 <p class="intro">By Flor. Based in Malta. Former airdrop farmer, crypto degen, financial crime expert. I've chased the yields and traced the wallets. Crypto AML, onchain analysis, MiCA, and EU regulation for the people who actually do the work.</p>
             </div>
-            
+
+            <!-- TOOLS / RED FLAGS FEATURE STRIP -->
+            <div class="tools-feature">
+                <a class="feature-card feature-card--red" href="/red-flags.html">
+                    <span class="feature-eyebrow">🚩 Red Flags Library</span>
+                    <h3 class="feature-title">The typologies your TM should catch</h3>
+                    <p class="feature-desc">19 indicators across customer behaviour, transaction patterns, counterparty risk and crypto-specific signals — each with a recommended action.</p>
+                    <span class="feature-cta">Browse the library →</span>
+                </a>
+                <a class="feature-card feature-card--cyan" href="/tools.html">
+                    <span class="feature-eyebrow">🔍 AML Risk Checker</span>
+                    <h3 class="feature-title">Score a real scenario in 10 seconds</h3>
+                    <p class="feature-desc">Pick the indicators, paste the narrative — get a risk score, the matching red flags, and the recommended next steps. Rules-based, no API.</p>
+                    <span class="feature-cta">Open the tool →</span>
+                </a>
+            </div>
+
             <div class="cards-grid" id="homeCards"></div>
         </section>
 

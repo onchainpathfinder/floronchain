@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto AML Red Flags Library — FLOR🦩NCHAIN</title>
+<meta name="description" content="The crypto AML red flags every transaction monitoring team should catch. FATF and Egmont-aligned typology library — by Flor.">
+<meta property="og:title" content="Crypto AML Red Flags Library — FLOR🦩NCHAIN">
+<meta property="og:description" content="The crypto AML red flags every transaction monitoring team should catch. FATF and Egmont-aligned typology library.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://floronchain.com/red-flags.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Crypto AML Red Flags Library">
+<meta name="twitter:description" content="The crypto AML red flags every transaction monitoring team should catch.">
+<meta name="theme-color" content="#000000">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000000;
+  --card:#141414;
+  --card-border:#1f1f1f;
+  --accent:#ff2db7;
+  --accent-dim:#ff2db733;
+  --accent-cyan:#00f0ff;
+  --red:#ef4444;
+  --red-dim:#ef444422;
+  --red-border:#ef444466;
+  --green-safe:#22c55e;
+  --text:#e2e8f0;
+  --text-dim:#94a3b8;
+  --text-muted:#64748b;
+  --font-mono:'JetBrains Mono',monospace;
+  --font-body:'DM Sans',sans-serif;
+}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;line-height:1.65}
+
+/* NAV */
+.top-bar{padding:1rem 1.5rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--card-border)}
+.top-bar .logo{color:var(--accent);font-family:var(--font-mono);font-weight:700;font-size:.95rem;text-decoration:none}
+.top-bar .logo .logo-o{display:inline-block;filter:drop-shadow(0 0 6px var(--accent))}
+.top-bar .sep{color:var(--text-muted)}
+.top-bar .page-name{color:var(--text-dim);font-size:.85rem}
+.back-link{color:var(--text-muted);text-decoration:none;font-size:.85rem;margin-left:auto}
+.back-link:hover{color:var(--accent)}
+
+/* CONTAINER */
+.container{max-width:820px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+/* HEADER */
+.page-header{margin-bottom:2.5rem;border-bottom:1px solid var(--card-border);padding-bottom:1.75rem}
+.page-header .eyebrow{font-family:var(--font-mono);font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.6rem}
+.page-header h1{font-size:1.85rem;line-height:1.2;color:var(--text);margin-bottom:.85rem;font-weight:600}
+.page-header h1 .icon{margin-right:.4rem}
+.page-header .lede{color:var(--text-dim);font-size:1rem;max-width:62ch}
+.page-header .meta{margin-top:.85rem;font-size:.75rem;color:var(--text-muted);font-family:var(--font-mono)}
+
+/* CATEGORY */
+.category{margin-bottom:2.5rem}
+.category-head{display:flex;align-items:baseline;gap:.65rem;margin-bottom:1rem;border-left:3px solid var(--accent);padding-left:.75rem}
+.category-num{font-family:var(--font-mono);font-size:.8rem;color:var(--accent);font-weight:700}
+.category-title{font-size:1.15rem;color:var(--text);font-weight:600;letter-spacing:.01em}
+
+.flag{background:var(--card);border:1px solid var(--card-border);border-left:3px solid var(--red-border);border-radius:6px;padding:1rem 1.15rem;margin-bottom:.65rem;transition:border-color .2s}
+.flag:hover{border-left-color:var(--red)}
+.flag-title{font-family:var(--font-mono);font-size:.85rem;color:var(--red);font-weight:600;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+.flag-title .marker{font-size:.75rem}
+.flag-detail{color:var(--text-dim);font-size:.9rem;margin-bottom:.55rem}
+.flag-action{color:var(--text);font-size:.85rem;display:flex;gap:.5rem;align-items:flex-start}
+.flag-action .label{font-family:var(--font-mono);color:var(--green-safe);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;margin-top:.18rem}
+.flag-action .copy{color:var(--text-dim)}
+
+/* CTA */
+.cta{margin-top:3rem;background:linear-gradient(135deg,var(--card),#1a0d18);border:1px solid var(--accent-dim);border-radius:8px;padding:1.5rem 1.5rem 1.7rem;text-align:center}
+.cta-title{font-family:var(--font-mono);font-size:.95rem;color:var(--accent);margin-bottom:.5rem}
+.cta-text{color:var(--text-dim);font-size:.9rem;margin-bottom:1rem}
+.cta-btn{display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid var(--accent);color:var(--accent);font-family:var(--font-mono);font-size:.85rem;font-weight:600;padding:.65rem 1.4rem;border-radius:6px;text-decoration:none;transition:all .25s}
+.cta-btn:hover{background:var(--accent);color:var(--bg)}
+.cta-btn .arrow{transition:transform .2s}
+.cta-btn:hover .arrow{transform:translateX(3px)}
+
+/* RELATED */
+.related{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--card-border)}
+.related-head{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.85rem}
+.related-list{list-style:none}
+.related-list li{margin-bottom:.5rem}
+.related-list a{color:var(--text-dim);text-decoration:none;font-size:.9rem;border-bottom:1px solid transparent;transition:all .2s}
+.related-list a:hover{color:var(--accent);border-bottom-color:var(--accent-dim)}
+
+/* DISCLAIMER */
+.disclaimer{margin-top:2.5rem;padding:.9rem 1rem;background:var(--card);border:1px solid var(--card-border);border-radius:6px;font-size:.78rem;color:var(--text-muted);display:flex;gap:.6rem;align-items:flex-start}
+.disclaimer .warn{color:var(--orange,#f59e0b)}
+
+/* FOOTER */
+.tool-footer{padding:1.75rem 1rem;text-align:center;color:var(--text-muted);font-size:.8rem;border-top:1px solid var(--card-border);margin-top:2rem}
+.tool-footer strong{color:var(--accent);font-family:var(--font-mono);font-weight:700}
+.tool-footer .accent{display:inline-block;filter:drop-shadow(0 0 4px var(--accent))}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/" class="logo">FLOR<span class="logo-o">&#x1F9A9;</span>NCHAIN</a>
+  <span class="sep">/</span>
+  <span class="page-name">Red Flags Library</span>
+  <a href="/" class="back-link">&larr; Back to blog</a>
+</div>
+
+<div class="container">
+
+  <header class="page-header">
+    <div class="eyebrow">FATF + Egmont-aligned</div>
+    <h1><span class="icon">&#x1F6A9;</span> Crypto AML Red Flags Library</h1>
+    <p class="lede">The typologies your transaction monitoring should catch — grouped by where they show up. Not exhaustive, not legal advice. The honest list of what actually matters when you're triaging an alert at 2pm on a Friday.</p>
+    <div class="meta">Last updated: April 2026 &middot; Maintained by Flor</div>
+  </header>
+
+  <!-- CATEGORY 1 -->
+  <section class="category">
+    <div class="category-head">
+      <span class="category-num">01</span>
+      <h2 class="category-title">Customer Behaviour</h2>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>New account, high-value activity</div>
+      <div class="flag-detail">Account opened recently and immediately moves significant value — bypasses the customer risk baseline that builds over time.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Trigger EDD. Re-verify ID, request source of funds and source of wealth documentation.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Evasive on KYC</div>
+      <div class="flag-detail">Customer becomes aggressive, reluctant or refuses to provide standard documentation when asked. Inconsistent with a legitimate profile.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Note the interaction in the case file. Treat as an EDD trigger; consider account restriction pending review.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Geolocation inconsistent with KYC</div>
+      <div class="flag-detail">IP location does not match the stated country of residence — possible identity misuse, account takeover or use of a money mule.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Trigger step-up authentication. Review prior login history and document the mismatch.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Profile mismatch</div>
+      <div class="flag-detail">Stated occupation, age or income bracket cannot plausibly support the volume or frequency of transactions observed.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Request updated source-of-funds evidence and recalibrate the customer risk score.</span></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 2 -->
+  <section class="category">
+    <div class="category-head">
+      <span class="category-num">02</span>
+      <h2 class="category-title">Transaction Patterns</h2>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Structuring (smurfing)</div>
+      <div class="flag-detail">Transactions broken into multiple sub-threshold amounts to stay below reporting limits — classic smurfing.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Aggregate the transaction chain in monitoring rules. Escalate to the MLRO and document the pattern for STR.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Rapid layering</div>
+      <div class="flag-detail">Short dwell time between deposit and withdrawal. Funds move in and out within minutes or hours — consistent with placement-layering.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Activate transaction-velocity alerts. Apply a 72-hour hold for MLRO review on similar patterns.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Round-dollar deposits</div>
+      <div class="flag-detail">Patterns of suspiciously round amounts (e.g. exactly $9,500 or $4,999) — typical of someone calibrating to thresholds.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Flag for manual review. Cross-reference with the customer's stated business model.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Sudden volume spike on a dormant account</div>
+      <div class="flag-detail">An account that has been quiet for months suddenly handles significant value. Often the layering phase of a larger scheme.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Re-verify the customer, document the change, and check for compromised credentials.</span></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 3 -->
+  <section class="category">
+    <div class="category-head">
+      <span class="category-num">03</span>
+      <h2 class="category-title">Counterparty Risk</h2>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Mixer / privacy-tool exposure</div>
+      <div class="flag-detail">Funds routed through Tornado Cash, Wasabi, Samurai or any coinjoin service — deliberate obfuscation of transaction history.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">File an STR with the FIU. Freeze the transaction pending MLRO review. Consider account closure for repeat exposure.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Flagged or sanctioned address</div>
+      <div class="flag-detail">Interaction with a wallet on a watchlist (Chainalysis, Elliptic, OFAC SDN, EU consolidated sanctions list).</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Block the counterparty, screen the customer, file an STR within statutory deadlines.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>PEP or sanctions exposure</div>
+      <div class="flag-detail">Politically Exposed Person or sanctioned individual involved as customer or counterparty — inherent higher-risk profile.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Obtain senior-management approval for the relationship. Apply ongoing enhanced monitoring.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>High-risk jurisdiction</div>
+      <div class="flag-detail">Activity linked to a FATF grey or black-listed country or an EU AML-listed third country (e.g. Iran, DPRK, Myanmar).</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Apply EDD under FATF Recommendation 19 / AMLD6 Article 18. Document rationale in the customer file.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>No-KYC / pseudonymous counterparty</div>
+      <div class="flag-detail">Transacting with an unhosted wallet or unregulated P2P platform — Travel Rule data unavailable for the leg.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Apply EDD on the customer. Block if Travel Rule data is unobtainable and required by your jurisdiction.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Third-party payment</div>
+      <div class="flag-detail">Funds moving through wallets unrelated to the named customer — possible straw buyer or layering tier.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Verify beneficial ownership and the documented relationship between parties before release.</span></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY 4 -->
+  <section class="category">
+    <div class="category-head">
+      <span class="category-num">04</span>
+      <h2 class="category-title">Crypto-Specific</h2>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Cross-chain hopping</div>
+      <div class="flag-detail">Bridging between blockchains within a short window — obscures the audit trail and is a known layering technique.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Trace the full chain using onchain analytics (Chainalysis, Elliptic, Arkham). Document the bridge path.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>NFT wash trade pattern</div>
+      <div class="flag-detail">Buyer and seller wallets share funding source, trade NFTs at inflated prices, no genuine secondary market activity.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Do not rely on stated value. Refer to the NFT laundering playbook and document the cluster in the STR.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Flash-loan self-trade</div>
+      <div class="flag-detail">Same actor on both sides of a transaction made possible by a flash loan — price reflects manipulation, not market.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Reject any value-based filing limit. Refer to market-abuse team and capture in STR narrative.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Freshly funded wallet, immediate large activity</div>
+      <div class="flag-detail">Wallet created and funded in the same block as a high-value transaction — no transaction history, no reputation, no use case.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Treat as untrusted counterparty. Hold for review and onchain trace.</span></div>
+    </div>
+
+    <div class="flag">
+      <div class="flag-title"><span class="marker">&#x25B6;</span>Privacy-coin conversion</div>
+      <div class="flag-detail">Conversion to or from Monero, Zcash or other privacy coins — frequently a layering step.</div>
+      <div class="flag-action"><span class="label">Action</span><span class="copy">Apply EDD. Many regulated CASPs are obligated to refuse privacy-coin counterparties under MiCA.</span></div>
+    </div>
+  </section>
+
+  <!-- CTA TO RISK CHECKER -->
+  <div class="cta">
+    <div class="cta-title">Want to test a real scenario?</div>
+    <div class="cta-text">Pick the indicators, paste the narrative, and the Risk Checker maps it back to this library — instant red flags and recommended actions.</div>
+    <a class="cta-btn" href="/tools.html"><span>Open the AML Risk Checker</span><span class="arrow">&rarr;</span></a>
+  </div>
+
+  <!-- RELATED ARTICLES -->
+  <section class="related">
+    <div class="related-head">Read more</div>
+    <ul class="related-list">
+      <li><a href="https://followtheflor.com/onchain/money-laundering-through-nfts">&rarr; Money Laundering Through NFTs: The Wash Trading Playbook</a></li>
+      <li><a href="https://followtheflor.com/onchain/pumpfun-aml-risk">&rarr; Pump.fun, Liquidity Fragmentation, and the AML Nightmare</a></li>
+      <li><a href="https://followtheflor.com/onchain/neobanks-crypto-aml-2026">&rarr; Every neobank now has crypto. Not every neobank has the AML</a></li>
+      <li><a href="https://followtheflor.com/onchain/what-is-the-travel-rule">&rarr; What Is the Travel Rule (and why crypto firms keep failing it)</a></li>
+    </ul>
+  </section>
+
+  <div class="disclaimer">
+    <span class="warn">&#x26A0;</span>
+    <span>Educational reference only — this is not legal or compliance advice. Always consult qualified AML professionals before acting on a real case. Typology inspiration drawn from FATF, Egmont Group, Chainalysis and Elliptic public guidance.</span>
+  </div>
+
+</div>
+
+<div class="tool-footer">
+  <strong>FLOR<span class="accent">&#x1F9A9;</span>NCHAIN</strong> — Crypto compliance, without the corporate lawyer voice.
+</div>
+
+</body>
+</html>
