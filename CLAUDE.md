@@ -11,7 +11,7 @@
 - **Also lives as:** the ONCHAIN pillar on followtheflor.com
 - **Hosting:** Netlify (project: theonchainpathfinder — legacy name, domain is floronchain.com)
 - **Tech:** Static HTML site — single index.html deployed via Netlify
-- **Tagline:** "Crypto compliance, without the corporate lawyer voice."
+- **Tagline:** "Raw alpha."
 - **Purpose:** Crypto compliance, iGaming regulation, and AI/automation education for compliance professionals, crypto founders, and crypto beginners
 - **Main goal:** Educational — teach, build authority, monetise expertise
 
