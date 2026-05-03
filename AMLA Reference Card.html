@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AMLA × Crypto — Reference Card · floronchain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --panel: #0a0a0a;
+    --line: rgba(255,45,183,0.14);
+    --line-strong: rgba(255,45,183,0.32);
+    --text: #f5f5f5;
+    --dim: #a0aec0;
+    --dim-2: #6b7280;
+    --pink: #ff2db7;
+    --pink-deep: #ff006e;
+    --cyan: #00f0ff;
+    --warn: #fb923c;
+    --hot: #f87171;
+    /* alias kept for minimal diff inside long rules */
+    --teal: #ff2db7;
+    --teal-hot: #ff006e;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --serif: 'Space Grotesk', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--mono); font-size: 13px; line-height: 1.55; }
+  ::selection { background: var(--pink); color: var(--bg); }
+  a { color: var(--pink); text-decoration: none; }
+  a:hover { color: var(--cyan); }
+
+  /* ambient glow + grain (matches landing) */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 10% 0%, rgba(255,45,183,0.10), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 95% 12%, rgba(0,240,255,0.06), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ─── Top toolbar (screen only) ─── */
+  .toolbar {
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 28px;
+    display: flex; gap: 24px; align-items: center;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  }
+  .toolbar .logo img { height: 22px; width: auto; display: block; }
+  .toolbar .fill { flex: 1; }
+  .toolbar button, .toolbar a.btn {
+    background: transparent; border: 1px solid var(--line-strong); color: var(--text);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 8px 14px; cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .toolbar button:hover, .toolbar a.btn:hover { background: var(--pink); color: var(--bg); border-color: var(--pink); }
+
+  /* flamingo wordmark in toolbar + sheet header */
+  .flor-mark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: inline-flex; align-items: center;
+  }
+  .flor-mark .o {
+    display: inline-block;
+    font-size: 0.95em; line-height: 1;
+    margin: 0 0.04em;
+    transform: translateY(0.04em);
+    filter: drop-shadow(0 0 8px rgba(255,45,183,0.6));
+  }
+  .flor-mark.lg { font-size: 28px; }
+  .flor-mark.lg .o { filter: drop-shadow(0 0 12px rgba(255,45,183,0.7)) drop-shadow(0 0 24px rgba(255,45,183,0.3)); }
+
+  /* ─── Sheet (the printable A3 portrait) ─── */
+  .stage { padding: 40px 28px 80px; display: flex; justify-content: center; position: relative; z-index: 2; }
+  .sheet {
+    width: 1190px;
+    min-height: 1683px; /* ~A3 portrait at 100dpi */
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 56px 56px 64px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,45,183,0.18), 0 0 80px rgba(255,45,183,0.08);
+  }
+  /* Crop marks */
+  .sheet::before, .sheet::after,
+  .sheet .crop-tr, .sheet .crop-bl {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 1px solid var(--pink);
+    opacity: 0.55;
+  }
+  .sheet::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+  .sheet::after { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+  .sheet .crop-tr { display:block; bottom: 12px; right: 12px; border-left: none; border-top: none; }
+  .sheet .crop-bl { display:block; bottom: 12px; left: 12px; border-right: none; border-top: none; }
+
+  /* Top metadata band */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line-strong);
+    align-items: end;
+  }
+  .head .lockup { display: flex; flex-direction: column; gap: 14px; }
+  .head .lockup img { height: 40px; width: auto; }
+  .head .filing {
+    display: grid; grid-template-columns: 100px 1fr; column-gap: 16px; row-gap: 4px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
+    text-align: right;
+    align-items: baseline;
+  }
+  .head .filing .k { color: var(--dim-2); }
+  .head .filing .v { color: var(--text); font-weight: 500; }
+  .head .filing .v.teal { color: var(--teal); }
+
+  /* Title block */
+  .title-row {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: end;
+  }
+  .kicker { display: flex; align-items: center; gap: 14px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 22px; }
+  .kicker .hr { display:inline-block; width: 36px; height: 1px; background: var(--teal); }
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 84px;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    color: var(--text);
+  }
+  h1 em {
+    font-family: var(--display);
+    font-weight: 500;
+    font-style: italic;
+    background: linear-gradient(110deg, var(--pink) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .deck {
+    font-family: var(--sans);
+    font-size: 17px; line-height: 1.55; color: var(--dim);
+  }
+  .deck b { color: var(--text); font-weight: 600; }
+
+  /* The grid: 4 columns, 12 rows */
+  .grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(20px, auto);
+    gap: 0;
+    border-top: 1px solid var(--line-strong);
+    border-left: 1px solid var(--line-strong);
+  }
+  .cell {
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 22px 26px;
+    position: relative;
+  }
+  .cell .tag {
+    font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .cell .tag b { color: var(--teal); font-weight: 500; }
+  .cell h3 {
+    margin: 0;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    color: var(--text);
+  }
+  .cell h3 { font-family: var(--display); font-weight: 600; }
+  .cell h3 em { font-family: var(--display); font-style: italic; color: var(--pink); font-weight: 500; }
+  .cell p { font-family: var(--sans); font-size: 13px; color: var(--dim); line-height: 1.5; margin: 12px 0 0; }
+  .cell p strong { color: var(--text); font-weight: 500; }
+  .cell .stamp {
+    display: inline-block; padding: 3px 7px; border: 1px solid var(--line-strong);
+    font-size: 9px; letter-spacing: 0.18em; color: var(--dim);
+  }
+  .cell .stamp.live { color: var(--teal); border-color: var(--teal); background: rgba(27,184,217,0.08); }
+  .cell .stamp.warn { color: var(--warn); border-color: var(--warn); background: rgba(244,185,66,0.08); }
+  .cell .big {
+    font-family: var(--display); font-weight: 700;
+    font-size: 56px; line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    margin-top: 6px;
+  }
+  .cell .big.pink { color: var(--pink); }
+  .cell .big .unit { font-family: var(--display); font-weight: 500; font-style: italic; color: var(--cyan); font-size: 26px; margin-left: 4px; }
+  .cell .lab { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim-2); margin-top: 6px; }
+
+  /* Layout placement */
+  .c-what     { grid-column: span 6; grid-row: span 2; }
+  .c-when     { grid-column: span 6; grid-row: span 2; background: rgba(255,45,183,0.03); }
+
+  .c-stat-1   { grid-column: span 3; }
+  .c-stat-2   { grid-column: span 3; }
+  .c-stat-3   { grid-column: span 3; }
+  .c-stat-4   { grid-column: span 3; }
+
+  .c-pillar   { grid-column: span 12; padding: 0; border-right: none; }
+  .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .pillar { padding: 22px 22px 26px; border-right: 1px solid var(--line); }
+  .pillar:last-child { border-right: none; }
+  .pillar .n { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--pink); }
+  .pillar h4 { margin: 14px 0 8px; font-family: var(--sans); font-weight: 500; font-size: 19px; line-height: 1.15; letter-spacing: -0.015em; color: var(--text); }
+  .pillar h4 { font-family: var(--display); font-weight: 600; }
+  .pillar h4 em { font-family: var(--display); font-style: italic; color: var(--pink); font-weight: 500; }
+  .pillar p { font-family: var(--sans); font-size: 12.5px; color: var(--dim); line-height: 1.5; margin: 0; }
+  .pillar .src { margin-top: 14px; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim-2); }
+
+  /* Selected entities visual */
+  .c-selected { grid-column: span 7; }
+  .selected-vis {
+    display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px;
+    margin: 18px 0 14px;
+  }
+  .dot40 {
+    aspect-ratio: 1; border: 1px solid var(--line-strong); background: transparent;
+  }
+  .dot40.casp { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 8px rgba(255,45,183,0.5); }
+  .dot40.fi { background: rgba(255,45,183,0.12); border-color: var(--line-strong); }
+  .selected-legend { display: flex; gap: 24px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-top: 10px; }
+  .selected-legend .sw { display:inline-block; width: 12px; height: 12px; vertical-align: middle; margin-right: 8px; }
+
+  /* Threshold cell */
+  .c-threshold { grid-column: span 5; background: rgba(244,185,66,0.04); }
+  .threshold-list { margin-top: 12px; display: flex; flex-direction: column; gap: 0; border-top: 1px dashed var(--line-strong); }
+  .threshold-list .row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 12px; }
+  .threshold-list .row:last-child { border-bottom: none; }
+  .threshold-list .row .l { color: var(--dim); font-family: var(--sans); }
+  .threshold-list .row .v { color: var(--text); font-weight: 500; }
+  .threshold-list .row .v.warn { color: var(--warn); }
+
+  /* Banned list */
+  .c-banned { grid-column: span 5; background: rgba(236,111,158,0.04); }
+  .ban-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-top: 12px; }
+  .ban-grid .item {
+    font-size: 12px; padding: 10px 12px; border: 1px solid rgba(236,111,158,0.25);
+    color: var(--text); font-family: var(--sans);
+    position: relative;
+  }
+  .ban-grid .item::before { content: '✕'; color: var(--hot); margin-right: 10px; font-family: var(--mono); }
+  .ban-grid .item small { display: block; margin-top: 4px; color: var(--dim); font-size: 10.5px; letter-spacing: 0.04em; }
+
+  /* Travel rule diagram cell */
+  .c-travel { grid-column: span 7; }
+  .travel-svg { width: 100%; height: auto; display: block; margin-top: 18px; }
+
+  /* FATF findings */
+  .c-fatf { grid-column: span 12; }
+  .c-funding { grid-column: span 12; background: rgba(0,240,255,0.025); }
+  .funding-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 0; margin-top: 14px; border-top: 1px solid var(--line-strong); }
+  .funding-cell { padding: 18px 18px 22px; border-right: 1px solid var(--line); }
+  .funding-cell:last-child { border-right: none; }
+  .funding-cell .yr { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cyan); }
+  .funding-cell .v { font-family: var(--display); font-weight: 700; font-size: 38px; line-height: 1; letter-spacing: -0.025em; color: var(--text); margin-top: 8px; font-variant-numeric: tabular-nums; }
+  .funding-cell .v em { font-family: var(--display); font-weight: 500; font-style: italic; color: var(--pink); font-size: 22px; margin-left: 4px; }
+  .funding-cell .l { font-family: var(--sans); font-size: 12px; color: var(--dim); margin-top: 8px; line-height: 1.4; }
+  .fatf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 16px; }
+  .fatf-card { padding: 18px; border: 1px solid var(--line); background: rgba(10,14,19,0.6); }
+  .fatf-card .k { font-size: 10px; letter-spacing: 0.2em; color: var(--pink); text-transform: uppercase; margin-bottom: 10px; }
+  .fatf-card h4 { margin: 0 0 8px; font-family: var(--display); font-size: 18px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; color: var(--text); }
+  .fatf-card h4 em { font-family: var(--display); font-style: italic; color: var(--pink); font-weight: 500; }
+  .fatf-card p { margin: 0; font-family: var(--sans); font-size: 12.5px; color: var(--dim); line-height: 1.5; }
+  .fatf-card .stat { font-family: var(--display); font-weight: 700; font-size: 38px; line-height: 1; letter-spacing: -0.025em; color: var(--text); margin: 0 0 6px; }
+  .fatf-card .stat em { font-family: var(--display); font-weight: 500; font-style: italic; color: var(--cyan); font-size: 22px; margin-left: 4px; }
+
+  /* Footer of sheet */
+  .sheet-foot {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-strong);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  }
+  .sheet-foot h6 { margin: 0 0 10px; color: var(--pink); font-weight: 600; font-size: 10px; letter-spacing: 0.22em; }
+  .sheet-foot p { margin: 0; color: var(--dim); font-family: var(--mono); line-height: 1.7; letter-spacing: 0.04em; text-transform: none; font-size: 11px; }
+  .sheet-foot .right { text-align: right; }
+  .sheet-foot .teal { color: var(--cyan); }
+
+  /* Print */
+  @media print {
+    @page { size: A3 portrait; margin: 0; }
+    body { background: white; color: black; }
+    .toolbar { display: none; }
+    .stage { padding: 0; }
+    .sheet {
+      width: 100%; box-shadow: none; border: none;
+      background: var(--bg);
+      page-break-after: avoid;
+    }
+  }
+  @media (max-width: 1280px) {
+    .sheet { width: 100%; padding: 32px; min-height: auto; }
+    h1 { font-size: 56px; }
+    .title-row { grid-template-columns: 1fr; gap: 24px; }
+    .pillar-grid { grid-template-columns: 1fr 1fr; }
+    .pillar:nth-child(2) { border-right: none; }
+    .pillar:nth-child(1), .pillar:nth-child(2) { border-bottom: 1px solid var(--line); }
+    .c-what, .c-when, .c-selected, .c-threshold, .c-banned, .c-travel { grid-column: span 12; }
+    .c-stat-1, .c-stat-2, .c-stat-3, .c-stat-4 { grid-column: span 6; }
+    .selected-vis { grid-template-columns: repeat(8, 1fr); }
+    .ban-grid { grid-template-columns: 1fr; }
+    .fatf-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Toolbar (screen only) -->
+<div class="toolbar">
+  <a href="Landing.html" class="flor-mark">FLOR<span class="o">🦩</span>NCHAIN</a>
+  <span>REFERENCE CARD · AMLA × CRYPTO · ED. 01</span>
+  <span class="fill"></span>
+  <a href="Landing.html" class="btn">← INDEX</a>
+  <button onclick="window.print()" class="btn">PRINT · A3</button>
+</div>
+
+<div class="stage">
+  <article class="sheet">
+    <span class="crop-tr"></span><span class="crop-bl"></span>
+
+    <header class="head">
+      <div class="lockup">
+        <div class="flor-mark lg">FLOR<span class="o">🦩</span>NCHAIN</div>
+        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; color: var(--dim); text-transform: uppercase;">REFERENCE CARD · 01 · COMPLIANCE DESK</div>
+      </div>
+      <div class="filing">
+        <span class="k">FILED</span><span class="v">25 · APR · 2026</span>
+        <span class="k">EDITOR</span><span class="v">FLORIANA</span>
+        <span class="k">CLASS</span><span class="v">CHEAT-SHEET</span>
+        <span class="k">PRINT</span><span class="v">A3 · PORTRAIT</span>
+        <span class="k">CASE</span><span class="v teal">0xAML4 · 1620</span>
+      </div>
+    </header>
+
+    <section class="title-row">
+      <div>
+        <div class="kicker"><span class="hr"></span>§ AMLA × CRYPTO · ONE-PAGER FOR THE COMPLIANCE WALL</div>
+        <h1>What <em>AMLA</em> says about <em>cryptocurrencies,</em> in one sheet.</h1>
+      </div>
+      <div class="deck">
+        Pin this above the desk. Everything a CASP compliance team needs to know about the new EU Authority for Anti-Money Laundering — sourced from AMLA, AMLR, AMLD6 and FATF R.15.
+      </div>
+    </section>
+
+    <div class="grid">
+
+      <!-- WHAT IS AMLA -->
+      <div class="cell c-what">
+        <div class="tag"><span>§01 · WHO</span><b>FRANKFURT · DE</b></div>
+        <h3>AMLA is the EU's first <em>direct supervisor</em> for high-risk financial entities.</h3>
+        <p>Established by <strong>Regulation (EU) 2024/1620</strong>, AMLA opened in Frankfurt and started operations on <strong>1 July 2025</strong>. Direct supervision of selected obliged entities begins <strong>1 January 2028</strong>. Up to <strong>40</strong> entities operating in at least <strong>6 Member States</strong> will be picked from the financial sector — explicitly including crypto-asset service providers.</p>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="cell c-when">
+        <div class="tag"><span>§02 · WHEN</span><b>2024 — 2028</b></div>
+        <h3>Four dates that <em>matter.</em></h3>
+        <div style="margin-top: 18px; display: grid; grid-template-columns: 80px 1fr; gap: 14px 16px; font-family: var(--sans); font-size: 13px;">
+          <div style="font-family: var(--mono); color: var(--teal); font-size: 12px;">26 JUN<br>2024</div>
+          <div style="color: var(--dim);"><strong style="color:var(--text)">AMLA legally exists.</strong> Regulation 2024/1620 enters force.</div>
+          <div style="font-family: var(--mono); color: var(--teal); font-size: 12px;">01 JUL<br>2025</div>
+          <div style="color: var(--dim);"><strong style="color:var(--text)">AMLA goes operational.</strong> Frankfurt office; Bruna Szego appointed Chair.</div>
+          <div style="font-family: var(--mono); color: var(--teal); font-size: 12px;">10 JUL<br>2027</div>
+          <div style="color: var(--dim);"><strong style="color:var(--text)">RTS for selection apply.</strong> The 40 selected obliged entities are identified.</div>
+          <div style="font-family: var(--mono); color: var(--warn); font-size: 12px;">01 JAN<br>2028</div>
+          <div style="color: var(--dim);"><strong style="color:var(--text)">Direct supervision begins.</strong> AMLA exercises investigatory powers in place of NCAs.</div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="cell c-stat-1">
+        <div class="tag"><span>§ DIRECT</span><b>BY 2028</b></div>
+        <div class="big"><span class="counter" data-target="40">0</span></div>
+        <div class="lab">SELECTED OBLIGED ENTITIES</div>
+        <p style="font-size: 12px;">Across credit institutions, e-money issuers, payment institutions, <strong>and CASPs</strong>. At least one per Member State.</p>
+      </div>
+      <div class="cell c-stat-2">
+        <div class="tag"><span>§ MIN. FOOTPRINT</span><b>EU CROSS-BORDER</b></div>
+        <div class="big"><span class="counter" data-target="6">0</span><span class="unit">MS</span></div>
+        <div class="lab">MEMBER STATES MINIMUM</div>
+        <p style="font-size: 12px;">An entity must operate across <strong>≥ 6 EU Member States</strong> to qualify for direct supervision.</p>
+      </div>
+      <div class="cell c-stat-3">
+        <div class="tag"><span>§ THRESHOLD</span><b>AMLR · CRYPTO</b></div>
+        <div class="big">€<span class="counter" data-target="1000">0</span></div>
+        <div class="lab">CDD KICKS IN — OCCASIONAL TX</div>
+        <p style="font-size: 12px;">Customer due diligence required on any crypto transfer above this amount — including transfers to <strong>self-hosted wallets</strong>.</p>
+      </div>
+      <div class="cell c-stat-4">
+        <div class="tag"><span>§ STAFF</span><b>FRANKFURT HQ</b></div>
+        <div class="big">~<span class="counter" data-target="430">0</span></div>
+        <div class="lab">PROJECTED HEADCOUNT BY 2028</div>
+        <p style="font-size: 12px;">Today ~120; ramping to enable joint supervisory teams and on-site inspections of selected entities.</p>
+      </div>
+
+      <!-- 4 PILLARS -->
+      <div class="cell c-pillar">
+        <div class="tag" style="padding: 22px 22px 0;"><span>§03 · POWERS</span><b>FOUR PILLARS</b></div>
+        <div class="pillar-grid">
+          <div class="pillar">
+            <div class="n">PILLAR 01</div>
+            <h4>Direct <em>supervision.</em></h4>
+            <p>AMLA itself supervises 40 selected high-risk financial entities. Joint supervisory teams composed of AMLA staff + national supervisors.</p>
+            <div class="src">REG. 2024/1620 · ART. 12</div>
+          </div>
+          <div class="pillar">
+            <div class="n">PILLAR 02</div>
+            <h4>Indirect <em>oversight.</em></h4>
+            <p>Sets EU-wide standards, guidelines and technical standards. Reviews national supervisors' performance. Steps in as last resort if NCAs fail.</p>
+            <div class="src">REG. 2024/1620 · ART. 30+</div>
+          </div>
+          <div class="pillar">
+            <div class="n">PILLAR 03</div>
+            <h4>FIU <em>coordination.</em></h4>
+            <p>Operates the new FIU.net platform. Facilitates joint cross-border case analyses. Hub for the EU's financial intelligence network.</p>
+            <div class="src">REG. 2024/1620 · CH. III</div>
+          </div>
+          <div class="pillar">
+            <div class="n">PILLAR 04</div>
+            <h4>Investigatory <em>powers.</em></h4>
+            <p>Information requests, on-site inspections, sealing of premises, sanctions. Independent investigatory teams for serious-breach cases.</p>
+            <div class="src">REG. 2024/1620 · ART. 21+</div>
+          </div>
+        </div>
+        <div class="tag" style="padding: 22px 22px 0; border-top: 1px solid var(--line);"><span>§03b · MISSION</span><b>SIX PRIORITIES · PROP. 2021/0240</b></div>
+        <div class="pillar-grid">
+          <div class="pillar">
+            <div class="n">MISSION 01</div>
+            <h4>Single <em>rulebook.</em></h4>
+            <p>Establish one harmonised EU AML/CFT rulebook — eliminate divergent transposition across Member States.</p>
+          </div>
+          <div class="pillar">
+            <div class="n">MISSION 02</div>
+            <h4>Effective <em>implementation.</em></h4>
+            <p>Ensure the existing EU AML/CFT framework is actually applied — not just on paper.</p>
+          </div>
+          <div class="pillar">
+            <div class="n">MISSION 03</div>
+            <h4>FIU <em>support.</em></h4>
+            <p>Build a cooperation mechanism for Financial Intelligence Units; common reporting templates &amp; standards.</p>
+          </div>
+          <div class="pillar">
+            <div class="n">MISSION 04</div>
+            <h4>International <em>reach.</em></h4>
+            <p>Strengthen the international dimension of the EU framework; coordinate with FATF and third-country regimes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SELECTED VISUAL -->
+      <div class="cell c-selected">
+        <div class="tag"><span>§04 · WHO IS PICKED</span><b>40 OF THOUSANDS</b></div>
+        <h3>The shortlist — <em>still being drafted.</em></h3>
+        <p style="margin-bottom: 4px;">EBA's RTS on selection criteria closed consultation 6 Jun 2025. Apply from 10 Jul 2027. Highest-risk cross-border CASPs, credit and financial institutions are likely.</p>
+        <div class="selected-vis" id="dots"></div>
+        <div class="selected-legend">
+          <span><span class="sw" style="background: var(--teal); border:1px solid var(--teal);"></span>EXPECTED CASP / FINANCIAL</span>
+          <span><span class="sw" style="background: rgba(27,184,217,0.18); border:1px solid var(--line-strong);"></span>OTHER FINANCIAL ENTITY</span>
+        </div>
+      </div>
+
+      <!-- THRESHOLDS -->
+      <div class="cell c-threshold">
+        <div class="tag"><span>§05 · THRESHOLDS</span><b style="color: var(--warn)">AMLR · CRYPTO-SPECIFIC</b></div>
+        <h3>The numbers <em>compliance teams</em> need by heart.</h3>
+        <div class="threshold-list">
+          <div class="row"><div class="l">CDD on occasional crypto transfer</div><div class="v warn">≥ €1,000</div></div>
+          <div class="row"><div class="l">Travel Rule applies (originator + beneficiary info)</div><div class="v warn">All transfers</div></div>
+          <div class="row"><div class="l">Self-hosted wallet enhanced verification</div><div class="v warn">≥ €1,000</div></div>
+          <div class="row"><div class="l">EU-wide cash payment ceiling (any sector)</div><div class="v warn">€10,000</div></div>
+          <div class="row"><div class="l">Anonymous crypto accounts &amp; privacy coins</div><div class="v warn">PROHIBITED</div></div>
+        </div>
+      </div>
+
+      <!-- BANNED -->
+      <div class="cell c-banned">
+        <div class="tag"><span>§06 · PROHIBITED</span><b style="color: var(--hot)">EFFECTIVE 2027</b></div>
+        <h3>What CASPs <em>can no longer touch.</em></h3>
+        <div class="ban-grid">
+          <div class="item">Anonymous crypto-asset accounts<small>No anonymous wallets, no anonymous custody.</small></div>
+          <div class="item">Anonymity-enhancing coins<small>Privacy coins (e.g. Monero) — provision &amp; custody banned.</small></div>
+          <div class="item">Anonymous safe-deposit boxes<small>Pre-existing AML rule, now harmonised.</small></div>
+          <div class="item">Cash &gt; €10,000 in business transactions<small>Hard EU ceiling under AMLR.</small></div>
+        </div>
+      </div>
+
+      <!-- TRAVEL RULE -->
+      <div class="cell c-travel">
+        <div class="tag"><span>§07 · TRAVEL RULE</span><b>REG. 2023/1113 · IN FORCE 30 DEC 2024</b></div>
+        <h3>What must <em>travel</em> with every transfer.</h3>
+        <svg class="travel-svg" viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" id="travel">
+          <defs>
+            <marker id="arT2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#ff2db7"/>
+            </marker>
+          </defs>
+          <!-- Originator -->
+          <rect x="20" y="60" width="180" height="120" fill="#0a0a0a" stroke="#ff2db7" stroke-width="1.5"/>
+          <text x="110" y="90" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#ff2db7" letter-spacing="2">ORIGINATOR CASP</text>
+          <text x="110" y="118" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" fill="#f5f5f5">Sender wallet</text>
+          <text x="110" y="138" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a0aec0">Collects + sends</text>
+          <text x="110" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a0aec0">data with txn</text>
+
+          <!-- Arrow + payload -->
+          <line x1="200" y1="120" x2="600" y2="120" stroke="#ff2db7" stroke-width="1.5" marker-end="url(#arT2)"/>
+          <rect x="290" y="78" width="220" height="90" fill="#0a0a0a" stroke="#ff2db7" stroke-dasharray="4 3" opacity="0.95"/>
+          <text x="400" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="9.5" fill="#ff2db7" letter-spacing="2">PAYLOAD · MUST INCLUDE</text>
+          <text x="305" y="120" font-family="Plus Jakarta Sans" font-size="11" fill="#f5f5f5">· Originator name</text>
+          <text x="305" y="135" font-family="Plus Jakarta Sans" font-size="11" fill="#f5f5f5">· Originator address / DOB</text>
+          <text x="305" y="150" font-family="Plus Jakarta Sans" font-size="11" fill="#f5f5f5">· Originator wallet ID</text>
+          <text x="305" y="165" font-family="Plus Jakarta Sans" font-size="11" fill="#f5f5f5">· Beneficiary name + wallet</text>
+
+          <!-- Beneficiary -->
+          <rect x="600" y="60" width="180" height="120" fill="#0a0a0a" stroke="#ff2db7" stroke-width="1.5"/>
+          <text x="690" y="90" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#ff2db7" letter-spacing="2">BENEFICIARY CASP</text>
+          <text x="690" y="118" text-anchor="middle" font-family="Plus Jakarta Sans" font-size="13" fill="#f5f5f5">Receiver wallet</text>
+          <text x="690" y="138" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a0aec0">Verifies + stores</text>
+          <text x="690" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a0aec0">7-year retention</text>
+
+          <!-- Bottom labels -->
+          <text x="20" y="220" font-family="JetBrains Mono" font-size="10" fill="#4A5660" letter-spacing="2">FIG. 01 — TRAVEL RULE / EU TFR · NO MIN. THRESHOLD FOR CASP-TO-CASP TRANSFERS</text>
+        </svg>
+      </div>
+
+      <!-- FATF FINDINGS -->
+      <div class="cell c-fatf">
+        <div class="tag"><span>§08 · FATF R.15 · 2025 UPDATE</span><b>SOURCE — FATF JUN 2025</b></div>
+        <h3>How the <em>rest of the world</em> is doing.</h3>
+        <div class="fatf-grid">
+          <div class="fatf-card">
+            <div class="k">FATF · 2025</div>
+            <div class="stat">99<em>jur.</em></div>
+            <h4>Have <em>some form</em> of VASP regime.</h4>
+            <p>Of 138 jurisdictions reviewed under Recommendation 15, 99 have introduced a VASP regulatory regime. The remainder are still drafting.</p>
+          </div>
+          <div class="fatf-card">
+            <div class="k">FATF · 2025</div>
+            <div class="stat">73<em>%</em></div>
+            <h4>Have <em>not yet</em> implemented Travel Rule.</h4>
+            <p>Despite being a 2019 standard, most jurisdictions still lack a working Travel Rule regime — leaving the EU's December 2024 implementation a global outlier.</p>
+          </div>
+          <div class="fatf-card">
+            <div class="k">FATF · 2025</div>
+            <div class="stat">Stablecoins</div>
+            <h4>Now the <em>dominant</em> illicit-finance rail.</h4>
+            <p>FATF's targeted update flags stablecoins as the asset most used by DPRK actors, scammers and sanctioned entities — replacing earlier privacy-coin focus.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUNDING -->
+      <div class="cell c-funding">
+        <div class="tag"><span>§09 · FUNDING MODEL</span><b>EU BUDGET + OBLIGED-ENTITY FEES</b></div>
+        <h3>Who <em>pays for</em> AMLA.</h3>
+        <p>Hybrid: a portion from the EU general budget, the rest from <strong>fees levied on obliged entities</strong> — directly or indirectly supervised. CASPs in scope of direct supervision will contribute proportionate to risk and footprint.</p>
+        <div class="funding-grid">
+          <div class="funding-cell">
+            <div class="yr">SOURCE · MIX</div>
+            <div class="v">EU<em>+ fees</em></div>
+            <div class="l">Two-source funding model under Reg. 2024/1620.</div>
+          </div>
+          <div class="funding-cell">
+            <div class="yr">2024 · BUDGET</div>
+            <div class="v">€16<em>m</em></div>
+            <div class="l">Setup year — task force, pre-selection, IT.</div>
+          </div>
+          <div class="funding-cell">
+            <div class="yr">2025 · BUDGET</div>
+            <div class="v">€30<em>m</em></div>
+            <div class="l">Operations launch — Frankfurt office, ~120 staff.</div>
+          </div>
+          <div class="funding-cell">
+            <div class="yr">2028 · STAFF</div>
+            <div class="v">~430<em>FTE</em></div>
+            <div class="l">Steady-state for direct supervision + JSTs.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="sheet-foot">
+      <div>
+        <h6>SOURCES</h6>
+        <p>Reg. (EU) 2024/1620 · Reg. (EU) 2024/1624 (AMLR) · Dir. (EU) 2024/1640 (AMLD6) · Reg. (EU) 2023/1113 (TFR) · AMLA Work Programme 2025 · FATF Targeted Update on VAs/VASPs (Jun 2025) · EUCI AML Handbook 2025.</p>
+      </div>
+      <div>
+        <h6>METHOD</h6>
+        <p>Composite cheat-sheet, not legal advice. Thresholds and dates current as of filing. Verify against final Level-2 acts for your jurisdiction. Floronchain methodology &amp; redaction policy: floronchain.com/method.</p>
+      </div>
+      <div class="right">
+        <h6>FILING</h6>
+        <p style="text-align: right;">© 2026 floronchain<br><span class="teal">◆ 0xAML4 · 1620</span><br>Reference card · ed. 01 · rev. 1.0<br>Print: A3 portrait, dark stock</p>
+      </div>
+    </footer>
+
+  </article>
+</div>
+
+<script>
+  // Generate 40 dots — first 14 highlighted as expected CASP / financial
+  const dotsEl = document.getElementById('dots');
+  const expectedCasps = new Set([1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 39]);
+  for (let i = 0; i < 40; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot40 ' + (expectedCasps.has(i) ? 'casp' : 'fi');
+    dotsEl.appendChild(d);
+  }
+
+  // Counter animation on scroll
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const animateCounter = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const dur = 1400;
+    const start = performance.now();
+    const isThousand = target >= 1000;
+    function frame(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const val = target * easeOut(p);
+      el.textContent = isThousand ? Math.round(val).toLocaleString() : Math.round(val).toString();
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.counter').forEach(c => io.observe(c));
+</script>
+
+</body>
+</html>

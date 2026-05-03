@@ -1,0 +1,20 @@
+/* floronchain tokens — dark zine + flamingo brand */
+:root {
+  --fl-bg: #0A0D12;
+  --fl-bg-2: #10141B;
+  --fl-ink-dark: #05070A;
+  --fl-white: #F2F5F7;
+  --fl-dim: #8C97A3;
+  --fl-teal: #1BB8D9;
+  --fl-teal-deep: #0E8FAA;
+  --fl-magenta: #EC1E79;
+  --fl-magenta-deep: #C41565;
+  --fl-line: rgba(245,247,250,0.12);
+  --fl-line-soft: rgba(245,247,250,0.06);
+
+  --fl-display: 'Archivo', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --fl-body: 'Inter', system-ui, sans-serif;
+  --fl-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+.fl-mono { font-family: var(--fl-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+.fl-display { font-family: var(--fl-display); font-weight: 900; letter-spacing: -0.02em; line-height: 0.92; font-stretch: 75%; }

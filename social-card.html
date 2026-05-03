@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Social card - Malta Travel Rule</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #000;
+    color: #f5f5f5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  .ambient {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 15% 0%,  rgba(255,45,183,0.18), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(0,240,255,0.10),  transparent 60%);
+  }
+  .skyline-bg {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+    opacity: 0.55;
+  }
+  .skyline-bg img {
+    width: 100%;
+    display: block;
+  }
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 80px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .brand .flam { color: #ff2db7; }
+  .episode-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00f0ff;
+    background: rgba(0,240,255,0.08);
+    padding: 8px 16px;
+    border: 1px solid rgba(0,240,255,0.4);
+    border-radius: 4px;
+  }
+  .headline-block {
+    margin-top: 20px;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ff2db7;
+    margin-bottom: 28px;
+  }
+  .headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+    max-width: 1000px;
+  }
+  .headline em {
+    font-style: normal;
+    color: #ff2db7;
+  }
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .url .arr { color: #ff2db7; }
+  .meta-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6b7280;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff2db7 0%, #ff2db7 35%, #00f0ff 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="ambient"></div>
+  <div class="skyline-bg">
+    <img src="assets/valletta-skyline.svg" alt="">
+  </div>
+  <div class="content">
+    <div class="top-row">
+      <div class="brand">FLOR<span class="flam">🦩</span>NCHAIN</div>
+      <div class="episode-tag">Episode 02 · Live</div>
+    </div>
+    <div class="headline-block">
+      <div class="kicker">Malta · Travel Rule · Recast TFR</div>
+      <h1 class="headline">A tick-box just cost a Maltese CASP <em>40%</em> of the loss.</h1>
+    </div>
+    <div class="bottom-row">
+      <div class="url"><span class="arr">→</span> floronchain.com</div>
+      <div class="meta-tag">RAW ALPHA · MAY 2026</div>
+    </div>
+  </div>
+  <div class="accent-line"></div>
+</body>
+</html>
